@@ -1,3 +1,12 @@
+"""
+This is a work in progress and I intend to expand it so that I can do linear algebra as well
+as statistical calculations so that i can quickly verify that my data analysis is being done
+correctly.
+
+Currently, can only perform simple arithmatic with +-/*
+"""
+
+
 # I want to build a calculator app.
 
 # use tkinter to create a GUI
