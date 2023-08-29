@@ -1,3 +1,12 @@
+"""
+This is a work in progress and I intend to expand it so that I can do linear algebra as well
+as statistical calculations so that I can quickly verify that my data analysis is being done
+correctly.
+
+Currently, can only perform simple arithmatic with +-/*
+"""
+
+
 # I want to build a calculator app.
 
 # use tkinter to create a GUI
@@ -27,12 +36,12 @@ def button_click(number):
         return
 
     if cur_text == "0":
-        arith = False # inserted to fix a potential bug when deleting operators from the calculation text.
+        arith = False  # inserted to fix a potential bug when deleting operators from the calculation text.
         current_text.delete(0, END)
         current_text.insert(0, str(number))
         return
-    if calc_text[-1] in  "+-*/^":
-        if arith ==True:
+    if calc_text[-1] in "+-*/^":
+        if arith is True:
             current_text.delete(0, END)
             current_text.insert(0, str(number))
             arith = False
@@ -58,8 +67,8 @@ def button_add():
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + "+")
-    elif calc_text and calc_text[-1:] in "+-*/^": # calc_text is checking so it is not an empty string
-        if arith == False:
+    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+        if arith is False:
             calculation_text.insert(END, current_text.get() + "+")
         else:
             calculation_text.delete(len(calc_text)-1, END)
@@ -84,8 +93,8 @@ def button_subtract():
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + "-")
-    elif calc_text and calc_text[-1:] in "+-*/^": # calc_text is checking so it is not an empty string
-        if arith == False:
+    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+        if arith is False:
             calculation_text.insert(END, current_text.get() + "-")
         else:
             calculation_text.delete(len(calc_text)-1, END)
@@ -110,8 +119,8 @@ def button_multiply():
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + "*")
-    elif calc_text and calc_text[-1:] in "+-*/^": # calc_text is checking so it is not an empty string
-        if  arith == False:
+    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+        if arith is False:
             calculation_text.insert(END, current_text.get() + "*")
         else:
             calculation_text.delete(len(calc_text)-1, END)
@@ -136,8 +145,8 @@ def button_divide():
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + "/")
-    elif calc_text and calc_text[-1:] in "+-*/^": # calc_text is checking so it is not an empty string
-        if arith == False:
+    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+        if arith is False:
             calculation_text.insert(END, current_text.get() + "/")
         else:
             calculation_text.delete(len(calc_text)-1, END)
@@ -162,8 +171,8 @@ def button_exponential():
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + "^")
-    elif calc_text and calc_text[-1:] in "+-*/^": # calc_text is checking so it is not an empty string
-        if  arith == False:
+    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+        if arith is False:
             calculation_text.insert(END, current_text.get() + "^")
         else:
             calculation_text.delete(len(calc_text)-1, END)
@@ -192,7 +201,7 @@ def button_backspace():
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if len(cur_text) == 1:
-        if  cur_text == "0":
+        if cur_text == "0":
             calculation_text.delete(len(calc_text) - 1, END)
         else:
             current_text.delete(0, END)
@@ -201,11 +210,11 @@ def button_backspace():
         current_text.delete(len(cur_text) - 1, END)
 
 
-# i was not able to build a an eval() function that follows the order of operationss.
-# so i just used the built in eval() function.
+# I was not able to build an eval() function that follows the order of operations.
+# so I just used the built-in eval() function.
 def button_equal():
     calc_text = calculation_text.get()
-    calc_text = calc_text.replace("^", "**") # change the ^ to ** because in python ^ is bitwize XOR operator.
+    calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
     if calc_text[-1:] == "=":
         return
@@ -220,14 +229,14 @@ def button_equal():
 
 
 root = Tk()
-# this allows for different behaviors of each button depending on wether the last button was a numeric button
+# this allows for different behaviors of each button depending on whether the last button was a numeric button
 # or an arithmatic button such as "+-/*"
-arith = False # to check if the last entry in the calculation_text is an arithmetic operator.
+arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
 
 root.title("Simple Calculator")
 root.geometry("500x700")
 root.configure(bg="lightblue")
-root.resizable(0, 0)
+root.resizable(False, False)  # Controls whether user can resize window.
 
 
 # add the text box for the numbers
@@ -263,7 +272,7 @@ button_divide = Button(root, text="÷", padx=8, pady=4, font=("UD Digi Kyokasho 
 button_exponential = Button(root, text="^", padx=26, pady=5, font=button_font, command=button_exponential)
 button_plus_minus = Button(root, text="+/-", padx=13, pady=5, font=button_font, command=button_plus_minus)
 button_decimal = Button(root, text=".", padx=30, pady=5, font=button_font, command=button_decimal)
-button_backspace =  Button(root, text="<-X", padx=21, pady=5, font=("Arial", 20), command=button_backspace)
+button_backspace = Button(root, text="<-X", padx=21, pady=5, font=("Arial", 20), command=button_backspace)
 button_clear = Button(root, text="Clear", padx=9, pady=5, font=("Arial", 20), command=button_clear)
 button_equal = Button(root, text="=", padx=72, pady=1, font=("Arial", 24), command=button_equal)
 
