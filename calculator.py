@@ -225,6 +225,8 @@ def button_backspace():
         current_text.delete(len(cur_text) - 1, END)
 
 
+# TODO Add way for the equal button to memorize the last operation and repeat that continuously
+# TODO as long as the used keeps pressing the equals button.
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
 def button_equal():
