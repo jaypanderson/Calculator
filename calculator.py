@@ -190,10 +190,14 @@ def button_plus_minus():
     pass
 
 
+#TODO fix this function for edge cases
 def button_decimal():
     global calculation_text, current_text
-    calc_text =
-    pass
+    cur_text = current_text.get()
+    if '.' not in cur_text:
+        current_text.insert(END, '.')
+    elif '.' in cur_text and cur_text[-1] == '.':
+        current_text.delete(len(cur_text) - 1, END)
 
 
 def button_clear():
