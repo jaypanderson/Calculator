@@ -256,7 +256,7 @@ current_text.configure(font=("Arial", 30))
 button_font = ("Arial", 30)
 
 # variables to adjust button size
-width = text_width // 3.75
+width = int(text_width // 3.75)
 height = 50
 border = 1
 # add buttons for the numbers
