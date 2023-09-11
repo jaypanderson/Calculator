@@ -20,7 +20,7 @@ import math
 
 # add the functions to the buttons
 def button_click(number):
-    global arith
+    global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if calc_text[-1:] == "=":
@@ -55,7 +55,7 @@ def button_click(number):
 
 
 def button_add():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -81,7 +81,7 @@ def button_add():
 
 
 def button_subtract():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -107,7 +107,7 @@ def button_subtract():
 
 
 def button_multiply():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -133,7 +133,7 @@ def button_multiply():
 
 
 def button_divide():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -159,7 +159,7 @@ def button_divide():
 
 
 def button_exponential():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -186,20 +186,25 @@ def button_exponential():
 
 # change the last numeric values sign.
 def button_plus_minus():
+    global calculation_text, current_text
     pass
 
 
 def button_decimal():
+    global calculation_text, current_text
+    calc_text =
     pass
 
 
 def button_clear():
+    global calculation_text, current_text
     calculation_text.delete(0,  END)
     current_text.delete(0, END)
     current_text.insert(0, "0")
 
 
 def button_backspace():
+    global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if len(cur_text) == 1:
@@ -215,6 +220,7 @@ def button_backspace():
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
 def button_equal():
+    global calculation_text, current_text
     calc_text = calculation_text.get()
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
