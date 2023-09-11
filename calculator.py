@@ -192,6 +192,7 @@ def button_plus_minus():
 
 def button_decimal():
     global arith, calculation_text, current_text
+    calc_text = calculation_text.get()
     cur_text = current_text.get()
     if arith is True:
         current_text.delete(0, END)
@@ -202,6 +203,10 @@ def button_decimal():
             current_text.insert(END, '.')
         elif '.' in cur_text and cur_text[-1] == '.':
             current_text.delete(len(cur_text) - 1, END)
+        elif calc_text[-1:] == '=':
+            calculation_text.delete(0, END)
+            current_text.delete(0, END)
+            current_text.insert(0, '0.')
 
 
 def button_clear():
