@@ -187,7 +187,12 @@ def button_exponential():
 # change the last numeric values sign.
 def button_plus_minus():
     global calculation_text, current_text
-    pass
+    calc_text = calculation_text.get()
+    cur_text = current_text.get()
+    if cur_text[:1] != '-':
+        current_text.insert(0, '-')
+    elif cur_text[:1] == '-':
+        current_text.delete(0, 1)
 
 
 def button_decimal():
