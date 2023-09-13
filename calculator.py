@@ -203,8 +203,8 @@ def button_plus_minus():
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
 
-## TODO change is so that when no number is entered into the current text after a decimal a zero
-## TODO is added automatically into calculation_text to make it look better.
+# TODO change is so that when no number is entered into the current text after a decimal a zero
+# TODO is added automatically into calculation_text to make it look better.
 def button_decimal():
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
