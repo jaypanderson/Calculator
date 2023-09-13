@@ -189,7 +189,7 @@ def button_plus_minus():
     global calculation_text, current_text
     pass
 
-#test
+
 def button_decimal():
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
@@ -253,6 +253,7 @@ def button_equal():
 
 root = ctk.CTk()
 set_appearance_mode("dark")
+
 # this allows for different behaviors of each button depending on whether the last button was a numeric button
 # or an arithmatic button such as "+-/*"
 arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
