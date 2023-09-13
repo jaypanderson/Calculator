@@ -18,6 +18,15 @@ from tkinter import END
 import math
 
 
+# check to see if string is a valid float or not.
+def check_if_float(num: str) -> int:
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+
+
 # add the functions to the buttons
 def button_click(number):
     global arith, calculation_text, current_text
@@ -189,7 +198,7 @@ def button_plus_minus():
     global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
-    if cur_text[:1] != '-':
+    if cur_text[:1] != '-' and check_if_float(cur_text):
         current_text.insert(0, '-')
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
