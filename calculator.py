@@ -23,7 +23,8 @@ import math
 # TODO merge the arithmatic functions into one single function because i suspect they all behave the same way.
 
 # TODO There is a bug where if the result ends with a zero i can no longer continue with calculations. i need to reset.
-# TODO if I add zero to zero it wont show up in the calculation text.
+# TODO if I add zero to zero it wont show up in the calculation text. it most likely has to do with the arithmatic
+#      functions.
 
 
 # check to see if string is a valid float or not.
