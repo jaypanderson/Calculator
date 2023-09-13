@@ -22,6 +22,9 @@ import math
 
 # TODO merge the arithmatic functions into one single function because i suspect they all behave the same way.
 
+# TODO There is a bug where if the result ends with a zero i can no longer continue with calculations. i need to reset.
+# TODO if I add zero to zero it wont show up in the calculation text.
+
 
 # check to see if string is a valid float or not.
 def check_if_float(num: str) -> int:
@@ -203,7 +206,7 @@ def button_plus_minus():
     global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
-    if cur_text[:1] != '-' and check_if_float(cur_text):
+    if cur_text[:1] != '-' and check_if_float(cur_text) and cur_text != '0':
         current_text.insert(0, '-')
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
