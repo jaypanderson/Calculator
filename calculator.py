@@ -11,14 +11,34 @@ Currently, can only perform simple arithmatic with +-/*
 
 # use tkinter to create a GUI
 
+import customtkinter as ctk
+from customtkinter import set_appearance_mode
 from tkinter import *
 from tkinter import END
 import math
 
+# TODO change arithmatic functions so that they are not able to do anything when an error is displayed
+# TODO in the calculation_text
+
+# TODO merge the arithmatic functions into one single function because i suspect they all behave the same way.
+
+# TODO There is a bug where if the result ends with a zero i can no longer continue with calculations. i need to reset.
+# TODO if I add zero to zero it wont show up in the calculation text. it most likely has to do with the arithmatic
+#      functions.
+
+
+# check to see if string is a valid float or not.
+def check_if_float(num: str) -> int:
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+
 
 # add the functions to the buttons
 def button_click(number):
-    global arith
+    global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if calc_text[-1:] == "=":
@@ -53,7 +73,7 @@ def button_click(number):
 
 
 def button_add():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -79,7 +99,7 @@ def button_add():
 
 
 def button_subtract():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -105,7 +125,7 @@ def button_subtract():
 
 
 def button_multiply():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -131,7 +151,7 @@ def button_multiply():
 
 
 def button_divide():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -157,7 +177,7 @@ def button_divide():
 
 
 def button_exponential():
-    global arith
+    global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -184,20 +204,45 @@ def button_exponential():
 
 # change the last numeric values sign.
 def button_plus_minus():
-    pass
+    global calculation_text, current_text
+    calc_text = calculation_text.get()
+    cur_text = current_text.get()
+    if cur_text[:1] != '-' and check_if_float(cur_text) and cur_text != '0':
+        current_text.insert(0, '-')
+    elif cur_text[:1] == '-':
+        current_text.delete(0, 1)
 
 
+# TODO change is so that when no number is entered into the current text after a decimal a zero
+# TODO is added automatically into calculation_text to make it look better.
 def button_decimal():
-    pass
+    global arith, calculation_text, current_text
+    calc_text = calculation_text.get()
+    cur_text = current_text.get()
+    if arith is True:
+        current_text.delete(0, END)
+        current_text.insert(0, '0.')
+        arith = False
+    else:
+        if '.' not in cur_text:
+            current_text.insert(END, '.')
+        elif '.' in cur_text and cur_text[-1] == '.':
+            current_text.delete(len(cur_text) - 1, END)
+        elif calc_text[-1:] == '=':
+            calculation_text.delete(0, END)
+            current_text.delete(0, END)
+            current_text.insert(0, '0.')
 
 
 def button_clear():
+    global calculation_text, current_text
     calculation_text.delete(0,  END)
     current_text.delete(0, END)
     current_text.insert(0, "0")
 
 
 def button_backspace():
+    global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if len(cur_text) == 1:
@@ -210,9 +255,12 @@ def button_backspace():
         current_text.delete(len(cur_text) - 1, END)
 
 
+# TODO Add way for the equal button to memorize the last operation and repeat that continuously
+# TODO as long as the used keeps pressing the equals button.
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
 def button_equal():
+    global calculation_text, current_text
     calc_text = calculation_text.get()
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
@@ -228,7 +276,9 @@ def button_equal():
     return
 
 
-root = Tk()
+root = ctk.CTk()
+set_appearance_mode("dark")
+
 # this allows for different behaviors of each button depending on whether the last button was a numeric button
 # or an arithmatic button such as "+-/*"
 arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
@@ -236,45 +286,49 @@ arith = False  # to check if the last entry in the calculation_text is an arithm
 root.title("Simple Calculator")
 root.geometry("500x700")
 root.configure(bg="lightblue")
-root.resizable(False, False)  # Controls whether user can resize window.
-
+root.resizable(True, True)  # Controls whether user can resize window.
 
 # add the text box for the numbers
-calculation_text = Entry(root, width=58, borderwidth=5)
+text_width = 400
+calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+calculation_text.configure(font=("Lucida Console", 15))
 
 # add text box for current value
-current_text = Entry(root, width=16, borderwidth=5)
+current_text = ctk.CTkEntry(root, width=text_width)
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Arial", 30))
-
+current_text.configure(font=("Lucida Console", 30))
 
 # define button font and size
-button_font = ("Arial", 30)
+button_font = ("Lucida Console", 20)
 
-
+# variables to adjust button size
+width = int(text_width // 3.75)
+height = 50
+border = 1
 # add buttons for the numbers
-button_1 = Button(root, text="1", padx=25, pady=5, font=button_font, command=lambda: button_click(1))
-button_2 = Button(root, text="2", padx=25, pady=5, font=button_font, command=lambda: button_click(2))
-button_3 = Button(root, text="3", padx=25, pady=5, font=button_font, command=lambda: button_click(3))
-button_4 = Button(root, text="4", padx=25, pady=5, font=button_font, command=lambda: button_click(4))
-button_5 = Button(root, text="5", padx=25, pady=5, font=button_font, command=lambda: button_click(5))
-button_6 = Button(root, text="6", padx=25, pady=5, font=button_font, command=lambda: button_click(6))
-button_7 = Button(root, text="7", padx=25, pady=5, font=button_font, command=lambda: button_click(7))
-button_8 = Button(root, text="8", padx=25, pady=5, font=button_font, command=lambda: button_click(8))
-button_9 = Button(root, text="9", padx=25, pady=5, font=button_font, command=lambda: button_click(9))
-button_0 = Button(root, text="0", padx=25, pady=5, font=button_font, command=lambda: button_click(0))
-button_add = Button(root, text="+", padx=14, pady=5, font=button_font, command=button_add)
-button_subtract = Button(root, text="-", padx=19, pady=5, font=button_font, command=button_subtract)
-button_multiply = Button(root, text="⨉", padx=10, pady=5, font=button_font, command=button_multiply)
-button_divide = Button(root, text="÷", padx=8, pady=4, font=("UD Digi Kyokasho N-R", 30), command=button_divide)
-button_exponential = Button(root, text="^", padx=26, pady=5, font=button_font, command=button_exponential)
-button_plus_minus = Button(root, text="+/-", padx=13, pady=5, font=button_font, command=button_plus_minus)
-button_decimal = Button(root, text=".", padx=30, pady=5, font=button_font, command=button_decimal)
-button_backspace = Button(root, text="<-X", padx=21, pady=5, font=("Arial", 20), command=button_backspace)
-button_clear = Button(root, text="Clear", padx=9, pady=5, font=("Arial", 20), command=button_clear)
-button_equal = Button(root, text="=", padx=72, pady=1, font=("Arial", 24), command=button_equal)
+# Note: You can adjust the colors, border colors, and other properties as per your design preferences.
+button_1 = ctk.CTkButton(root, text="1", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(1))
+button_2 = ctk.CTkButton(root, text="2", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(2))
+button_3 = ctk.CTkButton(root, text="3", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(3))
+button_4 = ctk.CTkButton(root, text="4", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(4))
+button_5 = ctk.CTkButton(root, text="5", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(5))
+button_6 = ctk.CTkButton(root, text="6", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(6))
+button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(7))
+button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(8))
+button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(9))
+button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(0))
+button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font, command=button_add)
+button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font, command=button_subtract)
+button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=button_multiply)
+button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font, command=button_divide)
+button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font, command=button_exponential)
+button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font, command=button_plus_minus)
+button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font, command=button_decimal)
+button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font, command=button_backspace)
+button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font, command=button_clear)
+button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font, command=button_equal)
 
 # put the buttons on the screen
 button_1.grid(row=5, column=0)
