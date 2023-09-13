@@ -17,6 +17,11 @@ from tkinter import *
 from tkinter import END
 import math
 
+# TODO change arithmatic functions so that they are not able to do anything when an error is displayed
+# TODO in the calculation_text
+
+# TODO merge the arithmatic functions into one single function because i suspect they all behave the same way.
+
 
 # check to see if string is a valid float or not.
 def check_if_float(num: str) -> int:
@@ -202,6 +207,7 @@ def button_plus_minus():
         current_text.insert(0, '-')
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
+
 
 # TODO change is so that when no number is entered into the current text after a decimal a zero
 # TODO is added automatically into calculation_text to make it look better.
