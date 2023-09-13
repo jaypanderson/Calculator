@@ -272,12 +272,13 @@ root.resizable(True, True)  # Controls whether user can resize window.
 text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+calculation_text.configure(font=("Times New Roman", 15))
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width)
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Arial", 30))
+current_text.configure(font=("Times New Roman", 30))
 
 # define button font and size
 button_font = ("Arial", 30)
