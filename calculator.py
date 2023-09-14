@@ -172,19 +172,6 @@ def limit_keys(key: Event) -> None:
     if key.char not in allowed_keys and key.keysym not in special_keys:
         return 'break'
 
-# TODO there is a bug where it is not properly focusing on the current_text box seemingly random events
-# TODO cause it to work or not.
-def focus_current_text(event: Event = None) -> None:
-    """
-    A function created as a work-around.  simply using focus_set() simply does not work. By using this function
-    and initiating it every time the widget gains focus we can direct the focus within the widget to go directly
-    to the current_text Entry object.
-    :param event: an Event object may or may not be passed in. I don't fully understand the syntax but doesn't
-                  seem to work without it.
-    :return: None
-    """
-    current_text.focus_set()
-
 
 root = ctk.CTk()
 set_appearance_mode("dark")
@@ -267,5 +254,5 @@ button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
 
-root.bind("<FocusIn>", focus_current_text)
+root.after(100, lambda: current_text.focus_set())  # set the focus to the current_text
 root.mainloop()
