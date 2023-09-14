@@ -172,7 +172,8 @@ def limit_keys(key: Event) -> None:
     if key.char not in allowed_keys and key.keysym not in special_keys:
         return 'break'
 
-
+# TODO there is a bug where it is not properly focusing on the current_text box seemingly random events
+# TODO cause it to work or not.
 def focus_current_text(event: Event = None) -> None:
     """
     A function created as a work-around.  simply using focus_set() simply does not work. By using this function
