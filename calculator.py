@@ -172,6 +172,12 @@ def button_equal():
     return
 
 
+def limit_keys(key: Event) -> None:
+    allowed_keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "."]
+    if key.char not in allowed_keys:
+        return 'break'
+
+
 root = ctk.CTk()
 set_appearance_mode("dark")
 
@@ -184,17 +190,19 @@ root.geometry("500x700")
 root.configure(bg="lightblue")
 root.resizable(True, True)  # Controls whether user can resize window.
 
+# TODO fix the calculation text so that only the buttons can be used to change the contents of the text box.
 # add the text box for the numbers
 text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15), state='readonly')  # limit input to buttons only
+calculation_text.configure(font=("Lucida Console", 15))  # limit input to buttons only
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width)
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Lucida Console", 30), state='readonly')  # limit input to buttons only
+current_text.configure(font=("Lucida Console", 30))  # limit input to buttons only
+current_text.bind("<Key>", limit_keys)
 
 # define button font and size
 button_font = ("Lucida Console", 20)
