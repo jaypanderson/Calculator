@@ -16,8 +16,6 @@ import math
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
 # TODO in the calculation_text
 
-# TODO merge the arithmatic functions into one single function because i suspect they all behave the same way.
-
 # TODO There is a bug where if the result ends with a zero i can no longer continue with calculations. i need to reset.
 # TODO if I add zero to zero it wont show up in the calculation text. it most likely has to do with the arithmatic
 #      functions.
@@ -191,7 +189,8 @@ root.resizable(True, True)  # Controls whether user can resize window.
 text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15))  # limit input to buttons only
+calculation_text.configure(font=("Lucida Console", 15))
+calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width)
@@ -199,6 +198,7 @@ current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30))  # limit input to buttons only
 current_text.bind("<Key>", limit_keys)
+
 
 # define button font and size
 button_font = ("Lucida Console", 20)
