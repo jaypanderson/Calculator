@@ -72,134 +72,161 @@ def button_click(number):
         current_text.insert(END, str(number))
 
 
-def button_add():
+def arithmatic(symbol: str) -> None:
     global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if calc_text[-1:].isnumeric():
-        calculation_text.insert(END, "+")
+        calculation_text.insert(END, symbol)
         arith = True
         return
-    if cur_text == "0" or calc_text == "+":
-        arith = True
-        return
-    if calc_text[-1:] == "=":
-        calculation_text.delete(0, END)
-        calculation_text.insert(0, cur_text + "+")
-    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
-        if arith is False:
-            calculation_text.insert(END, current_text.get() + "+")
-        else:
-            calculation_text.delete(len(calc_text)-1, END)
-            calculation_text.insert(END, "+")
-    else:
-        calculation_text.insert(END, current_text.get() + "+")
-    arith = True
-
-
-def button_subtract():
-    global arith, calculation_text, current_text
-
-    calc_text = calculation_text.get()
-    cur_text = current_text.get()
-    if calc_text[-1:].isnumeric():
-        calculation_text.insert(END, "-")
-        arith = True
-        return
-    if cur_text == "0" or calc_text == "-":
+    if cur_text == "0" or calc_text == symbol:
         arith = True
         return
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
-        calculation_text.insert(0, cur_text + "-")
+        calculation_text.insert(0, cur_text + symbol)
     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
         if arith is False:
-            calculation_text.insert(END, current_text.get() + "-")
+            calculation_text.insert(END, current_text.get() + symbol)
         else:
             calculation_text.delete(len(calc_text)-1, END)
-            calculation_text.insert(END, "-")
+            calculation_text.insert(END, symbol)
     else:
-        calculation_text.insert(END, current_text.get() + "-")
+        calculation_text.insert(END, current_text.get() + symbol)
     arith = True
 
 
-def button_multiply():
-    global arith, calculation_text, current_text
-
-    calc_text = calculation_text.get()
-    cur_text = current_text.get()
-    if calc_text[-1:].isnumeric():
-        calculation_text.insert(END, "*")
-        arith = True
-        return
-    if cur_text == "0" or calc_text == "*":
-        arith = True
-        return
-    if calc_text[-1:] == "=":
-        calculation_text.delete(0, END)
-        calculation_text.insert(0, cur_text + "*")
-    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
-        if arith is False:
-            calculation_text.insert(END, current_text.get() + "*")
-        else:
-            calculation_text.delete(len(calc_text)-1, END)
-            calculation_text.insert(END, "*")
-    else:
-        calculation_text.insert(END, current_text.get() + "*")
-    arith = True
-
-
-def button_divide():
-    global arith, calculation_text, current_text
-
-    calc_text = calculation_text.get()
-    cur_text = current_text.get()
-    if calc_text[-1:].isnumeric():
-        calculation_text.insert(END, "/")
-        arith = True
-        return
-    if cur_text == "0" or calc_text == "/":
-        arith = True
-        return
-    if calc_text[-1:] == "=":
-        calculation_text.delete(0, END)
-        calculation_text.insert(0, cur_text + "/")
-    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
-        if arith is False:
-            calculation_text.insert(END, current_text.get() + "/")
-        else:
-            calculation_text.delete(len(calc_text)-1, END)
-            calculation_text.insert(END, "/")
-    else:
-        calculation_text.insert(END, current_text.get() + "/")
-    arith = True
-
-
-def button_exponential():
-    global arith, calculation_text, current_text
-
-    calc_text = calculation_text.get()
-    cur_text = current_text.get()
-    if calc_text[-1:].isnumeric():
-        calculation_text.insert(END, "^")
-        arith = True
-        return
-    if cur_text == "0" or calc_text == "^":
-        arith = True
-        return
-    if calc_text[-1:] == "=":
-        calculation_text.delete(0, END)
-        calculation_text.insert(0, cur_text + "^")
-    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
-        if arith is False:
-            calculation_text.insert(END, current_text.get() + "^")
-        else:
-            calculation_text.delete(len(calc_text)-1, END)
-            calculation_text.insert(END, "^")
-    else:
-        calculation_text.insert(END, current_text.get() + "^")
-    arith = True
+# Commenting out this block of code to replace it all with one single function.
+# def button_add():
+#     global arith, calculation_text, current_text
+#
+#     calc_text = calculation_text.get()
+#     cur_text = current_text.get()
+#     if calc_text[-1:].isnumeric():
+#         calculation_text.insert(END, "+")
+#         arith = True
+#         return
+#     if cur_text == "0" or calc_text == "+":
+#         arith = True
+#         return
+#     if calc_text[-1:] == "=":
+#         calculation_text.delete(0, END)
+#         calculation_text.insert(0, cur_text + "+")
+#     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+#         if arith is False:
+#             calculation_text.insert(END, current_text.get() + "+")
+#         else:
+#             calculation_text.delete(len(calc_text)-1, END)
+#             calculation_text.insert(END, "+")
+#     else:
+#         calculation_text.insert(END, current_text.get() + "+")
+#     arith = True
+#
+#
+# def button_subtract():
+#     global arith, calculation_text, current_text
+#
+#     calc_text = calculation_text.get()
+#     cur_text = current_text.get()
+#     if calc_text[-1:].isnumeric():
+#         calculation_text.insert(END, "-")
+#         arith = True
+#         return
+#     if cur_text == "0" or calc_text == "-":
+#         arith = True
+#         return
+#     if calc_text[-1:] == "=":
+#         calculation_text.delete(0, END)
+#         calculation_text.insert(0, cur_text + "-")
+#     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+#         if arith is False:
+#             calculation_text.insert(END, current_text.get() + "-")
+#         else:
+#             calculation_text.delete(len(calc_text)-1, END)
+#             calculation_text.insert(END, "-")
+#     else:
+#         calculation_text.insert(END, current_text.get() + "-")
+#     arith = True
+#
+#
+# def button_multiply():
+#     global arith, calculation_text, current_text
+#
+#     calc_text = calculation_text.get()
+#     cur_text = current_text.get()
+#     if calc_text[-1:].isnumeric():
+#         calculation_text.insert(END, "*")
+#         arith = True
+#         return
+#     if cur_text == "0" or calc_text == "*":
+#         arith = True
+#         return
+#     if calc_text[-1:] == "=":
+#         calculation_text.delete(0, END)
+#         calculation_text.insert(0, cur_text + "*")
+#     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+#         if arith is False:
+#             calculation_text.insert(END, current_text.get() + "*")
+#         else:
+#             calculation_text.delete(len(calc_text)-1, END)
+#             calculation_text.insert(END, "*")
+#     else:
+#         calculation_text.insert(END, current_text.get() + "*")
+#     arith = True
+#
+#
+# def button_divide():
+#     global arith, calculation_text, current_text
+#
+#     calc_text = calculation_text.get()
+#     cur_text = current_text.get()
+#     if calc_text[-1:].isnumeric():
+#         calculation_text.insert(END, "/")
+#         arith = True
+#         return
+#     if cur_text == "0" or calc_text == "/":
+#         arith = True
+#         return
+#     if calc_text[-1:] == "=":
+#         calculation_text.delete(0, END)
+#         calculation_text.insert(0, cur_text + "/")
+#     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+#         if arith is False:
+#             calculation_text.insert(END, current_text.get() + "/")
+#         else:
+#             calculation_text.delete(len(calc_text)-1, END)
+#             calculation_text.insert(END, "/")
+#     else:
+#         calculation_text.insert(END, current_text.get() + "/")
+#     arith = True
+#
+#
+# def button_exponential():
+#     global arith, calculation_text, current_text
+#
+#     calc_text = calculation_text.get()
+#     cur_text = current_text.get()
+#     if calc_text[-1:].isnumeric():
+#         calculation_text.insert(END, "^")
+#         arith = True
+#         return
+#     if cur_text == "0" or calc_text == "^":
+#         arith = True
+#         return
+#     if calc_text[-1:] == "=":
+#         calculation_text.delete(0, END)
+#         calculation_text.insert(0, cur_text + "^")
+#     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+#         if arith is False:
+#             calculation_text.insert(END, current_text.get() + "^")
+#         else:
+#             calculation_text.delete(len(calc_text)-1, END)
+#             calculation_text.insert(END, "^")
+#     else:
+#         calculation_text.insert(END, current_text.get() + "^")
+#     arith = True
 
 
 # change the last numeric values sign.
@@ -319,11 +346,11 @@ button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_widt
 button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(8))
 button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(9))
 button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(0))
-button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font, command=button_add)
-button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font, command=button_subtract)
-button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=button_multiply)
-button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font, command=button_divide)
-button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font, command=button_exponential)
+button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('+'))
+button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('-'))
+button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('*'))
+button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('/'))
+button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('^'))
 button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font, command=button_plus_minus)
 button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font, command=button_decimal)
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font, command=button_backspace)
