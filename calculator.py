@@ -254,5 +254,11 @@ button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
 
+# TODO fix the issue where when I type with my keyboard the trailing zero remains. I want it so that the 0 is
+# TODO is deleted and replaced with what ever number is pressed
+
+# TODO make it so that only numbers can be entered into the current text, when ever an arithmatic operator is pressed
+# TODO I want the numbers to be entered into the calculation text along with the arithmatic operator.
+# TODO this can probably be accomplished by binding the key strokes to the individual buttons i have.
 root.after(100, lambda: current_text.focus_set())  # set the focus to the current_text
 root.mainloop()
