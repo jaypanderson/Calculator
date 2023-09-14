@@ -7,10 +7,6 @@ Currently, can only perform simple arithmatic with +-/*^
 """
 
 
-# I want to build a calculator app.
-
-# use tkinter to create a GUI
-
 import customtkinter as ctk
 from customtkinter import set_appearance_mode
 from tkinter import *
