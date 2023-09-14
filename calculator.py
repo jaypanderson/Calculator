@@ -173,6 +173,18 @@ def limit_keys(key: Event) -> None:
         return 'break'
 
 
+def focus_current_text(event: Event = None) -> None:
+    """
+    A function created as a work-around.  simply using focus_set() simply does not work. By using this function
+    and initiating it every time the widget gains focus we can direct the focus within the widget to go directly
+    to the current_text Entry object.
+    :param event: an Event object may or may not be passed in. I don't fully understand the syntax but doesn't
+                  seem to work without it.
+    :return: None
+    """
+    current_text.focus_set()
+
+
 root = ctk.CTk()
 set_appearance_mode("dark")
 
@@ -254,4 +266,5 @@ button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
 
+root.bind("<FocusIn>", focus_current_text)
 root.mainloop()
