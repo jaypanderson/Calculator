@@ -176,32 +176,35 @@ def button_equal():
 #         return 'break'
 
 
-# TODO in the right direction but it still doesnt behave in the same way as clicking the buttons in
-# TODO the app. when i press + it just added it to current text.
 def key_binds(key: Event) -> Callable:
     print(f"Key pressed: {key.keysym}")
-    key_map = {'1': lambda: button_click('1'),
-               '2': lambda: button_click('2'),
-               '3': lambda: button_click('3'),
-               '4': lambda: button_click('4'),
-               '5': lambda: button_click('5'),
-               '6': lambda: button_click('6'),
-               '7': lambda: button_click('7'),
-               '8': lambda: button_click('8'),
-               '9': lambda: button_click('9'),
-               '0': lambda: button_click('0'),
-               '+': lambda: arithmatic('+'),
-               '-': lambda: arithmatic('-'),
-               '*': lambda: arithmatic('*'),
-               '/': lambda: arithmatic('/'),
-               '^': lambda: arithmatic('^'),
-               'BackSpace': button_backspace,
-               'Return': button_equal}
-    func = key_map.get(key.keysym, None)
-    if func:
-        return func
-    else:
-        return 'break'
+    key_map = {'1': button_1,
+               '2': button_2,
+               '3': button_3,
+               '4': button_4,
+               '5': button_5,
+               '6': button_6,
+               '7': button_7,
+               '8': button_8,
+               '9': button_9,
+               '0': button_0,
+               '+': button_add,
+               '-': button_subtract,
+               '*': button_multiply,
+               '/': button_divide,
+               '^': button_exponential,
+               '.': button_decimal,}
+
+    special_keys = {'BackSpace': button_backspace,
+                    'Return': button_equal}
+    if key.char in key_map:
+        func = key_map.get(key.char, None)
+        func.invoke()
+    elif key.keysym in special_keys:
+        func = special_keys.get(key.keysym, None)
+        if func:
+            func.invoke()
+
 
 
 root = ctk.CTk()
@@ -294,5 +297,12 @@ button_equal.grid(row=7, column=2, columnspan=2)
 # TODO make it so that only numbers can be entered into the current text, when ever an arithmatic operator is pressed
 # TODO I want the numbers to be entered into the calculation text along with the arithmatic operator.
 # TODO this can probably be accomplished by binding the key strokes to the individual buttons i have.
-root.after(100, lambda: current_text.focus_set())  # set the focus to the current_text
+#root.after(100, lambda: current_text.focus_set())  # set the focus to the current_text
+# def handle_key(event):
+#     key = event.keysym
+#     # Handle the key press event here
+#     print(f'Key pressed: {key}')
+#     button_add.invoke()
+
+root.bind("<Key>", key_binds)
 root.mainloop()
