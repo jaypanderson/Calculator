@@ -166,7 +166,7 @@ def button_equal():
     return
 
 
-def limit_keys(key: Event) -> None:
+def limit_keys(key: Event) -> str:
     allowed_keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "."}
     special_keys = {'BackSpace'}
     if key.char not in allowed_keys and key.keysym not in special_keys:
