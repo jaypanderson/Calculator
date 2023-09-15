@@ -199,11 +199,11 @@ def key_binds(key: Event) -> Callable:
                     'Return': button_equal}
     if key.char in key_map:
         func = key_map.get(key.char, None)
+
         func.invoke()
     elif key.keysym in special_keys:
         func = special_keys.get(key.keysym, None)
-        if func:
-            func.invoke()
+        func.invoke()
 
 
 
