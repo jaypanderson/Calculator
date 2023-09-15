@@ -193,7 +193,7 @@ def key_binds(key: Event) -> Callable:
                '*': button_multiply,
                '/': button_divide,
                '^': button_exponential,
-               '.': button_decimal,}
+               '.': button_decimal}
 
     special_keys = {'BackSpace': button_backspace,
                     'Return': button_equal}
