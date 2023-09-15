@@ -194,7 +194,7 @@ calculation_text.configure(font=("Lucida Console", 15))
 calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width)
+current_text = ctk.CTkEntry(root, width=text_width, insertontime=0)  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30))
