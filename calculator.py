@@ -254,6 +254,9 @@ button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
 
+# TODO fix the blinking indicator for text to be invisible. it is nice for writing, but for a calculator
+# TODO app it is distracting.
+
 # TODO fix the issue where when I type with my keyboard the trailing zero remains. I want it so that the 0 is
 # TODO is deleted and replaced with what ever number is pressed
 
