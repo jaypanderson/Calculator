@@ -12,6 +12,7 @@ from customtkinter import set_appearance_mode
 from tkinter import *
 from tkinter import END
 import math
+from typing import Callable
 
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
 # TODO in the calculation_text
@@ -32,6 +33,7 @@ def check_if_float(num: str) -> int:
 
 # add the functions to the buttons
 def button_click(number):
+    print(f"Arithmatic function called with symbol: {number}")
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -67,6 +69,7 @@ def button_click(number):
 
 
 def arithmatic(symbol: str) -> None:
+    print(f"Arithmatic function called with symbol: {symbol}")
     global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
@@ -166,10 +169,38 @@ def button_equal():
     return
 
 
-def limit_keys(key: Event) -> str:
-    allowed_keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "."}
-    special_keys = {'BackSpace'}
-    if key.char not in allowed_keys and key.keysym not in special_keys:
+# def limit_keys(key: Event) -> str:
+#     allowed_keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "."}
+#     special_keys = {'BackSpace'}
+#     if key.char not in allowed_keys and key.keysym not in special_keys:
+#         return 'break'
+
+
+# TODO in the right direction but it still doesnt behave in the same way as clicking the buttons in
+# TODO the app. when i press + it just added it to current text.
+def key_binds(key: Event) -> Callable:
+    print(f"Key pressed: {key.keysym}")
+    key_map = {'1': lambda: button_click('1'),
+               '2': lambda: button_click('2'),
+               '3': lambda: button_click('3'),
+               '4': lambda: button_click('4'),
+               '5': lambda: button_click('5'),
+               '6': lambda: button_click('6'),
+               '7': lambda: button_click('7'),
+               '8': lambda: button_click('8'),
+               '9': lambda: button_click('9'),
+               '0': lambda: button_click('0'),
+               '+': lambda: arithmatic('+'),
+               '-': lambda: arithmatic('-'),
+               '*': lambda: arithmatic('*'),
+               '/': lambda: arithmatic('/'),
+               '^': lambda: arithmatic('^'),
+               'BackSpace': button_backspace,
+               'Return': button_equal}
+    func = key_map.get(key.keysym, None)
+    if func:
+        return func
+    else:
         return 'break'
 
 
@@ -191,14 +222,14 @@ text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15))
-calculation_text.bind("<Key>", lambda x: "break")
+#calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width, insertontime=0)  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30))
-current_text.bind("<Key>", limit_keys)  # limit input to only numeric and operator buttons
+current_text.bind("<Key>", key_binds)  # limit input to only numeric and operator buttons
 
 
 # define button font and size
