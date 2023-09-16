@@ -169,13 +169,10 @@ def button_equal():
     return
 
 
-# def limit_keys(key: Event) -> str:
-#     allowed_keys = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "."}
-#     special_keys = {'BackSpace'}
-#     if key.char not in allowed_keys and key.keysym not in special_keys:
-#         return 'break'
+# TODO add a keybind for the clear button.
 
-
+# TODO there is a bug where if you click the calculation text and then go back to current text when you press
+# TODO a number it prints the number twice so if you press 5 , then 55 is added to the text box.
 def key_binds(key: Event) -> Callable:
     print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
@@ -199,15 +196,14 @@ def key_binds(key: Event) -> Callable:
                     'Return': button_equal}
     if key.char in key_map:
         func = key_map.get(key.char, None)
-
         func.invoke()
     elif key.keysym in special_keys:
         func = special_keys.get(key.keysym, None)
         func.invoke()
 
 
-
 root = ctk.CTk()
+root.bind("<Key>", key_binds)  # this binds the key_binds function to the CTk window.
 set_appearance_mode("dark")
 
 # this allows for different behaviors of each button depending on whether the last button was a numeric button
@@ -225,14 +221,14 @@ text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15))
-#calculation_text.bind("<Key>", lambda x: "break")
+calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width, insertontime=0)  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30))
-current_text.bind("<Key>", key_binds)  # limit input to only numeric and operator buttons
+# current_text.bind("<Key>", lambda x: "break")
 
 
 # define button font and size
@@ -297,12 +293,5 @@ button_equal.grid(row=7, column=2, columnspan=2)
 # TODO make it so that only numbers can be entered into the current text, when ever an arithmatic operator is pressed
 # TODO I want the numbers to be entered into the calculation text along with the arithmatic operator.
 # TODO this can probably be accomplished by binding the key strokes to the individual buttons i have.
-#root.after(100, lambda: current_text.focus_set())  # set the focus to the current_text
-# def handle_key(event):
-#     key = event.keysym
-#     # Handle the key press event here
-#     print(f'Key pressed: {key}')
-#     button_add.invoke()
 
-root.bind("<Key>", key_binds)
 root.mainloop()
