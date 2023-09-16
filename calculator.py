@@ -218,17 +218,18 @@ root.resizable(True, True)  # Controls whether user can resize window.
 
 # add the text box for the numbers
 text_width = 400
-calculation_text = ctk.CTkEntry(root, width=text_width)
+calculation_text = ctk.CTkEntry(root, width=text_width, takefocus="false")  # takefocus is to hide the blinking cursor.
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15))
 calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, insertontime=0)  # insertontime is to hide the blinking cursor.
+current_text = ctk.CTkEntry(root, width=text_width, insertontime=0, takefocus="false")  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30))
 # current_text.bind("<Key>", lambda x: "break")
+current_text.unbind("<Button-1>")
 
 
 # define button font and size
