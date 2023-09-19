@@ -173,7 +173,7 @@ def button_equal():
 
 # TODO there is a bug where if you click the calculation text and then go back to current text when you press
 # TODO a number it prints the number twice so if you press 5 , then 55 is added to the text box.
-def key_binds(key: Event) -> Callable:
+def key_binds(key: Event) -> None:
     print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
                '2': button_2,
