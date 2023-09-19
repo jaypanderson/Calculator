@@ -22,11 +22,11 @@ def temp_change_state():
     global calculation_text, current_text
 
     def decorator(func):
-        def wrapper(*arg, **kwargs):
+        def wrapper(*arg):
             calculation_text.configure(state="normal")
             current_text.configure(state="normal")
             try:
-                result = func(*arg, **kwargs)
+                result = func(*arg)
             finally:
                 calculation_text.configure(state="readonly")
                 current_text.configure(state="readonly")
@@ -152,6 +152,7 @@ def button_decimal():
             current_text.insert(0, '0.')
 
 
+@temp_change_state()
 def button_clear():
     global calculation_text, current_text
     calculation_text.delete(0,  END)
