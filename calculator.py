@@ -35,185 +35,117 @@ def check_if_float(num: str) -> int:
 def button_click(number):
     print(f"Arithmatic function called with symbol: {number}")
     global arith, calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
-
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, str(number))
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
 
     if calc_text == "":
         if cur_text == "0":
             current_text.delete(0, END)
             current_text.insert(0, str(number))
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         else:
             current_text.insert(END, str(number))
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
 
     if cur_text == "0":
         arith = False  # inserted to fix a potential bug when deleting operators from the calculation text.
         current_text.delete(0, END)
         current_text.insert(0, str(number))
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
     if calc_text[-1] in "+-*/^":
         if arith is True:
             current_text.delete(0, END)
             current_text.insert(0, str(number))
             arith = False
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         else:
             current_text.insert(END, str(number))
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
     else:
         current_text.insert(END, str(number))
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
 
 
 def arithmatic(symbol: str) -> None:
     print(f"Arithmatic function called with symbol: {symbol}")
     global arith, calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if calc_text[-1:].isnumeric():
         calculation_text.insert(END, symbol)
         arith = True
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
     if cur_text == "0" or calc_text == symbol:
         arith = True
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + symbol)
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
     elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
         if arith is False:
             calculation_text.insert(END, current_text.get() + symbol)
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         else:
             calculation_text.delete(len(calc_text)-1, END)
             calculation_text.insert(END, symbol)
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
     else:
         calculation_text.insert(END, current_text.get() + symbol)
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
     arith = True
-    calculation_text.configure(state='readonly')
-    current_text.configure(state='readonly')
 
 
 # change the last numeric values sign.
 def button_plus_minus():
     global calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
-
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if cur_text[:1] != '-' and check_if_float(cur_text) and cur_text != '0':
         current_text.insert(0, '-')
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
 
 
 # TODO change is so that when no number is entered into the current text after a decimal a zero
 # TODO is added automatically into calculation_text to make it look better.
 def button_decimal():
     global arith, calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
-
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if arith is True:
         current_text.delete(0, END)
         current_text.insert(0, '0.')
         arith = False
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
     else:
         if '.' not in cur_text:
             current_text.insert(END, '.')
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         elif '.' in cur_text and cur_text[-1] == '.':
             current_text.delete(len(cur_text) - 1, END)
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         elif calc_text[-1:] == '=':
             calculation_text.delete(0, END)
             current_text.delete(0, END)
             current_text.insert(0, '0.')
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
 
 
 def button_clear():
     global calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
     calculation_text.delete(0,  END)
     current_text.delete(0, END)
     current_text.insert(0, "0")
-    calculation_text.configure(state='readonly')
-    current_text.configure(state='readonly')
 
 
 def button_backspace():
     global calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
-
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if len(cur_text) == 1:
         if cur_text == "0":
             calculation_text.delete(len(calc_text) - 1, END)
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
         else:
             current_text.delete(0, END)
             current_text.insert(0, "0")
-            calculation_text.configure(state='readonly')
-            current_text.configure(state='readonly')
     else:
         current_text.delete(len(cur_text) - 1, END)
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
 
 
 # TODO Add way for the equal button to memorize the last operation and repeat that continuously
@@ -222,15 +154,10 @@ def button_backspace():
 # so I just used the built-in eval() function.
 def button_equal():
     global calculation_text, current_text
-    calculation_text.configure(state='normal')
-    current_text.configure(state='normal')
-
     calc_text = calculation_text.get()
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
     if calc_text[-1:] == "=":
-        calculation_text.configure(state='readonly')
-        current_text.configure(state='readonly')
         return
     ans = eval(calc_text + cur_text)
     if ans == int(ans):
@@ -239,8 +166,6 @@ def button_equal():
     current_text.insert(0, str(round(ans, ndigits=14)))
     calculation_text.insert(END, cur_text + "=")
     print(type(ans))
-    calculation_text.configure(state='readonly')
-    current_text.configure(state='readonly')
     return
 
 
@@ -277,10 +202,6 @@ def key_binds(key: Event) -> None:
         func.invoke()
 
 
-def prevent_focus(event):
-    return 'break'
-
-
 root = ctk.CTk()
 root.bind("<Key>", key_binds)  # this binds the key_binds function to the CTk window.
 set_appearance_mode("dark")
@@ -299,16 +220,16 @@ root.resizable(True, True)  # Controls whether user can resize window.
 text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width, takefocus="false")  # takefocus is to hide the blinking cursor.
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15), state='normal')
+calculation_text.configure(font=("Lucida Console", 15))
 calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, insertontime=100, takefocus="false")  # insertontime is to hide the blinking cursor.
+current_text = ctk.CTkEntry(root, width=text_width, insertontime=0, takefocus="false")  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Lucida Console", 30), state='readonly')
-#current_text.bind("<Key>", lambda x: "break")
-#current_text.bind("<FocusIn>", prevent_focus)
+current_text.configure(font=("Lucida Console", 30))
+# current_text.bind("<Key>", lambda x: "break")
+current_text.unbind("<Button-1>")
 
 
 # define button font and size
