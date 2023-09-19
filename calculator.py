@@ -14,6 +14,27 @@ from tkinter import END
 import math
 from typing import Callable
 
+
+# decorator function that changes the state of the entry objects to normal while we are editing them and then
+# changes it back to readonly when we are done, so that the user cannot change the entry except by using designated
+# key bindings or clicking the buttons.
+def temp_change_state():
+    global calculation_text, current_text
+
+    def decorator(func):
+        def wrapper(*arg, **kwargs):
+            calculation_text.configure(state="normal")
+            current_text.configure(state="normal")
+            try:
+                result = func(*arg, **kwargs)
+            finally:
+                calculation_text.configure(state="readonly")
+                current_text.configure(state="readonly")
+            return result
+        return wrapper
+    return decorator
+
+
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
 # TODO in the calculation_text
 
@@ -32,6 +53,7 @@ def check_if_float(num: str) -> int:
 
 
 # add the functions to the buttons
+@temp_change_state()
 def button_click(number):
     print(f"Arithmatic function called with symbol: {number}")
     global arith, calculation_text, current_text
@@ -68,6 +90,7 @@ def button_click(number):
         current_text.insert(END, str(number))
 
 
+@temp_change_state()
 def arithmatic(symbol: str) -> None:
     print(f"Arithmatic function called with symbol: {symbol}")
     global arith, calculation_text, current_text
@@ -96,6 +119,7 @@ def arithmatic(symbol: str) -> None:
 
 
 # change the last numeric values sign.
+@temp_change_state()
 def button_plus_minus():
     global calculation_text, current_text
     calc_text = calculation_text.get()
@@ -108,6 +132,7 @@ def button_plus_minus():
 
 # TODO change is so that when no number is entered into the current text after a decimal a zero
 # TODO is added automatically into calculation_text to make it look better.
+@temp_change_state()
 def button_decimal():
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
@@ -134,6 +159,7 @@ def button_clear():
     current_text.insert(0, "0")
 
 
+@temp_change_state()
 def button_backspace():
     global calculation_text, current_text
     calc_text = calculation_text.get()
@@ -152,6 +178,7 @@ def button_backspace():
 # TODO as long as the used keeps pressing the equals button.
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
+@temp_change_state()
 def button_equal():
     global calculation_text, current_text
     calc_text = calculation_text.get()
@@ -220,14 +247,14 @@ root.resizable(True, True)  # Controls whether user can resize window.
 text_width = 400
 calculation_text = ctk.CTkEntry(root, width=text_width, takefocus="false")  # takefocus is to hide the blinking cursor.
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15))
+calculation_text.configure(font=("Lucida Console", 15), state="readonly")
 calculation_text.bind("<Key>", lambda x: "break")
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, insertontime=0, takefocus="false")  # insertontime is to hide the blinking cursor.
+current_text = ctk.CTkEntry(root, width=text_width, insertontime=100, takefocus="false")  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Lucida Console", 30))
+current_text.configure(font=("Lucida Console", 30), state="readonly")
 # current_text.bind("<Key>", lambda x: "break")
 current_text.unbind("<Button-1>")
 
