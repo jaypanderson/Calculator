@@ -146,14 +146,15 @@ def button_decimal():
         current_text.insert(0, '0.')
         arith = False
     else:
-        if '.' not in cur_text:
-            current_text.insert(END, '.')
-        elif '.' in cur_text and cur_text[-1] == '.':
-            current_text.delete(len(cur_text) - 1, END)
-        elif calc_text[-1:] == '=':
+        if calc_text[-1:] == '=':
             calculation_text.delete(0, END)
             current_text.delete(0, END)
             current_text.insert(0, '0.')
+        elif '.' not in cur_text:
+            current_text.insert(END, '.')
+        elif '.' in cur_text and cur_text[-1] == '.':
+            current_text.delete(len(cur_text) - 1, END)
+
 
 
 @temp_change_state()
