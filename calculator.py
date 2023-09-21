@@ -38,14 +38,15 @@ def temp_change_state():
         return wrapper
     return decorator
 
+
 # TODO still  need to inject the status var into the equal equation
-def change_button_status(*args):
+def change_button_status(buttons):
     if status_var.get() == "UNDEFINED":
-        for button in args:
-            button.config(state=ctk.DISABLED)
+        for button in buttons:
+            button.configure(state=ctk.DISABLED)
     else:
-        for button in args:
-            button.config(state=ctk.NORMAL)
+        for button in buttons:
+            button.configure(state=ctk.NORMAL)
 
 
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
@@ -203,7 +204,7 @@ def button_backspace():
 # so I just used the built-in eval() function.
 @temp_change_state()
 def button_equal():
-    global calculation_text, current_text
+    global calculation_text, current_text, status_var
     calc_text = calculation_text.get()
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
@@ -216,10 +217,13 @@ def button_equal():
 
     try:
         eval(calc_text + cur_text)
+        status_var.set('OK')
     except ZeroDivisionError:
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, 'UNDEFINED')
+        status_var.set('UNDEFINED')
+        return
 
     ans = eval(calc_text + cur_text)
     if ans == int(ans):
@@ -296,7 +300,7 @@ current_text.unbind("<Button-1>")
 # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
 # in order to disable certain buttons.
 status_var = ctk.StringVar()
-status_var.trace_add('write', lambda: change_button_status(operators))
+status_var.trace_add('write', lambda *args: change_button_status(operators))
 
 
 # define button font and size
