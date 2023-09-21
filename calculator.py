@@ -106,10 +106,10 @@ def arithmatic(symbol: str) -> None:
         arith = True
         return
 
-    if calc_text == symbol:
+    if calc_text == symbol:  # used to have cur_text == '0' or which might have been there to prevent some bug.
         arith = True
         return
-    
+
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + symbol)
