@@ -80,7 +80,7 @@ def button_click(number):
         return
 
     if calc_text == "":
-        if cur_text == "0":
+        if cur_text == "0" or cur_text == 'UNDEFINED':
             current_text.delete(0, END)
             current_text.insert(0, str(number))
         else:
@@ -217,12 +217,10 @@ def button_equal():
 
     try:
         eval(calc_text + cur_text)
-        status_var.set('OK')
     except ZeroDivisionError:
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, 'UNDEFINED')
-        status_var.set('UNDEFINED')
         return
 
     ans = eval(calc_text + cur_text)
@@ -289,18 +287,19 @@ calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15), state="readonly")
 calculation_text.bind("<Key>", lambda x: "break")
 
+# Define a string variable that will be used to keep track if undefined is displayed on current_text or not
+# in order to disable certain buttons.
+status_var = ctk.StringVar()
+status_var.trace_add('write', lambda *args: change_button_status(operators))
+
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, insertontime=100, takefocus="false")  # insertontime is to hide the blinking cursor.
+current_text = ctk.CTkEntry(root, width=text_width, insertontime=100, takefocus="false", textvariable=status_var)  # insertontime is to hide the blinking cursor.
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30), state="readonly")
 # current_text.bind("<Key>", lambda x: "break")
 current_text.unbind("<Button-1>")
 
-# Define a string variable that will be used to keep track if undefined is displayed on current_text or not
-# in order to disable certain buttons.
-status_var = ctk.StringVar()
-status_var.trace_add('write', lambda *args: change_button_status(operators))
 
 
 # define button font and size
@@ -336,7 +335,8 @@ button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, bor
 
 # TODO complete creating the different categories.
 # organize buttons into different categories.
-operators = [button_add, button_subtract, button_multiply, button_divide, button_exponential]
+operators = [button_add, button_subtract, button_multiply, button_divide, button_exponential,
+             button_decimal, button_plus_minus, button_backspace]
 
 
 # put the buttons on the screen
