@@ -39,7 +39,6 @@ def temp_change_state():
     return decorator
 
 
-# TODO still  need to inject the status var into the equal equation
 def change_button_status(buttons):
     if status_var.get() == "UNDEFINED":
         for button in buttons:
@@ -47,14 +46,6 @@ def change_button_status(buttons):
     else:
         for button in buttons:
             button.configure(state=ctk.NORMAL)
-
-
-# TODO change arithmatic functions so that they are not able to do anything when an error is displayed
-# TODO in the calculation_text
-
-# TODO There is a bug where if the result ends with a zero i can no longer continue with calculations. i need to reset.
-# TODO if I add zero to zero it wont show up in the calculation text. it most likely has to do with the arithmatic
-#      functions.
 
 
 # check to see if string is a valid float or not.
@@ -146,8 +137,8 @@ def button_plus_minus():
         current_text.delete(0, 1)
 
 
-# TODO change is so that when no number is entered into the current text after a decimal a zero
-# TODO is added automatically into calculation_text to make it look better.
+# TODO change is so that when an operator is press and i have 0. in the current text. it is changed back to
+# TODO 0 so that it looked better, probably need to do this in the arithmatic function.
 @temp_change_state()
 def button_decimal():
     global arith, calculation_text, current_text
@@ -235,8 +226,6 @@ def button_equal():
 
 # TODO add a keybind for the clear button.
 
-# TODO there is a bug where if you click the calculation text and then go back to current text when you press
-# TODO a number it prints the number twice so if you press 5 , then 55 is added to the text box.
 def key_binds(key: Event) -> None:
     print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
@@ -300,8 +289,6 @@ current_text.configure(font=("Lucida Console", 30), state="readonly")
 # current_text.bind("<Key>", lambda x: "break")
 current_text.unbind("<Button-1>")
 
-
-
 # define button font and size
 button_font = ("Lucida Console", 20)
 
@@ -361,15 +348,5 @@ button_clear.grid(row=7, column=1)
 button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
-
-# TODO fix the blinking indicator for text to be invisible. it is nice for writing, but for a calculator
-# TODO app it is distracting.
-
-# TODO fix the issue where when I type with my keyboard the trailing zero remains. I want it so that the 0 is
-# TODO is deleted and replaced with what ever number is pressed
-
-# TODO make it so that only numbers can be entered into the current text, when ever an arithmatic operator is pressed
-# TODO I want the numbers to be entered into the calculation text along with the arithmatic operator.
-# TODO this can probably be accomplished by binding the key strokes to the individual buttons i have.
 
 root.mainloop()
