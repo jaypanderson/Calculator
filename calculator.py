@@ -195,10 +195,20 @@ def button_equal():
     calc_text = calculation_text.get()
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
+
     if cur_text == "0.":  # added to ensure that a 0 is added to make it look better
         cur_text = "0"
+
     if calc_text[-1:] == "=":
         return
+
+    try:
+        eval(calc_text + cur_text)
+    except ZeroDivisionError:
+        calculation_text.delete(0, END)
+        current_text.delete(0, END)
+        current_text.insert(0, 'UNDEFINED')
+
     ans = eval(calc_text + cur_text)
     if ans == int(ans):
         ans = int(ans)
