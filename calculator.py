@@ -183,7 +183,8 @@ def button_backspace():
     else:
         current_text.delete(len(cur_text) - 1, END)
 
-
+# TODO refactor code so that a good junk of the code is under the try clause. still not sure if this is best approach
+# TODO or not. originally added it just to deal with zer division errors.
 
 # TODO have to change how 0. behaves. i want it to change to 0 when ever it is inserted into the calculation text from the current text
 
