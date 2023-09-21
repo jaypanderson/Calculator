@@ -325,7 +325,9 @@ button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, bor
 button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font, command=button_equal)
 
 
-
+# TODO complete creating the different categories.
+# organize buttons into different categories.
+operators = [button_add, button_subtract, button_multiply, button_divide, button_exponential]
 
 
 # put the buttons on the screen
