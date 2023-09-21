@@ -6,7 +6,7 @@ correctly.
 Currently, can only perform simple arithmatic with +-/*^
 """
 
-
+import tkinter
 import customtkinter as ctk
 from customtkinter import set_appearance_mode
 from tkinter import *
@@ -37,6 +37,10 @@ def temp_change_state():
             return result
         return wrapper
     return decorator
+
+
+def change_button_status(*args):
+    pass
 
 
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
@@ -284,6 +288,11 @@ current_text.configure(font=("Lucida Console", 30), state="readonly")
 # current_text.bind("<Key>", lambda x: "break")
 current_text.unbind("<Button-1>")
 
+# Define a string variable that will be used to keep track if undefined is displayed on current_text or not
+# in order to disable certain buttons.
+status_var = ctk.StringVar()
+status_var.trace_add('write', change_button_status)
+
 
 # define button font and size
 button_font = ("Lucida Console", 20)
@@ -314,6 +323,10 @@ button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, borde
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font, command=button_backspace)
 button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font, command=button_clear)
 button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font, command=button_equal)
+
+
+
+
 
 # put the buttons on the screen
 button_1.grid(row=5, column=0)
