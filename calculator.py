@@ -38,9 +38,14 @@ def temp_change_state():
         return wrapper
     return decorator
 
-
+# TODO still  need to inject the status var into the equal equation
 def change_button_status(*args):
-    pass
+    if status_var.get() == "UNDEFINED":
+        for button in args:
+            button.config(state=ctk.DISABLED)
+    else:
+        for button in args:
+            button.config(state=ctk.NORMAL)
 
 
 # TODO change arithmatic functions so that they are not able to do anything when an error is displayed
@@ -291,7 +296,7 @@ current_text.unbind("<Button-1>")
 # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
 # in order to disable certain buttons.
 status_var = ctk.StringVar()
-status_var.trace_add('write', change_button_status)
+status_var.trace_add('write', lambda: change_button_status(operators))
 
 
 # define button font and size
