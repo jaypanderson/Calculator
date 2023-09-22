@@ -181,7 +181,6 @@ def button_backspace():
     else:
         current_text.delete(len(cur_text) - 1, END)
 
-
 # TODO refactor code so that a good junk of the code is under the try clause. still not sure if this is best approach
 # TODO or not. originally added it just to deal with zer division errors.
 
@@ -330,7 +329,7 @@ button_equal.grid(row=7, column=2, columnspan=2)
 root_bg_color = root.cget('bg')
 
 # add the text box for the numbers
-calculation_text = ctk.CTkEntry(root, width=text_width)
+calculation_text = ctk.CTkEntry(root, width=text_width, fg_color=root_bg_color, border_color=root_bg_color, justify="right")
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15), state="readonly")
 calculation_text.bind("<Key>", lambda x: "break")
