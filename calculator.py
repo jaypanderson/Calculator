@@ -341,7 +341,7 @@ status_var = ctk.StringVar()
 status_var.trace_add('write', lambda *args: change_button_status(operators))
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color, border_color=root_bg_color)
+current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color, border_color=root_bg_color, justify="right")
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30), state="readonly")
