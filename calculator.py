@@ -266,7 +266,7 @@ root.geometry("500x700")
 root.configure(bg="lightblue")
 root.resizable(True, True)  # Controls whether user can resize window.
 
-# define button font and size
+# define font and size for buttons
 button_font = ("Lucida Console", 20)
 
 # variables to adjust button size
