@@ -6,12 +6,10 @@ correctly.
 Currently, can only perform simple arithmatic with +-/*^
 """
 
-import tkinter
 import customtkinter as ctk
 from customtkinter import set_appearance_mode
 from tkinter import *
 from tkinter import END
-import math
 from typing import Callable
 
 
@@ -159,7 +157,6 @@ def button_decimal():
             current_text.insert(END, '.')
         elif '.' in cur_text and cur_text[-1] == '.':
             current_text.delete(len(cur_text) - 1, END)
-
 
 
 @temp_change_state()
