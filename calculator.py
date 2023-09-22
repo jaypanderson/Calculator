@@ -326,6 +326,9 @@ button_clear.grid(row=7, column=1)
 button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
 
+# get the background color of the root object
+root_bg_color = root.cget('bg')
+
 # add the text box for the numbers
 calculation_text = ctk.CTkEntry(root, width=text_width)
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
@@ -338,7 +341,7 @@ status_var = ctk.StringVar()
 status_var.trace_add('write', lambda *args: change_button_status(operators))
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, bg_color='black')
+current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color, border_color=root_bg_color)
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30), state="readonly")
