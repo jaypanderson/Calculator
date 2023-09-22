@@ -266,29 +266,11 @@ root.geometry("500x700")
 root.configure(bg="lightblue")
 root.resizable(True, True)  # Controls whether user can resize window.
 
-
-# add the text box for the numbers
-text_width = 400
-calculation_text = ctk.CTkEntry(root, width=text_width)
-calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15), state="readonly")
-calculation_text.bind("<Key>", lambda x: "break")
-
-# Define a string variable that will be used to keep track if undefined is displayed on current_text or not
-# in order to disable certain buttons.
-status_var = ctk.StringVar()
-status_var.trace_add('write', lambda *args: change_button_status(operators))
-
-# add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var)
-current_text.insert(0, "0")
-current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Lucida Console", 30), state="readonly")
-
 # define button font and size
 button_font = ("Lucida Console", 20)
 
 # variables to adjust button size
+text_width = 400
 width = int(text_width // 3.75)
 height = 50
 border = 1
@@ -343,6 +325,23 @@ button_decimal.grid(row=6, column=2)
 button_clear.grid(row=7, column=1)
 button_backspace.grid(row=7, column=0)
 button_equal.grid(row=7, column=2, columnspan=2)
+
+# add the text box for the numbers
+calculation_text = ctk.CTkEntry(root, width=text_width)
+calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+calculation_text.configure(font=("Lucida Console", 15), state="readonly")
+calculation_text.bind("<Key>", lambda x: "break")
+
+# Define a string variable that will be used to keep track if undefined is displayed on current_text or not
+# in order to disable certain buttons.
+status_var = ctk.StringVar()
+status_var.trace_add('write', lambda *args: change_button_status(operators))
+
+# add text box for current value
+current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, bg_color='black')
+current_text.insert(0, "0")
+current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
+current_text.configure(font=("Lucida Console", 30), state="readonly")
 
 
 root.mainloop()
