@@ -81,7 +81,7 @@ def button_click(number):
         current_text.delete(0, END)
         current_text.insert(0, str(number))
         return
-    if calc_text[-1] in "+-*/^":
+    if calc_text[-1] in "+-x/^":
         if arith is True:
             current_text.delete(0, END)
             current_text.insert(0, str(number))
@@ -112,7 +112,7 @@ def arithmatic(symbol: str) -> None:
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + symbol)
-    elif calc_text and calc_text[-1:] in "+-*/^":  # calc_text is checking if it is not an empty string
+    elif calc_text and calc_text[-1:] in "+-x/^":  # calc_text is checking if it is not an empty string
         if arith is False:
             calculation_text.insert(END, current_text.get() + symbol)
         else:
@@ -194,6 +194,7 @@ def button_backspace():
 def button_equal():
     global calculation_text, current_text, status_var
     calc_text = calculation_text.get()
+    calc_text = calc_text.replace('x', '*')
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
 
@@ -287,7 +288,7 @@ button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_widt
 button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(0))
 button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('+'))
 button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('-'))
-button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('*'))
+button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('x'))
 button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('/'))
 button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('^'))
 button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font, command=button_plus_minus)
