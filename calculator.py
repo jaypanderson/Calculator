@@ -141,8 +141,8 @@ def button_plus_minus():
         current_text.delete(0, 1)
 
 
-# TODO change is so that when an operator is press and i have 0. in the current text. it is changed back to
-# TODO 0 so that it looked better, probably need to do this in the arithmatic function.
+# TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
+# TODO keep this behavior or not.
 @temp_change_state()
 def button_decimal():
     global arith, calculation_text, current_text
