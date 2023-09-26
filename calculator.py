@@ -62,6 +62,7 @@ def button_click(number):
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
+
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         current_text.delete(0, END)
@@ -100,6 +101,11 @@ def arithmatic(symbol: str) -> None:
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
+
+    if cur_text[-1:] == ".":  # added to ensure that a 0 is added to make it look better
+        current_text.delete(len(cur_text) - 1, END)
+        cur_text = cur_text.replace('.', '')
+
     if calc_text[-1:].isnumeric():
         calculation_text.insert(END, symbol)
         arith = True
@@ -114,12 +120,12 @@ def arithmatic(symbol: str) -> None:
         calculation_text.insert(0, cur_text + symbol)
     elif calc_text and calc_text[-1:] in "+-x÷^":  # calc_text is checking if it is not an empty string
         if arith is False:
-            calculation_text.insert(END, current_text.get() + symbol)
+            calculation_text.insert(END, cur_text + symbol)
         else:
             calculation_text.delete(len(calc_text)-1, END)
             calculation_text.insert(END, symbol)
     else:
-        calculation_text.insert(END, current_text.get() + symbol)
+        calculation_text.insert(END, cur_text + symbol)
     arith = True
 
 
