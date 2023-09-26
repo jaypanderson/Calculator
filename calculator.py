@@ -181,6 +181,7 @@ def button_backspace():
     else:
         current_text.delete(len(cur_text) - 1, END)
 
+
 # TODO refactor code so that a good junk of the code is under the try clause. still not sure if this is best approach
 # TODO or not. originally added it just to deal with zer division errors.
 
@@ -362,7 +363,8 @@ status_var = ctk.StringVar()
 status_var.trace_add('write', lambda *args: change_button_status(operators))
 
 # add text box for current value
-current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color, border_color=root_bg_color, justify="right")
+current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color,
+                            border_color=root_bg_color, justify="right")
 current_text.insert(0, "0")
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30), state="readonly")
