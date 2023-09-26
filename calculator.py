@@ -277,26 +277,46 @@ height = 50
 border = 1
 # add buttons for the numbers
 # Note: You can adjust the colors, border colors, and other properties as per your design preferences.
-button_1 = ctk.CTkButton(root, text="1", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(1))
-button_2 = ctk.CTkButton(root, text="2", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(2))
-button_3 = ctk.CTkButton(root, text="3", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(3))
-button_4 = ctk.CTkButton(root, text="4", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(4))
-button_5 = ctk.CTkButton(root, text="5", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(5))
-button_6 = ctk.CTkButton(root, text="6", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(6))
-button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(7))
-button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(8))
-button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(9))
-button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font, command=lambda: button_click(0))
-button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('+'))
-button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('-'))
-button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('x'))
-button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('÷'))
-button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font, command=lambda: arithmatic('^'))
-button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font, command=button_plus_minus)
-button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font, command=button_decimal)
-button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font, command=button_backspace)
-button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font, command=button_clear)
-button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font, command=button_equal)
+button_1 = ctk.CTkButton(root, text="1", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(1))
+button_2 = ctk.CTkButton(root, text="2", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(2))
+button_3 = ctk.CTkButton(root, text="3", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(3))
+button_4 = ctk.CTkButton(root, text="4", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(4))
+button_5 = ctk.CTkButton(root, text="5", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(5))
+button_6 = ctk.CTkButton(root, text="6", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(6))
+button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(7))
+button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(8))
+button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(9))
+button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font,
+                         command=lambda: button_click(0))
+button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font,
+                           command=lambda: arithmatic('+'))
+button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font,
+                                command=lambda: arithmatic('-'))
+button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font,
+                                command=lambda: arithmatic('x'))
+button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font,
+                              command=lambda: arithmatic('÷'))
+button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font,
+                                   command=lambda: arithmatic('^'))
+button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font,
+                                  command=button_plus_minus)
+button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font,
+                               command=button_decimal)
+button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
+                                 command=button_backspace)
+button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
+                             command=button_clear)
+button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font,
+                             command=button_equal)
 
 
 # TODO complete creating the different categories.
