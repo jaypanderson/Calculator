@@ -224,8 +224,6 @@ def button_equal():
     return
 
 
-# TODO add a keybind for the clear button.
-
 def key_binds(key: Event) -> None:
     print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
@@ -246,7 +244,8 @@ def key_binds(key: Event) -> None:
                '.': button_decimal}
 
     special_keys = {'BackSpace': button_backspace,
-                    'Return': button_equal}
+                    'Return': button_equal,
+                    'Escape': button_clear}
     if key.char in key_map:
         func = key_map.get(key.char, None)
         func.invoke()
