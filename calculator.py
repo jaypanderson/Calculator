@@ -351,7 +351,8 @@ button_equal.grid(row=7, column=2, columnspan=2)
 root_bg_color = root.cget('bg')
 
 # add the text box for the numbers
-calculation_text = ctk.CTkEntry(root, width=text_width, fg_color=root_bg_color, border_color=root_bg_color, justify="right")
+calculation_text = ctk.CTkEntry(root, width=text_width, fg_color=root_bg_color, border_color=root_bg_color,
+                                justify="right")
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 calculation_text.configure(font=("Lucida Console", 15), state="readonly")
 calculation_text.bind("<Key>", lambda x: "break")
@@ -359,7 +360,7 @@ calculation_text.bind("<Key>", lambda x: "break")
 # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
 # in order to disable certain buttons.
 status_var = ctk.StringVar()
-status_var.trace_add('write', lambda *args: change_button_status(operators))
+status_var.trace_add('write', lambda *args: change_button_status(operators))  # not sure why *args makes this work
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color,
