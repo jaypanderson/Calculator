@@ -53,7 +53,8 @@ def change_button_status(buttons):
         for button in buttons:
             button.configure(state=ctk.NORMAL)
 
-
+# TODO not sure if this function is necessary because we no longer need to worry about unwanted characters being
+# TODO inputted due to other refactoring.
 # check to see if a string can be converted into a float
 def check_if_float(num: str) -> int:
     try:
