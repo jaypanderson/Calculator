@@ -12,6 +12,11 @@ from tkinter import *
 from tkinter import END
 from typing import Callable
 
+# TODO add documentation for all the functions
+
+# TODO add type hinting for all the functions
+
+# TODO make changes so that the my code only runs if this is __main__, that is add if __name__ == '__main__' clause.
 
 # TODO change the whole code so that it does not rely on global variables. The code will be more verbose but it will be
 # TODO explicit on what it wants to do and i can avoid using global variables and then i dont have to use a work around
