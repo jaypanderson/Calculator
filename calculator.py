@@ -54,7 +54,7 @@ def change_button_status(buttons):
             button.configure(state=ctk.NORMAL)
 
 
-# check to see if string is a valid float or not.
+# check to see if a string can be converted into a float
 def check_if_float(num: str) -> int:
     try:
         float(num)
