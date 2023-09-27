@@ -19,6 +19,8 @@ from typing import Callable
 
 # TODO make changes so that the my code only runs if this is __main__, that is add if __name__ == '__main__' clause.
 
+# TODO create unit test that works with this code.
+
 # TODO change the whole code so that it does not rely on global variables. The code will be more verbose but it will be
 # TODO explicit on what it wants to do and i can avoid using global variables and then i dont have to use a work around
 # TODO with the decorator function using global variables so that i can avoid an error in compile time where the decorators
