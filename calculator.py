@@ -43,6 +43,7 @@ def temp_change_state():
     return decorator
 
 
+# function do disable buttons when the result becomes Undefined.
 def change_button_status(buttons):
     if status_var.get() == "UNDEFINED":
         for button in buttons:
