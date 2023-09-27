@@ -20,6 +20,11 @@ from typing import Callable
 
 # TODO create unit test that works with this code.
 
+# TODO add two parentheses buttons, one to open ( and one to close ).  make sure these buttons are able to keep track
+# TODO of how many open parentheses there are. that is anytime ( is pressed ad 1 to a counter and every time ) is
+# TODO is press subtract 1 from the count.  It would be best if I could display that on the button but if not an
+# TODO internal counter will work just fine.
+
 # TODO change the whole code so that it does not rely on global variables. The code will be more verbose but it will be
 # TODO explicit on what it wants to do and i can avoid using global variables and then i dont have to use a work around
 # TODO with the decorator function using global variables so that i can avoid an error in compile time where the decorators
@@ -52,6 +57,7 @@ def change_button_status(buttons):
     else:
         for button in buttons:
             button.configure(state=ctk.NORMAL)
+
 
 # TODO not sure if this function is necessary because we no longer need to worry about unwanted characters being
 # TODO inputted due to other refactoring.
@@ -138,6 +144,8 @@ def arithmatic(symbol: str) -> None:
     arith = True
 
 
+# TODO when we add to negative numbers it looks like this -2+-3 which can be confusing. change it so that there
+# TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
 # change the last numeric values sign.
 @temp_change_state()
 def button_plus_minus():
