@@ -12,7 +12,6 @@ from tkinter import *
 from tkinter import END
 from typing import Callable
 
-
 # TODO add documentation for all the functions
 
 # TODO add type hinting for all the functions
@@ -56,8 +55,12 @@ def change_button_status(buttons):
 
 
 # check to see if string is a valid float or not.
-def check_if_float(num: str) -> bool:
-    return isinstance(num, float)
+def check_if_float(num: str) -> int:
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
 
 # add the functions to the buttons
