@@ -191,8 +191,6 @@ def button_backspace():
 # TODO refactor code so that a good junk of the code is under the try clause. still not sure if this is best approach
 # TODO or not. originally added it just to deal with zer division errors.
 
-# TODO have to change how 0. behaves. i want it to change to 0 when ever it is inserted into the calculation text from the current text
-
 # TODO Add way for the equal button to memorize the last operation and repeat that continuously
 # TODO as long as the used keeps pressing the equals button.
 # I was not able to build an eval() function that follows the order of operations.
