@@ -276,13 +276,13 @@ def key_binds(key: Event) -> None:
         func.invoke()
 
 
+# this allows for different behaviors of each button depending on whether the last button was a numeric button
+# or an arithmatic button such as "+-/*^"
+arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
+
 root = ctk.CTk()
 root.bind("<Key>", key_binds)  # this binds the key_binds function to the CTk window.
 set_appearance_mode("dark")
-
-# this allows for different behaviors of each button depending on whether the last button was a numeric button
-# or an arithmatic button such as "+-/*"
-arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
 
 root.title("Simple Calculator")
 root.geometry("500x700")
