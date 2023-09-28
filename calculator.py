@@ -105,7 +105,6 @@ def button_click(number):
             arith = False
         else:
             current_text.insert(END, str(number))
-        return
     else:
         current_text.insert(END, str(number))
 
