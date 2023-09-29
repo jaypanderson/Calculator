@@ -10,6 +10,7 @@ import customtkinter as ctk
 from customtkinter import set_appearance_mode
 from tkinter import *
 from tkinter import END
+# Callable is for when a function is returned as its return value
 from typing import Callable
 
 # TODO add documentation for all the functions
@@ -30,14 +31,22 @@ from typing import Callable
 # TODO with the decorator function using global variables so that i can avoid an error in compile time where the decorators
 # TODO are actually called when a function is defined.
 
-# decorator function that changes the state of the entry objects to normal while we are editing them and then
-# changes it back to readonly when we are done, so that the user cannot change the entry except by using designated
-# key bindings or clicking the buttons.
-def temp_change_state():
+
+# Decorator function to change the state of entry objects.
+def temp_change_state() -> Callable:
+    """
+    A decorator function that will be applied to most of the functions relating to button inputs.  The Entry objects
+    are set up in a way that they are readonly and the user can not type into them directly.  Only when a button is
+    pressed can the entry object texts change.  When ever a function with this decorator is invoked it enables the entry
+    objects to normal, the functions then change the text through the operations, then finally it changes the state back
+    to read only.  Global variables are being used to avoid invocation during evaluation by the interpreter because I
+    want to  keep these variables close to the entry UI elements of the script for organization.
+    :return: None
+    """
     global calculation_text, current_text
 
-    def decorator(func):
-        def wrapper(*arg):
+    def decorator(func: Callable) -> Callable:
+        def wrapper(*arg: ctk.CTkEntry) -> Callable:
             calculation_text.configure(state="normal")
             current_text.configure(state="normal")
             try:
