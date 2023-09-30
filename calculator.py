@@ -92,6 +92,8 @@ def check_if_float(num: str) -> bool:
         return False
 
 
+# TODO There are 7 paths for the logic to go through in button_click. However, some of the outcome is exactly the same.
+# TODO The code can probably be refactored so that similar outcomes can be grouped together.
 # add the functions to the buttons
 @temp_change_state()
 def button_click(number: int) -> None:
