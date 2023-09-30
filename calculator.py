@@ -60,7 +60,7 @@ def temp_change_state() -> Callable:
 
 
 # function do disable buttons when the result becomes Undefined.
-def change_button_status(buttons: list[*ctk.CTkButton]) -> None:
+def change_button_status(buttons: list[ctk.CTkButton]) -> None:
     """
     A function to disable certain buttons (determined by the list of buttons passed in to the function) when 'UNDEFINED'
     is displayed in current_text. In the function we refer to status_var but this StringVar object is linked to the
