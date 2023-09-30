@@ -94,12 +94,27 @@ def check_if_float(num: str) -> bool:
 
 # add the functions to the buttons
 @temp_change_state()
-def button_click(number):
+def button_click(number: int) -> None:
+    """
+    A function to be called when a numeric button is clicked or pressed.  Depending on the situation the button
+    behaves differently.  (1) If the previous button pressed is the equal button both calculation and current text are
+    cleared and the new number is added to current text.  (2) If calculation text is empty and current text is 0 or
+    undefined current text is cleared and the number is inserted.  (3) If calculation text is empty but current text is
+    not 0 or UNDEFINED, then the number is added to the end of current text.  (4)  If there is anything in calculation
+    text that doesn't fit any of the previous situations and current text is 0 delete current text and then insert the
+    number.  (5) If the last character in calculation text is an arithmatic operator and arith is True delete current
+    text and then insert number.  (6) If the last character in calculation text is an arithmatic operator but arith is
+    false add the number to the end of current text.  (7) This is the option for any situation that does not match any
+    of the above scenarios and adds the number to the end of current text.
+    :param number: The number to be inserted into the entry object.
+    :return: None
+    """
     print(f"Arithmatic function called with symbol: {number}")
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
 
+    # (1)
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         current_text.delete(0, END)
@@ -107,25 +122,31 @@ def button_click(number):
         return
 
     if calc_text == "":
+        # (2)
         if cur_text == "0" or cur_text == 'UNDEFINED':
             current_text.delete(0, END)
             current_text.insert(0, str(number))
+        # (3)
         else:
             current_text.insert(END, str(number))
         return
-
+    # (4)
     if cur_text == "0":
         arith = False  # inserted to fix a potential bug when deleting operators from the calculation text.
         current_text.delete(0, END)
         current_text.insert(0, str(number))
         return
+
     if calc_text[-1] in "+-x÷^":
+        # (5)
         if arith is True:
             current_text.delete(0, END)
             current_text.insert(0, str(number))
             arith = False
+        # (6)
         else:
-            current_text.insert(END, str(number))
+            current_text.insert(END, str(number))\
+    # (7)
     else:
         current_text.insert(END, str(number))
 
