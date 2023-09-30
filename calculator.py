@@ -28,8 +28,8 @@ from typing import Callable
 
 # TODO change the whole code so that it does not rely on global variables. The code will be more verbose but it will be
 # TODO explicit on what it wants to do and i can avoid using global variables and then i dont have to use a work around
-# TODO with the decorator function using global variables so that i can avoid an error in compile time where the decorators
-# TODO are actually called when a function is defined.
+# TODO with the decorator function using global variables so that i can avoid an error in compile time where the
+# TODO decorators are actually called when a function is defined.
 
 
 # Decorator function to change the state of entry objects.
