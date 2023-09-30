@@ -147,7 +147,7 @@ def button_click(number: int) -> None:
             arith = False
         # (6)
         else:
-            current_text.insert(END, str(number))\
+            current_text.insert(END, str(number))
     # (7)
     else:
         current_text.insert(END, str(number))
