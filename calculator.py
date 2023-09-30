@@ -79,7 +79,12 @@ def change_button_status(buttons: list[ctk.CTkButton]) -> None:
 # TODO not sure if this function is necessary because we no longer need to worry about unwanted characters being
 # TODO inputted due to other refactoring.
 # check to see if a string can be converted into a float
-def check_if_float(num: str) -> int:
+def check_if_float(num: str) -> bool:
+    """
+    A function to check if a string can be converted into a float.
+    :param num: The string to be checked.
+    :return: True if the string can be converted to a float, False if it cannot.
+    """
     try:
         float(num)
         return True
