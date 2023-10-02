@@ -219,7 +219,11 @@ def arithmatic(symbol: str) -> None:
 # TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
 # change the last numeric values sign.
 @temp_change_state()
-def button_plus_minus():
+def button_plus_minus() -> None:
+    """
+    adds or takes out a negative symbol from the current text.
+    :return: None
+    """
     global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
