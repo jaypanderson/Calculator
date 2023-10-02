@@ -155,6 +155,20 @@ def button_click(number: int) -> None:
 
 @temp_change_state()
 def arithmatic(symbol: str) -> None:
+    """
+    A function to be called when an arithmatic operator button is pressed.  The symbol is dependent ont which button was
+    pressed.  Depending on the situation the button behaves differently.  (1) If the very end of calculation text is a
+    numeric string add the symbol to the end of calculation text.  (2) im not sure why this one is here anymore. It
+    might have been there to fix a bug that is no longer is there.  (3) If the very end of calculation text is '=' clear
+    calculation text and insert current text into calculation text with the symbol inserted at the very end.  (4) If the
+    very end of calculation text is an arithmatic operator but arith is false, add what is in the current text to the
+    end of calculation text.  (5) If the very end of calculation text is an arithmatic operator and arith is true,
+    delete the last thing in calculation text and insert the new symbol at the end.  (6) This is the option for anything
+    that does not match any of the scenarios above.  Add the current text to calculation text along with the symbol at
+    the end.
+    :param symbol: arithmatic symbol that will be inserted into the calculation text.
+    :return: None
+    """
     print(f"Arithmatic function called with symbol: {symbol}")
     global arith, calculation_text, current_text
 
@@ -165,24 +179,30 @@ def arithmatic(symbol: str) -> None:
         current_text.delete(len(cur_text) - 1, END)
         cur_text = cur_text.replace('.', '')
 
+    # (1)
     if calc_text[-1:].isnumeric():
         calculation_text.insert(END, symbol)
         arith = True
         return
 
+    # (2)
     if calc_text == symbol:  # used to have cur_text == '0' or which might have been there to prevent some bug.
         arith = True
         return
 
+    # (3)
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + symbol)
     elif calc_text and calc_text[-1:] in "+-x÷^":  # calc_text is checking if it is not an empty string
+        # (4)
         if arith is False:
             calculation_text.insert(END, cur_text + symbol)
+        # (5)
         else:
             calculation_text.delete(len(calc_text)-1, END)
             calculation_text.insert(END, symbol)
+    # (6)
     else:
         calculation_text.insert(END, cur_text + symbol)
     arith = True
