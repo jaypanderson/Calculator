@@ -153,6 +153,13 @@ def button_click(number: int) -> None:
         current_text.insert(END, str(number))
 
 
+# TODO for option (2) in the bellow code there doesnt seem to be any purpose to this option. Test and see if it can
+# TODO be deleted.
+
+# TODO these descriptions can be confusing and are essentially just describing the code.  Maybe i can change it to
+# TODO explain why they hava that way. like explaining that you need to clear everything because a new calculation
+# TODO needs to be done.
+
 @temp_change_state()
 def arithmatic(symbol: str) -> None:
     """
