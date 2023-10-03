@@ -302,7 +302,15 @@ def button_backspace() -> None:
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
 @temp_change_state()
-def button_equal():
+def button_equal() -> None:
+    """
+    A function that signals the calculation that the text should be evaluated and place the answer to the current text
+    and then place the calculation done including an '=' at the end of the calculation text.  This also replaces common
+    math operators to operators used in python. such as changing '÷' to '/'.  Handles zero division by placing
+    'UNDEFINED' in current text.  Converts the answer to integer if doing so doesn't result in a different number
+    (changing 1.2 -> 1 won't be possible.) 
+    :return: None
+    """
     global calculation_text, current_text, status_var
     calc_text = calculation_text.get()
     calc_text = calc_text.replace('x', '*')
