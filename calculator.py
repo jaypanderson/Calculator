@@ -275,7 +275,12 @@ def button_clear() -> None:
 
 
 @temp_change_state()
-def button_backspace():
+def button_backspace() -> None:
+    """
+    Deletes the last character in current text. If numbers run out the default zero is placed into current text. Can
+    continue pressing backspace to delete the last character in calculation text, but only if current text is 0.
+    :return: None
+    """
     global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
