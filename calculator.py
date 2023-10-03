@@ -236,7 +236,12 @@ def button_plus_minus() -> None:
 # TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
 # TODO keep this behavior or not.
 @temp_change_state()
-def button_decimal():
+def button_decimal() -> None:
+    """
+    A function to add a decimal point. It makes sure that only one decimal point is there per number. When the
+    calculation is reset after a calculation it automatically adds 0. to current text.
+    :return: None
+    """
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
