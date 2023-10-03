@@ -13,6 +13,8 @@ from tkinter import END
 # Callable is for when a function is returned as its return value
 from typing import Callable
 
+# TODO add a history feature that records the calculation and an answer in a different text box.
+
 # TODO add documentation for all the functions
 
 # TODO add type hinting for all the functions
