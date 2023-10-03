@@ -335,6 +335,12 @@ def button_equal():
 
 
 def key_binds(key: Event) -> None:
+    """
+    A function that searches the matching keypress to the matching button and invokes that function. In essence binding
+    keys to specific buttons on the calculator.
+    :param key: Event object that represents a key being pressed on the keyboard.
+    :return: None
+    """
     print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
                '2': button_2,
