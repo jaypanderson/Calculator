@@ -308,7 +308,7 @@ def button_equal() -> None:
     and then place the calculation done including an '=' at the end of the calculation text.  This also replaces common
     math operators to operators used in python. such as changing '÷' to '/'.  Handles zero division by placing
     'UNDEFINED' in current text.  Converts the answer to integer if doing so doesn't result in a different number
-    (changing 1.2 -> 1 won't be possible.) 
+    (changing 1.2 -> 1 won't be possible.)
     :return: None
     """
     global calculation_text, current_text, status_var
