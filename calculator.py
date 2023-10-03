@@ -263,7 +263,11 @@ def button_decimal() -> None:
 
 
 @temp_change_state()
-def button_clear():
+def button_clear() -> None:
+    """
+    Clears out calculation text as well as current text and finally adds a zero to current text.
+    :return: None
+    """
     global calculation_text, current_text
     calculation_text.delete(0,  END)
     current_text.delete(0, END)
