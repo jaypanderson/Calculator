@@ -496,4 +496,5 @@ current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
 current_text.configure(font=("Lucida Console", 30), state="readonly")
 
 
-root.mainloop()
+if __name__ == '__main__':
+    root.mainloop()
