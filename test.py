@@ -11,7 +11,6 @@ class MyTestCase(unittest.TestCase):
         current_text.delete(0, END)
         current_text.insert(0, '0')
 
-
     def test_something(self):
         global arith, calculation_text, current_text
         button_click(1)
