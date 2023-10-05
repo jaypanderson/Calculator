@@ -32,6 +32,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(current_text.get(), '1')
         self.assertEqual(calculation_text.get(), '1+')
 
+    def test_num_arith_2(self):
+        global arith, calculation_text, current_text
+        arithmatic('+')
+        button_click(1)
+        self.assertEqual(current_text.get(), '1')
+        self.assertEqual(calculation_text.get(), '0+')
+
 
 if __name__ == '__main__':
     unittest.main()
