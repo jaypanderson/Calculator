@@ -12,13 +12,13 @@ class MyTestCase(unittest.TestCase):
         current_text.insert(0, '0')
 
     # Test buttons by themselves
-    def test_1(self):
+    def test_self_1(self):
         global arith, calculation_text, current_text
         button_click(1)
         self.assertEqual(current_text.get(), '1')
         self.assertEqual(calculation_text.get(), '')
 
-    def test_2(self):
+    def test_self_2(self):
         global arith, calculation_text, current_text
         arithmatic('+')
         self.assertEqual(current_text.get(), '0')
