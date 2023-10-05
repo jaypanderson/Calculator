@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
         current_text.delete(0, END)
         current_text.insert(0, '0')
 
-    # test number buttons
+    # Test buttons by themselves
     def test_1(self):
         global arith, calculation_text, current_text
         button_click(1)
@@ -22,6 +22,14 @@ class MyTestCase(unittest.TestCase):
         arithmatic('+')
         self.assertEqual(current_text.get(), '0')
         self.assertEqual(calculation_text.get(), '0+')
+
+    # Test number and arithmatic button together.
+    def test_3(self):
+        global arith, calculation_text, current_text
+        button_click(1)
+        arithmatic('+')
+        self.assertEqual(current_text.get(), '1')
+        self.assertEqual(calculation_text.get(), '1+')
 
 
 if __name__ == '__main__':
