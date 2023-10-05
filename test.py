@@ -25,7 +25,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(calculation_text.get(), '0+')
 
     # Test number and arithmatic button together.
-    def test_3(self):
+    def test_num_arith_1(self):
         global arith, calculation_text, current_text
         button_click(1)
         arithmatic('+')
