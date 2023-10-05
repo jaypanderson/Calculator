@@ -3,7 +3,7 @@ import unittest
 
 
 class MyTestCase(unittest.TestCase):
-
+    @ temp_change_state()
     def setUp(self) -> None:
         global arith, calculation_text, current_text
         arith = False
