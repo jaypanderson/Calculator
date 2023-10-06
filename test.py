@@ -11,17 +11,20 @@ class MyTestCase(unittest.TestCase):
         current_text.delete(0, END)
         current_text.insert(0, '0')
 
+    # helper function to compact assertions in tests.
+    def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
+        global arith, calculation_text, current_text
+        self.assertEqual(arith, exp_arith)
+        self.assertEqual(exp_calc_text, calculation_text.get())
+        self.assertEqual(exp_cur_text, current_text.get())
+
     # Test buttons by themselves
     def test_self_1(self):
         global arith, calculation_text, current_text
         button_click(1)
-        self.assertFalse(arith)
-        self.assertEqual(current_text.get(), '1')
-        self.assertEqual(calculation_text.get(), '')
+        self.assert_state(False, '', '1')
         button_click(3)
-        self.assertFalse(arith)
-        self.assertEqual(current_text.get(), '13')
-        self.assertEqual(calculation_text.get(), '')
+        self.assert_state(False, '', '13')
 
     def test_self_2(self):
         global arith, calculation_text, current_text
