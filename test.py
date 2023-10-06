@@ -15,9 +15,11 @@ class MyTestCase(unittest.TestCase):
     def test_self_1(self):
         global arith, calculation_text, current_text
         button_click(1)
+        self.assertFalse(arith)
         self.assertEqual(current_text.get(), '1')
         self.assertEqual(calculation_text.get(), '')
         button_click(3)
+        self.assertFalse(arith)
         self.assertEqual(current_text.get(), '13')
         self.assertEqual(calculation_text.get(), '')
 
