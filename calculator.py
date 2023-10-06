@@ -113,7 +113,7 @@ def button_click(number: int) -> None:
     :param number: The number to be inserted into the entry object.
     :return: None
     """
-    print(f"Arithmatic function called with symbol: {number}")
+    # print(f"Arithmatic function called with symbol: {number}")
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -178,7 +178,7 @@ def arithmatic(symbol: str) -> None:
     :param symbol: arithmatic symbol that will be inserted into the calculation text.
     :return: None
     """
-    print(f"Arithmatic function called with symbol: {symbol}")
+    # print(f"Arithmatic function called with symbol: {symbol}")
     global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
@@ -351,7 +351,7 @@ def key_binds(key: Event) -> None:
     :param key: Event object that represents a key being pressed on the keyboard.
     :return: None
     """
-    print(f"Key pressed: {key.keysym}")
+    # print(f"Key pressed: {key.keysym}")
     key_map = {'1': button_1,
                '2': button_2,
                '3': button_3,
