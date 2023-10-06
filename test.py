@@ -20,35 +20,30 @@ class MyTestCase(unittest.TestCase):
 
     # Test buttons by themselves
     def test_self_1(self):
-        global arith, calculation_text, current_text
         button_click(1)
         self.assert_state(False, '', '1')
         button_click(3)
         self.assert_state(False, '', '13')
 
     def test_self_2(self):
-        global arith, calculation_text, current_text
         arithmatic('+')
         self.assertEqual(current_text.get(), '0')
         self.assertEqual(calculation_text.get(), '0+')
 
     # Test number and arithmatic button together.
     def test_num_arith_1(self):
-        global arith, calculation_text, current_text
         button_click(1)
         arithmatic('+')
         self.assertEqual(current_text.get(), '1')
         self.assertEqual(calculation_text.get(), '1+')
 
     def test_num_arith_2(self):
-        global arith, calculation_text, current_text
         arithmatic('+')
         button_click(1)
         self.assertEqual(current_text.get(), '1')
         self.assertEqual(calculation_text.get(), '0+')
 
     def test_num_arith_3(self):
-        global arith, calculation_text, current_text
         button_click(2)
         arithmatic('+')
         button_click(3)
