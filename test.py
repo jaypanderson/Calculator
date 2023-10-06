@@ -1,24 +1,23 @@
 import unittest
-import calculator
+import calculator as calc
 from calculator import *
 
 
-
+# Because arith is an immutable bool value we need to use calc.arith so that the arith variable in the calculation
+# module is
 class MyTestCase(unittest.TestCase):
     @ temp_change_state()
     def setUp(self) -> None:
-        global arith, calculation_text, current_text
-        arith = False
-        calculation_text.delete(0, END)
-        current_text.delete(0, END)
-        current_text.insert(0, '0')
+        calc.arith = False
+        calc.calculation_text.delete(0, END)
+        calc.current_text.delete(0, END)
+        calc.current_text.insert(0, '0')
 
     # helper function to compact assertions in tests.
     def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
-        global arith, calculation_text, current_text
-        self.assertEqual(arith, exp_arith)
-        self.assertEqual(exp_calc_text, calculation_text.get())
-        self.assertEqual(exp_cur_text, current_text.get())
+        self.assertEqual(exp_arith, calc.arith)
+        self.assertEqual(exp_calc_text, calc.calculation_text.get())
+        self.assertEqual(exp_cur_text, calc.current_text.get())
 
     # Test buttons by themselves
     def test_self_1(self):
@@ -29,6 +28,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_self_2(self):
         arithmatic('+')
+        self.assert_state(True, '0+', '0')
         self.assertEqual(current_text.get(), '0')
         self.assertEqual(calculation_text.get(), '0+')
 
