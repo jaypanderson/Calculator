@@ -277,7 +277,7 @@ def clear() -> None:
 
 
 @temp_change_state()
-def button_backspace() -> None:
+def backspace() -> None:
     """
     Deletes the last character in current text. If numbers run out the default zero is placed into current text. Can
     continue pressing backspace to delete the last character in calculation text, but only if current text is 0.
@@ -438,7 +438,7 @@ button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height
 button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font,
                                command=decimal)
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
-                                 command=button_backspace)
+                                 command=backspace)
 button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
                              command=clear)
 button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font,
