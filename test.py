@@ -57,7 +57,10 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0')
 
     def test_clear(self):
-        pass
+        clear()
+        self.assert_state(False, '', '0')
+        clear()
+        self.assert_state(False, '', '0')
 
     def test_backspace(self):
         pass
