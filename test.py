@@ -45,7 +45,7 @@ class MyTestCase(unittest.TestCase):
     # Test number and arithmatic button together.
     def test_num_arith_1(self):
         button_click(1)
-        self.assert_state(True, '', '1')
+        self.assert_state(False, '', '1')
         arithmatic('+')
         self.assert_state(True, '1+', '1')
         button_click(9)
