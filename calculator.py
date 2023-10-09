@@ -265,7 +265,7 @@ def decimal() -> None:
 
 
 @temp_change_state()
-def button_clear() -> None:
+def clear() -> None:
     """
     Clears out calculation text as well as current text and finally adds a zero to current text.
     :return: None
@@ -440,7 +440,7 @@ button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, borde
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
                                  command=button_backspace)
 button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
-                             command=button_clear)
+                             command=clear)
 button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font,
                              command=button_equal)
 
