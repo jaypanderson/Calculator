@@ -51,7 +51,10 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0')
 
     def test_decimal(self):
-        pass
+        decimal()
+        self.assert_state(False, '', '0.')
+        decimal()
+        self.assert_state(False, '', '0')
 
     def test_clear(self):
         pass
