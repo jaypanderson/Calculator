@@ -20,13 +20,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(exp_cur_text, calc.current_text.get())
 
     # Test buttons by themselves
-    def test_self_1(self):
+    def test_num(self):
         button_click(1)
         self.assert_state(False, '', '1')
         button_click(3)
         self.assert_state(False, '', '13')
 
-    def test_self_2(self):
+    def test_arith(self):
         arithmatic('+')
         self.assert_state(True, '0+', '0')
         arithmatic('+')
