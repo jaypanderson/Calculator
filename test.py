@@ -21,6 +21,10 @@ class MyTestCase(unittest.TestCase):
 
     # Test buttons by themselves
     def test_num(self):
+        button_click(0)
+        self.assert_state(False, '', '0')
+        button_click(0)
+        self.assert_state(False, '', '0')
         button_click(1)
         self.assert_state(False, '', '1')
         button_click(3)
