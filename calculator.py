@@ -304,7 +304,7 @@ def button_backspace() -> None:
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
 @temp_change_state()
-def button_equal() -> None:
+def equal() -> None:
     """
     A function that signals the calculation that the text should be evaluated and place the answer to the current text
     and then place the calculation done including an '=' at the end of the calculation text.  This also replaces common
@@ -442,7 +442,7 @@ button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, b
 button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
                              command=clear)
 button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font,
-                             command=button_equal)
+                             command=equal)
 
 
 # TODO complete creating the different categories.
