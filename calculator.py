@@ -340,7 +340,6 @@ def equal() -> None:
     current_text.delete(0, END)
     current_text.insert(0, str(round(ans, ndigits=14)))
     calculation_text.insert(END, cur_text + "=")
-    print(type(ans))
     return
 
 
