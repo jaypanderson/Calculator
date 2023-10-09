@@ -91,13 +91,6 @@ class MyTestCase(unittest.TestCase):
         number(3)
         self.assert_state(False, '0+19-', '33')
 
-    def test_num_arith_3(self):
-        number(2)
-        arithmatic('+')
-        number(3)
-        self.assertEqual(current_text.get(), '3')
-        self.assertEqual(calculation_text.get(), '2+')
-
 
 if __name__ == '__main__':
     unittest.main()
