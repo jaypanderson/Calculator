@@ -63,7 +63,10 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0')
 
     def test_backspace(self):
-        pass
+        backspace()
+        self.assert_state(False, '', '0')
+        backspace()
+        self.assert_state(False, '', '0')
 
     def test_equal(self):
         pass
