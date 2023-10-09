@@ -45,7 +45,8 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0-', '0')
 
     def test_plus_minus(self):
-        pass
+        plus_minus()
+        self.assert_state(False, '', '0')
 
     def test_decimal(self):
         pass

@@ -221,7 +221,7 @@ def arithmatic(symbol: str) -> None:
 # TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
 # change the last numeric values sign.
 @temp_change_state()
-def button_plus_minus() -> None:
+def plus_minus() -> None:
     """
     adds or takes out a negative symbol from the current text.
     :return: None
@@ -434,7 +434,7 @@ button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, borde
 button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font,
                                    command=lambda: arithmatic('^'))
 button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font,
-                                  command=button_plus_minus)
+                                  command=plus_minus)
 button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font,
                                command=button_decimal)
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
