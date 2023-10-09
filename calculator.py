@@ -94,11 +94,11 @@ def check_if_float(num: str) -> bool:
         return False
 
 
-# TODO There are 7 paths for the logic to go through in button_click. However, some of the outcome is exactly the same.
+# TODO There are 7 paths for the logic to go through in number. However, some of the outcome is exactly the same.
 # TODO The code can probably be refactored so that similar outcomes can be grouped together.
 # add the functions to the buttons
 @temp_change_state()
-def button_click(number: int) -> None:
+def number(num: int) -> None:
     """
     A function to be called when a numeric button is clicked or pressed.  Depending on the situation the button
     behaves differently.  (1) If the previous button pressed is the equal button both calculation and current text are
@@ -110,10 +110,10 @@ def button_click(number: int) -> None:
     text and then insert number.  (6) If the last character in calculation text is an arithmatic operator but arith is
     false add the number to the end of current text.  (7) This is the option for any situation that does not match any
     of the above scenarios and adds the number to the end of current text.
-    :param number: The number to be inserted into the entry object.
+    :param num: The number to be inserted into the entry object.
     :return: None
     """
-    # print(f"Arithmatic function called with symbol: {number}")
+    # print(f"Arithmatic function called with symbol: {num}")
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
@@ -122,37 +122,37 @@ def button_click(number: int) -> None:
     if calc_text[-1:] == "=":
         calculation_text.delete(0, END)
         current_text.delete(0, END)
-        current_text.insert(0, str(number))
+        current_text.insert(0, str(num))
         return
 
     if calc_text == "":
         # (2)
         if cur_text == "0" or cur_text == 'UNDEFINED':
             current_text.delete(0, END)
-            current_text.insert(0, str(number))
+            current_text.insert(0, str(num))
         # (3)
         else:
-            current_text.insert(END, str(number))
+            current_text.insert(END, str(num))
         return
     # (4)
     if cur_text == "0":
         arith = False  # inserted to fix a potential bug when deleting operators from the calculation text.
         current_text.delete(0, END)
-        current_text.insert(0, str(number))
+        current_text.insert(0, str(num))
         return
 
     if calc_text[-1] in "+-x÷^":
         # (5)
         if arith is True:
             current_text.delete(0, END)
-            current_text.insert(0, str(number))
+            current_text.insert(0, str(num))
             arith = False
         # (6)
         else:
-            current_text.insert(END, str(number))
+            current_text.insert(END, str(num))
     # (7)
     else:
-        current_text.insert(END, str(number))
+        current_text.insert(END, str(num))
 
 
 # TODO for option (2) in the bellow code there doesnt seem to be any purpose to this option. Test and see if it can
@@ -404,25 +404,25 @@ border = 1
 # add buttons for the numbers
 # Note: You can adjust the colors, border colors, and other properties as per your design preferences.
 button_1 = ctk.CTkButton(root, text="1", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(1))
+                         command=lambda: number(1))
 button_2 = ctk.CTkButton(root, text="2", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(2))
+                         command=lambda: number(2))
 button_3 = ctk.CTkButton(root, text="3", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(3))
+                         command=lambda: number(3))
 button_4 = ctk.CTkButton(root, text="4", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(4))
+                         command=lambda: number(4))
 button_5 = ctk.CTkButton(root, text="5", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(5))
+                         command=lambda: number(5))
 button_6 = ctk.CTkButton(root, text="6", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(6))
+                         command=lambda: number(6))
 button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(7))
+                         command=lambda: number(7))
 button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(8))
+                         command=lambda: number(8))
 button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(9))
+                         command=lambda: number(9))
 button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font,
-                         command=lambda: button_click(0))
+                         command=lambda: number(0))
 button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font,
                            command=lambda: arithmatic('+'))
 button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font,

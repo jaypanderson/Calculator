@@ -21,15 +21,15 @@ class MyTestCase(unittest.TestCase):
 
     # Test buttons by themselves
     def test_num(self):
-        button_click(0)
+        number(0)
         self.assert_state(False, '', '0')
-        button_click(0)
+        number(0)
         self.assert_state(False, '', '0')
-        button_click(1)
+        number(1)
         self.assert_state(False, '', '1')
-        button_click(0)
+        number(0)
         self.assert_state(False, '', '10')
-        button_click(3)
+        number(3)
         self.assert_state(False, '', '103')
 
     def test_arith(self):
@@ -61,11 +61,11 @@ class MyTestCase(unittest.TestCase):
 
     # Test number and arithmatic button together.
     def test_num_arith_1(self):
-        button_click(1)
+        number(1)
         self.assert_state(False, '', '1')
         arithmatic('+')
         self.assert_state(True, '1+', '1')
-        button_click(9)
+        number(9)
         self.assert_state(False, '1+', '9')
         arithmatic('x')
         self.assert_state(True, '1+9x', '9')
@@ -73,9 +73,9 @@ class MyTestCase(unittest.TestCase):
     def test_num_arith_2(self):
         arithmatic('+')
         self.assert_state(True, '0+', '0')
-        button_click(1)
+        number(1)
         self.assert_state(False, '0+', '1')
-        button_click(9)
+        number(9)
         self.assert_state(False, '0+', '19')
         arithmatic('÷')
         self.assert_state(True, '0+19÷', '19')
@@ -83,15 +83,15 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0+19x', '19')
         arithmatic('-')
         self.assert_state(True, '0+19-', '19')
-        button_click(3)
+        number(3)
         self.assert_state(False, '0+19-', '3')
-        button_click(3)
+        number(3)
         self.assert_state(False, '0+19-', '33')
 
     def test_num_arith_3(self):
-        button_click(2)
+        number(2)
         arithmatic('+')
-        button_click(3)
+        number(3)
         self.assertEqual(current_text.get(), '3')
         self.assertEqual(calculation_text.get(), '2+')
 
