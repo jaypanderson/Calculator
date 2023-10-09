@@ -59,6 +59,18 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0+', '0')
         button_click(1)
         self.assert_state(False, '0+', '1')
+        button_click(9)
+        self.assert_state(False, '0+', '19')
+        arithmatic('÷')
+        self.assert_state(True, '0+19÷', '19')
+        arithmatic('x')
+        self.assert_state(True, '0+19x', '19')
+        arithmatic('-')
+        self.assert_state(True, '0+19-', '19')
+        button_click(3)
+        self.assert_state(False, '0+19-', '3')
+        button_click(3)
+        self.assert_state(False, '0+19-', '33')
 
     def test_num_arith_3(self):
         button_click(2)
