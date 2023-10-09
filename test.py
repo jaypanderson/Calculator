@@ -37,6 +37,10 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0+', '0')
         arithmatic('x')
         self.assert_state(True, '0x', '0')
+        arithmatic('÷')
+        self.assert_state(True, '0÷', '0')
+        arithmatic('-')
+        self.assert_state(True, '0-', '0')
 
     # Test number and arithmatic button together.
     def test_num_arith_1(self):
