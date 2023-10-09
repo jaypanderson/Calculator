@@ -46,8 +46,12 @@ class MyTestCase(unittest.TestCase):
     def test_num_arith_1(self):
         button_click(1)
         arithmatic('+')
-        self.assertEqual(current_text.get(), '1')
-        self.assertEqual(calculation_text.get(), '1+')
+        self.assert_state(True, '1+', '1')
+        button_click(9)
+        self.assert_state(False, '1+', '9')
+        arithmatic('x')
+        self.assert_state(True, '1+9x', '9')
+
 
     def test_num_arith_2(self):
         arithmatic('+')
