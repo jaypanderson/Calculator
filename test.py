@@ -69,7 +69,10 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0')
 
     def test_equal(self):
-        pass
+        equal()
+        self.assert_state(False, '0=', '0')
+        equal()
+        self.assert_state(False, '0=', '0')
 
     # Test number and arithmatic button together.
     def test_num_arith_1(self):
