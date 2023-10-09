@@ -238,7 +238,7 @@ def plus_minus() -> None:
 # TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
 # TODO keep this behavior or not.
 @temp_change_state()
-def button_decimal() -> None:
+def decimal() -> None:
     """
     A function to add a decimal point. It makes sure that only one decimal point is there per number. When the
     calculation is reset after a calculation it automatically adds 0. to current text.
@@ -436,7 +436,7 @@ button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height,
 button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font,
                                   command=plus_minus)
 button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font,
-                               command=button_decimal)
+                               command=decimal)
 button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
                                  command=button_backspace)
 button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
