@@ -103,6 +103,23 @@ class MyTestCase(unittest.TestCase):
         number(3)
         self.assert_state(False, '0+19-', '33')
 
+    def test_num_dec_1(self):
+        number(7)
+        self.assert_state(False, '', '7')
+        decimal()
+        self.assert_state(False, '', '7.')
+        decimal()
+        self.assert_state(False, '', '7')
+        number(4)
+        self.assert_state(False, '', '74')
+        decimal()
+        self.assert_state(False, '', '74.')
+        number(9)
+        self.assert_state(False, '', '74.9')
+        decimal()
+        self.assert_state(False, '', '74.9')
+        
+
 
 if __name__ == '__main__':
     unittest.main()
