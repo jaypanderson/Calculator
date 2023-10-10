@@ -167,7 +167,7 @@ class MyTestCase(unittest.TestCase):
         number(8)
         self.assert_state(True, '', '8')
         decimal()
-        self.assert_state(False, '', '8.')
+        self.assert_state(False, '', '8.') # used to appear as (True, '', '0.')
 
 
 
