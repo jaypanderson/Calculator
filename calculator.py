@@ -230,7 +230,7 @@ def plus_minus() -> None:
     global calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
-    if cur_text[:1] != '-' and check_if_float(cur_text) and cur_text != '0':
+    if cur_text[:1] != '-' and check_if_float(cur_text) and float(cur_text) != 0:
         current_text.insert(0, '-')
     elif cur_text[:1] == '-':
         current_text.delete(0, 1)
