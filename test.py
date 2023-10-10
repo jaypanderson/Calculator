@@ -145,5 +145,31 @@ class MyTestCase(unittest.TestCase):
 
 
 
+
+
+
+
+
+
+
+
+    # TODO this bug can probably be fixed by creating a wrapper function that changes the arith global variable
+    def test_found_bugs_1(self):
+        # this involves the functions number, decimal, arithmatic and equal. The bug would appear the situation as
+        # appears bellow and would delete the number and just insert 0, instead of adding a decimal to the previous
+        # number.  The bug was fixed by making sure arith changes to false when ever decimal
+        number(6)
+        self.assert_state(False, '', '6')
+        arithmatic('x')
+        self.assert_state(True, '6x', '6')
+        equal()
+        self.assert_state(True, '6x6=', '36')
+        number(8)
+        self.assert_state(True, '', '8')
+        decimal()
+        self.assert_state(False, '', '8.')
+
+
+
 if __name__ == '__main__':
     unittest.main()
