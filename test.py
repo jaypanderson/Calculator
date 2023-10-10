@@ -165,9 +165,17 @@ class MyTestCase(unittest.TestCase):
         equal()
         self.assert_state(True, '6x6=', '36')
         number(8)
-        self.assert_state(True, '', '8')
+        self.assert_state(False, '', '8')
         decimal()
         self.assert_state(False, '', '8.') # used to appear as (True, '', '0.')
+
+    def test_founds_bugs_2(self):
+        # this bug would allow endless zeros to be entered and the number at the end like this -000000004 whic would
+        # confuse the evaluator and raise and error.
+        decimal()
+        self.assert_state(False, '', '0.')
+        plus_minus()
+        self.assert_state(False, '', '0.')
 
 
 
