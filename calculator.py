@@ -251,6 +251,7 @@ def decimal() -> None:
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, '0.')
+
         return
 
     if arith is True:
