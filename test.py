@@ -118,7 +118,24 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '74.9')
         decimal()
         self.assert_state(False, '', '74.9')
-        
+
+    def test_num_plus_minus_1(self):
+        number(4)
+        self.assert_state(False, '', '4')
+        plus_minus()
+        self.assert_state(False, '', '-4')
+        plus_minus()
+        self.assert_state(False, '', '4')
+        plus_minus()
+        self.assert_state(False, '', '-4')
+        number(7)
+        self.assert_state(False, '', '-47')
+        number(3)
+        self.assert_state(False, '', '-473')
+        plus_minus()
+        self.assert_state(False, '', '473')
+        plus_minus()
+        self.assert_state(False, '', '-473')
 
 
 if __name__ == '__main__':
