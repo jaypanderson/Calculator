@@ -176,7 +176,27 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False,  '', '0')
 
     def test_num_arith_decimal_plusminus_1(self):
-        pass
+        number(7)
+        self.assert_state(False, '', '7')
+        plus_minus()
+        self.assert_state(False, '', '-7')
+        decimal()
+        self.assert_state(False, '', '-7.')
+        plus_minus()
+        self.assert_state(False, '', '7.')
+        decimal()
+        self.assert_state(False, '', '7')
+        arithmatic(x)
+        self.assert_state(True, '7x', '7')
+        decimal()
+        self.assert_state(False, '7x', '0.')
+        plus_minus()
+        self.assert_state(False, '7x', '0.')
+        number(4)
+        self.assert_state(False, '7x', '0.4')
+        plus_minus()
+        self.assert_state(False, '7x', '-0.4')
+        #arithmatic(+)
 
 
 
@@ -208,6 +228,7 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0.')
         plus_minus()
         self.assert_state(False, '', '0.')  # used to appear as (False, '', '-0.')
+
 
 
 
