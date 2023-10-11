@@ -237,6 +237,11 @@ class MyTestCase(unittest.TestCase):
         # doesnt look so good.
         pass
 
+    def test_found_bugs_4(self):
+        # this is  bug where 3. is not converted to 3 when the number is moving to calculation text. I worked it out so
+        # that 0. would be converted to 0 but not for other numbers.
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
