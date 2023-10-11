@@ -142,6 +142,20 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0x', '0')
         decimal()
         self.assert_state(False, '0x', '0.')
+        arithmatic('-')
+        self.assert_state(True, '0x0-', '0')
+
+    def test_arith_dec_2(self):
+        decimal()
+        self.assert_state(False, '', '0.')
+        arithmatic('÷')
+        self.assert_state(True, '0÷', '0')
+        arithmatic('-')
+        self.assert_state(True, '0-', '0')
+        decimal()
+        self.assert_state(False, '0-', '0.')
+        arithmatic('^')
+        self.assert_state(True, '0-0^', '0')
 
 
 
