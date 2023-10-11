@@ -229,7 +229,11 @@ class MyTestCase(unittest.TestCase):
         plus_minus()
         self.assert_state(False, '', '0.')  # used to appear as (False, '', '-0.')
 
-
+    def test_found_bugs_3(self):
+        # this is a bug where if we use the backspace button so that only the minus is left in the current_text you can
+        # insert endless minus signs.  While technically this still works and the eval() function can still function it
+        # doesnt look so good.
+        pass
 
 
 if __name__ == '__main__':
