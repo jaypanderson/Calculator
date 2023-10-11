@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
         arithmatic('-')
         self.assert_state(True, '0-', '0')
 
-    def test_plus_minus(self):
+    def test_plusminus(self):
         plus_minus()
         self.assert_state(False, '', '0')
         plus_minus()
@@ -119,7 +119,7 @@ class MyTestCase(unittest.TestCase):
         decimal()
         self.assert_state(False, '', '74.9')
 
-    def test_num_plus_minus_1(self):
+    def test_num_plusminus_1(self):
         number(4)
         self.assert_state(False, '', '4')
         plus_minus()
@@ -157,7 +157,7 @@ class MyTestCase(unittest.TestCase):
         arithmatic('^')
         self.assert_state(True, '0-0^', '0')
 
-    def test_arith_plus_minus_1(self):
+    def test_arith_plusminus_1(self):
         arithmatic('-')
         self.assert_state(True, '0-', '0')
         plus_minus()
@@ -165,7 +165,7 @@ class MyTestCase(unittest.TestCase):
         plus_minus()
         self.assert_state(True, '0-', '0')
 
-    def test_dec_plus_minus_1(self):
+    def test_dec_plusminus_1(self):
         decimal()
         self.assert_state(False, '', '0.')
         plus_minus()
@@ -174,6 +174,9 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '0')
         plus_minus()
         self.assert_state(False,  '', '0')
+
+    def test_num_arith_decimal_plusminus_1(self):
+        pass
 
 
 
