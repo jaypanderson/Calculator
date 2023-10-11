@@ -157,7 +157,14 @@ class MyTestCase(unittest.TestCase):
         arithmatic('^')
         self.assert_state(True, '0-0^', '0')
 
-
+    def test_arith_plus_minus_1(self):
+        arithmatic('-')
+        self.assert_state(True, '0-', '0')
+        plus_minus()
+        self.assert_state(True, '0-', '0')
+        plus_minus()
+        self.assert_state(True, '0-', '0')
+    
 
 
 
