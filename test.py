@@ -186,7 +186,7 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '7.')
         decimal()
         self.assert_state(False, '', '7')
-        arithmatic(x)
+        arithmatic('x')
         self.assert_state(True, '7x', '7')
         decimal()
         self.assert_state(False, '7x', '0.')
@@ -196,7 +196,9 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '7x', '0.4')
         plus_minus()
         self.assert_state(False, '7x', '-0.4')
-        #arithmatic(+)
+        arithmatic('+')
+        self.assert_state(True, '7x-0.4+', '-0.4')
+
 
 
 
