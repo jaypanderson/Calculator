@@ -237,8 +237,8 @@ class MyTestCase(unittest.TestCase):
         # doesn't look so good.
         pass
 
-    # this is  bug where 3. is not converted to 3 when the number is moving to calculation text. I worked it out so
-    # that 0. would be converted to 0 but not for other numbers.
+    # this is  bug where 3. is not converted to 3 when the number is moving to calculation text after pressing equals.
+    # I worked it out so that 0. would be converted to 0 but not for other numbers.
     def test_found_bugs_4(self):
         pass
 
