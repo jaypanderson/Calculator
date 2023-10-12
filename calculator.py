@@ -43,7 +43,7 @@ def temp_change_state() -> Callable:
     objects to normal, the functions then change the text through the operations, then finally it changes the state back
     to read only.  Global variables are being used to avoid invocation during evaluation by the interpreter because I
     want to  keep these variables close to the entry UI elements of the script for organization.
-    :return: None
+    :return: return the wrapped function.
     """
     global calculation_text, current_text
 
@@ -59,6 +59,26 @@ def temp_change_state() -> Callable:
             return result
         return wrapper
     return decorator
+
+# decorator function to set the global variable of arith
+def change_arith(val: bool) -> Callable:
+    """
+    A decorator function to simplify the switching of the arith global variable between True and False. The variable
+    will be changed at the after exiting the function it is decorating to what ever bool is passed in.
+    :param val: True or False bool that will be used to set the arith function.
+    :return: return the wrapped function
+    """
+    def decorator(func: Callable) -> Callable:
+        def wrapper(*arg: ctk.CTkEntry) -> Callable:
+            global arith
+            try:
+                result = func(*arg)
+            finally:
+                arith = val
+            return result
+        return wrapper
+    return decorator
+
 
 
 # function do disable buttons when the result becomes Undefined.
