@@ -250,7 +250,6 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '6')
         decimal()
         self.assert_state(True, '', '6.')
-        pass
 
     def test_found_bug_5(self):
         # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
