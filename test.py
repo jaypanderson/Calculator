@@ -208,10 +208,10 @@ class MyTestCase(unittest.TestCase):
 
 
     # TODO this bug can probably be fixed by creating a wrapper function that changes the arith global variable
+    # this involves the functions number, decimal, arithmatic and equal. The bug would appear the situation as
+    # appears bellow and would delete the number and just insert 0, instead of adding a decimal to the previous
+    # number.  The bug was fixed by making sure arith changes to false when ever decimal
     def test_found_bugs_1(self):
-        # this involves the functions number, decimal, arithmatic and equal. The bug would appear the situation as
-        # appears bellow and would delete the number and just insert 0, instead of adding a decimal to the previous
-        # number.  The bug was fixed by making sure arith changes to false when ever decimal
         number(6)
         self.assert_state(False, '', '6')
         arithmatic('x')
@@ -223,18 +223,18 @@ class MyTestCase(unittest.TestCase):
         decimal()
         self.assert_state(False, '', '8.')  # used to appear as (True, '', '0.')
 
+    # this bug would allow endless zeros to be entered and the number at the end like this -000000004 which would
+    # confuse the evaluator and raise and error.
     def test_founds_bugs_2(self):
-        # this bug would allow endless zeros to be entered and the number at the end like this -000000004 which would
-        # confuse the evaluator and raise and error.
         decimal()
         self.assert_state(False, '', '0.')
         plus_minus()
         self.assert_state(False, '', '0.')  # used to appear as (False, '', '-0.')
 
+    # this is a bug where if we use the backspace button so that only the minus is left in the current_text you can
+    # insert endless minus signs.  While technically this still works and the eval() function can still function it
+    # doesn't look so good.
     def test_found_bugs_3(self):
-        # this is a bug where if we use the backspace button so that only the minus is left in the current_text you can
-        # insert endless minus signs.  While technically this still works and the eval() function can still function it
-        # doesn't look so good.
         number(2)
         self.assert_state(False, '', '2')
         plus_minus()
@@ -256,9 +256,9 @@ class MyTestCase(unittest.TestCase):
         equal()
         self.assert_state(False, '8+5=', '13')
 
+    # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
+    # number and then the decimal the number is reset to 0 with the decimal.
     def test_found_bug_5(self):
-        # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
-        # number and then the decimal the number is reset to 0 with the decimal.
         number(8)
         self.assert_state(False, '', '8')
         arithmatic('x')
