@@ -245,7 +245,7 @@ class MyTestCase(unittest.TestCase):
         arithmatic('x')
         self.assert_state(True, '8x', '8')
         clear()
-        self.assert_state(False, '', 0)
+        self.assert_state(False, '', '0')
         number(6)
         self.assert_state(False, '', '6')
         decimal()
