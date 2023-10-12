@@ -240,6 +240,11 @@ class MyTestCase(unittest.TestCase):
     # this is  bug where 3. is not converted to 3 when the number is moving to calculation text. I worked it out so
     # that 0. would be converted to 0 but not for other numbers.
     def test_found_bugs_4(self):
+        pass
+
+    def test_found_bug_5(self):
+        # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
+        # number and then the decimal the number is reset to 0 with the decimal.
         number(8)
         self.assert_state(False, '', '8')
         arithmatic('x')
@@ -250,11 +255,6 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(False, '', '6')
         decimal()
         self.assert_state(True, '', '6.')
-
-    def test_found_bug_5(self):
-        # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
-        # number and then the decimal the number is reset to 0 with the decimal.
-        pass
 
 
 if __name__ == '__main__':
