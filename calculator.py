@@ -60,6 +60,7 @@ def temp_change_state() -> Callable:
         return wrapper
     return decorator
 
+
 # decorator function to set the global variable of arith
 def change_arith(val: bool) -> Callable:
     """
@@ -78,7 +79,6 @@ def change_arith(val: bool) -> Callable:
             return result
         return wrapper
     return decorator
-
 
 
 # function do disable buttons when the result becomes Undefined.
@@ -117,6 +117,7 @@ def check_if_float(num: str) -> bool:
 # TODO There are 7 paths for the logic to go through in number. However, some of the outcome is exactly the same.
 # TODO The code can probably be refactored so that similar outcomes can be grouped together.
 # add the functions to the buttons
+@change_arith(False)
 @temp_change_state()
 def number(num: int) -> None:
     """
@@ -183,6 +184,7 @@ def number(num: int) -> None:
 # TODO explain why they hava that way. like explaining that you need to clear everything because a new calculation
 # TODO needs to be done.
 
+@change_arith(True)
 @temp_change_state()
 def arithmatic(symbol: str) -> None:
     """
@@ -241,6 +243,7 @@ def arithmatic(symbol: str) -> None:
 # TODO when we add to negative numbers it looks like this -2+-3 which can be confusing. change it so that there
 # TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
 # change the last numeric values sign.
+
 @temp_change_state()
 def plus_minus() -> None:
     """
@@ -258,6 +261,7 @@ def plus_minus() -> None:
 
 # TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
 # TODO keep this behavior or not.
+@change_arith(False)
 @temp_change_state()
 def decimal() -> None:
     """
@@ -286,6 +290,7 @@ def decimal() -> None:
             current_text.delete(len(cur_text) - 1, END)
 
 
+@change_arith(False)
 @temp_change_state()
 def clear() -> None:
     """
@@ -325,6 +330,7 @@ def backspace() -> None:
 # TODO as long as the used keeps pressing the equals button.
 # I was not able to build an eval() function that follows the order of operations.
 # so I just used the built-in eval() function.
+@change_arith(False)
 @temp_change_state()
 def equal() -> None:
     """
