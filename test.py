@@ -235,12 +235,26 @@ class MyTestCase(unittest.TestCase):
         # this is a bug where if we use the backspace button so that only the minus is left in the current_text you can
         # insert endless minus signs.  While technically this still works and the eval() function can still function it
         # doesn't look so good.
-        pass
+        number(2)
+        self.assert_state(False, '', '2')
+        plus_minus()
+        self.assert_state(False, '', '-2')
+        backspace()
+        self.assert_state(False, '', '0')
 
     # this is  bug where 3. is not converted to 3 when the number is moving to calculation text after pressing equals.
     # I worked it out so that 0. would be converted to 0 but not for other numbers.
     def test_found_bugs_4(self):
-        pass
+        number(8)
+        self.assert_state(False, '', '8')
+        arithmatic('+')
+        self.assert_state(True, '8+', '8')
+        number(5)
+        self.assert_state(False, '8+', '5')
+        decimal()
+        self.assert_state(False, '8+', '5.')
+        equal()
+        self.assert_state(False, '8+5=', '13')
 
     def test_found_bug_5(self):
         # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
