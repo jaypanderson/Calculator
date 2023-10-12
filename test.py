@@ -270,6 +270,13 @@ class MyTestCase(unittest.TestCase):
         decimal()
         self.assert_state(True, '', '6.')
 
+    # this isn't an exact instance. but with the backspace button there will likely be many errors because currently
+    # it does not handle the changes for arith global variable. it needs to also revert the last change of arith.
+    # if the last operation changed the arith operator then it needs to revert it. if the last operation did not change
+    # it, it shouldn't change it. need to implement a list that keeps a record.
+    def test_found_bugs_6(self):
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
