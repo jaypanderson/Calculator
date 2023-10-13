@@ -33,6 +33,9 @@ from typing import Callable
 # TODO with the decorator function using global variables so that i can avoid an error in compile time where the
 # TODO decorators are actually called when a function is defined.
 
+# TODO add functionality to calculator so that when two or more numbers are in the calulation_text and then add a second
+# TODO operator such like this '9x3+' the result of the answer so far appears in the current text so for this case
+# TODO current_text would be '27'
 
 # Decorator function to change the state of entry objects.
 def temp_change_state() -> Callable:
