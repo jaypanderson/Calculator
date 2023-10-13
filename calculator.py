@@ -215,12 +215,10 @@ def arithmatic(symbol: str) -> None:
     # (1)
     if calc_text[-1:].isnumeric():
         calculation_text.insert(END, symbol)
-        arith = True
         return
 
     # (2)
     if calc_text == symbol:  # used to have cur_text == '0' or which might have been there to prevent some bug.
-        arith = True
         return
 
     # (3)
@@ -238,7 +236,6 @@ def arithmatic(symbol: str) -> None:
     # (6)
     else:
         calculation_text.insert(END, cur_text + symbol)
-    arith = True
 
 
 # TODO when we add to negative numbers it looks like this -2+-3 which can be confusing. change it so that there
