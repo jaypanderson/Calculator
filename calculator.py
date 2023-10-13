@@ -274,13 +274,11 @@ def decimal() -> None:
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, '0.')
-        arith = False
         return
 
     if arith is True:
         current_text.delete(0, END)
         current_text.insert(0, '0.')
-        arith = False
     else:
         if '.' not in cur_text:
             current_text.insert(END, '.')
