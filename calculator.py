@@ -319,6 +319,9 @@ def backspace() -> None:
         else:
             current_text.delete(0, END)
             current_text.insert(0, "0")
+    elif len(cur_text) == 2 and cur_text[0] == '-':
+        current_text.delete(0, END)
+        current_text.insert(0, '0')
     else:
         current_text.delete(len(cur_text) - 1, END)
 
