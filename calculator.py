@@ -148,7 +148,6 @@ def number(num: int) -> None:
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, str(num))
-        arith = False
         return
 
     if calc_text == "":
@@ -162,7 +161,6 @@ def number(num: int) -> None:
         return
     # (4)
     if cur_text == "0":
-        arith = False  # inserted to fix a potential bug when deleting operators from the calculation text.
         current_text.delete(0, END)
         current_text.insert(0, str(num))
         return
@@ -172,7 +170,6 @@ def number(num: int) -> None:
         if arith is True:
             current_text.delete(0, END)
             current_text.insert(0, str(num))
-            arith = False
         # (6)
         else:
             current_text.insert(END, str(num))
