@@ -37,6 +37,7 @@ from typing import Callable
 # TODO operator such like this '9x3+' the result of the answer so far appears in the current text so for this case
 # TODO current_text would be '27'
 
+
 # Decorator function to change the state of entry objects.
 def temp_change_state() -> Callable:
     """
