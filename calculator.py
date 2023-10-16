@@ -305,12 +305,14 @@ def clear() -> None:
 
 # helper function to find the last occurrence of an arithmatic operator symbol
 def find_last_arith(calc: str) -> int:
-    symbols = 'x÷+-^'
+    symbols = 'x÷+-^='
     last = None
+    second_last = None
     for i, val in enumerate(calc):
         if val in symbols:
+            second_last = last
             last = i
-    return last
+    return second_last, last
 
 
 
@@ -327,10 +329,10 @@ def backspace() -> None:
     if len(cur_text) == 1:
         if cur_text == "0":
             index = find_last_arith(calc_text)
-            if index is None:
+            if index[1] is None or index[0] is None:
                 calculation_text.delete(0, END)
             else:
-                calculation_text.delete(index + 1, END)
+                calculation_text.delete(index[0] + 1, END)
         else:
             current_text.delete(0, END)
             current_text.insert(0, "0")
