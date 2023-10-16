@@ -212,6 +212,10 @@ def arithmatic(symbol: str) -> None:
         current_text.delete(len(cur_text) - 1, END)
         cur_text = cur_text.replace('.', '')
 
+    if cur_text == '-0':  # bug fix
+        current_text.delete(0)
+        cur_text = cur_text[1:]
+
     # (1)
     if calc_text[-1:].isnumeric():
         calculation_text.insert(END, symbol)
