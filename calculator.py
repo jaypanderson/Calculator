@@ -303,6 +303,17 @@ def clear() -> None:
     current_text.insert(0, "0")
 
 
+# helper function to find the last occurrence of an arithmatic operator symbol
+def find_last_arith(calc: str) -> int:
+    symbols = 'x÷+-^'
+    last = None
+    for i, val in enumerate(calc):
+        if val in symbols:
+            last = i
+    return last
+
+
+
 @temp_change_state()
 def backspace() -> None:
     """
@@ -315,7 +326,11 @@ def backspace() -> None:
     cur_text = current_text.get()
     if len(cur_text) == 1:
         if cur_text == "0":
-            calculation_text.delete(len(calc_text) - 1, END)
+            index = find_last_arith(calc_text)
+            if index is None:
+                calculation_text.delete(0, END)
+            else:
+                calculation_text.delete(index + 1, END)
         else:
             current_text.delete(0, END)
             current_text.insert(0, "0")
