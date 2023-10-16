@@ -292,7 +292,26 @@ class MyTestCase(unittest.TestCase):
         self.assert_state(True, '0+', '0')
 
     def test_found_bug_8(self):
-        pass
+        number(3)
+        self.assert_state(False, '', '3')
+        number(6)
+        self.assert_state(False, '', '36')
+        arithmatic('x')
+        self.assert_state(True, '36x', '36')
+        number(5)
+        self.assert_state(False, '36x', '5')
+        equal()
+        self.assert_state(False, '36x5=', '180')
+        backspace()
+        self.assert_state(False, '36x5=', '18')
+        backspace()
+        self.assert_state(False, '36x5=', '1')
+        backspace()
+        self.assert_state(False, '36x5=', '0')
+        backspace()
+        self.assert_state(False, '36x', '0')
+        backspace()
+        self.assert_state(False, '', '0')
 
 
 if __name__ == '__main__':
