@@ -291,5 +291,8 @@ class MyTestCase(unittest.TestCase):
         arithmatic('+')
         self.assert_state(True, '0+', '0')
 
+    def test_found_bug_8(self):
+        pass
+
 if __name__ == '__main__':
     unittest.main()
