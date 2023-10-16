@@ -347,7 +347,7 @@ def equal() -> None:
     calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
 
-    if cur_text[-1] == ".":  # added to ensure that a 0 is added to make it look better
+    if cur_text[-1] == ".":  # added to ensure that trailing decimal points are removed from numbers.
         cur_text = cur_text[:-1]
 
     if calc_text[-1:] == "=":
