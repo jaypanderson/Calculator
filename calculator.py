@@ -305,6 +305,14 @@ def clear() -> None:
 
 # helper function to find the last occurrence of an arithmatic operator symbol
 def find_last_arith(calc: str) -> int:
+    """
+    A function to find out the location of the second to last operator in a string so that the backspace function knows
+    where to delete. This allows for chunks of the text to be deleted instead of one by one.
+    ex) '36x54+32=' -> '36x54'+ -> '36x' -> ''
+    :param calc: A string that represents the calculation_text. ex) 36x54+32=
+    :return: This will return the second occurrence of an operator including the equal symbol.  If there is no operator
+    or if there is only one operator None will be returned.
+    """
     symbols = 'x÷+-^='
     last = None
     second_last = None
