@@ -312,8 +312,7 @@ def find_last_arith(calc: str) -> int:
         if val in symbols:
             second_last = last
             last = i
-    return second_last, last
-
+    return second_last
 
 
 @temp_change_state()
@@ -329,10 +328,10 @@ def backspace() -> None:
     if len(cur_text) == 1:
         if cur_text == "0":
             index = find_last_arith(calc_text)
-            if index[1] is None or index[0] is None:
+            if index is None:
                 calculation_text.delete(0, END)
             else:
-                calculation_text.delete(index[0] + 1, END)
+                calculation_text.delete(index + 1, END)
         else:
             current_text.delete(0, END)
             current_text.insert(0, "0")
