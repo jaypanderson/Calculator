@@ -304,7 +304,7 @@ def clear() -> None:
 
 
 # helper function to find the last occurrence of an arithmatic operator symbol
-def find_last_arith(calc: str) -> int:
+def find_last_arith(calc: str) -> Union[int, None]:
     """
     A function to find out the location of the second to last operator in a string so that the backspace function knows
     where to delete. This allows for chunks of the text to be deleted instead of one by one.
