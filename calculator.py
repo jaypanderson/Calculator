@@ -11,7 +11,7 @@ from customtkinter import set_appearance_mode
 from tkinter import *
 from tkinter import END
 # Callable is for when a function is returned as its return value
-from typing import Callable
+from typing import Callable, Union
 
 # TODO add a history feature that records the calculation and an answer in a different text box.
 
