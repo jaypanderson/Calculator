@@ -8,14 +8,14 @@ from calculator import *
 class MyTestCase(unittest.TestCase):
     @ temp_change_state()
     def setUp(self) -> None:
-        calc.arith = False
+        calc.arith[0] = False
         calc.calculation_text.delete(0, END)
         calc.current_text.delete(0, END)
         calc.current_text.insert(0, '0')
 
     # helper function to compact assertions in tests.
     def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
-        self.assertEqual(exp_arith, calc.arith)
+        self.assertEqual(exp_arith, calc.arith[0])
         self.assertEqual(exp_calc_text, calc.calculation_text.get())
         self.assertEqual(exp_cur_text, calc.current_text.get())
 

@@ -79,7 +79,7 @@ def change_arith(val: bool) -> Callable:
             try:
                 result = func(*arg)
             finally:
-                arith = val
+                arith[0] = val
             return result
         return wrapper
     return decorator
@@ -167,7 +167,7 @@ def number(num: int) -> None:
 
     if calc_text[-1] in '+-x÷^':
         # (5)
-        if arith is True:
+        if arith[0] is True:
             current_text.delete(0, END)
             current_text.insert(0, str(num))
         # (6)
@@ -231,7 +231,7 @@ def arithmatic(symbol: str) -> None:
         calculation_text.insert(0, cur_text + symbol)
     elif calc_text and calc_text[-1:] in '+-x÷^':  # calc_text is checking if it is not an empty string
         # (4)
-        if arith is False:
+        if arith[0] is False:
             calculation_text.insert(END, cur_text + symbol)
         # (5)
         else:
@@ -280,7 +280,7 @@ def decimal() -> None:
         current_text.insert(0, '0.')
         return
 
-    if arith is True:
+    if arith[0] is True:
         current_text.delete(0, END)
         current_text.insert(0, '0.')
     else:
@@ -436,7 +436,7 @@ def key_binds(key: Event) -> None:
 
 # this allows for different behaviors of each button depending on whether the last button was a numeric button
 # or an arithmatic button such as '+-/*^'
-arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
+arith = [False]  # to check if the last entry in the calculation_text is an arithmetic operator.
 
 root = ctk.CTk()
 root.bind('<Key>', key_binds)  # this binds the key_binds function to the CTk window.
