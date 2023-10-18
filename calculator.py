@@ -53,13 +53,13 @@ def temp_change_state() -> Callable:
 
     def decorator(func: Callable) -> Callable:
         def wrapper(*arg: ctk.CTkEntry) -> Callable:
-            calculation_text.configure(state="normal")
-            current_text.configure(state="normal")
+            calculation_text.configure(state='normal')
+            current_text.configure(state='normal')
             try:
                 result = func(*arg)
             finally:
-                calculation_text.configure(state="readonly")
-                current_text.configure(state="readonly")
+                calculation_text.configure(state='readonly')
+                current_text.configure(state='readonly')
             return result
         return wrapper
     return decorator
@@ -94,7 +94,7 @@ def change_button_status(buttons: list[ctk.CTkButton]) -> None:
     :param buttons: A list of Button objects to be disabled when 'UNDEFINED' is displayed in current_text.
     :return: None
     """
-    if status_var.get() == "UNDEFINED":
+    if status_var.get() == 'UNDEFINED':
         for button in buttons:
             button.configure(state=ctk.DISABLED)
     else:
@@ -138,21 +138,21 @@ def number(num: int) -> None:
     :param num: The number to be inserted into the entry object.
     :return: None
     """
-    # print(f"Arithmatic function called with symbol: {num}")
+    # print(f'Arithmatic function called with symbol: {num}')
     global arith, calculation_text, current_text
     calc_text = calculation_text.get()
     cur_text = current_text.get()
 
     # (1)
-    if calc_text[-1:] == "=":
+    if calc_text[-1:] == '=':
         calculation_text.delete(0, END)
         current_text.delete(0, END)
         current_text.insert(0, str(num))
         return
 
-    if calc_text == "":
+    if calc_text == '':
         # (2)
-        if cur_text == "0" or cur_text == 'UNDEFINED':
+        if cur_text == '0' or cur_text == 'UNDEFINED':
             current_text.delete(0, END)
             current_text.insert(0, str(num))
         # (3)
@@ -160,12 +160,12 @@ def number(num: int) -> None:
             current_text.insert(END, str(num))
         return
     # (4)
-    if cur_text == "0":
+    if cur_text == '0':
         current_text.delete(0, END)
         current_text.insert(0, str(num))
         return
 
-    if calc_text[-1] in "+-x÷^":
+    if calc_text[-1] in '+-x÷^':
         # (5)
         if arith is True:
             current_text.delete(0, END)
@@ -202,13 +202,13 @@ def arithmatic(symbol: str) -> None:
     :param symbol: arithmatic symbol that will be inserted into the calculation text.
     :return: None
     """
-    # print(f"Arithmatic function called with symbol: {symbol}")
+    # print(f'Arithmatic function called with symbol: {symbol}')
     global arith, calculation_text, current_text
 
     calc_text = calculation_text.get()
     cur_text = current_text.get()
 
-    if cur_text[-1:] == ".":  # added to ensure that a 0 is added to make it look better
+    if cur_text[-1:] == '.':  # added to ensure that a 0 is added to make it look better
         current_text.delete(len(cur_text) - 1, END)
         cur_text = cur_text.replace('.', '')
 
@@ -226,10 +226,10 @@ def arithmatic(symbol: str) -> None:
         return
 
     # (3)
-    if calc_text[-1:] == "=":
+    if calc_text[-1:] == '=':
         calculation_text.delete(0, END)
         calculation_text.insert(0, cur_text + symbol)
-    elif calc_text and calc_text[-1:] in "+-x÷^":  # calc_text is checking if it is not an empty string
+    elif calc_text and calc_text[-1:] in '+-x÷^':  # calc_text is checking if it is not an empty string
         # (4)
         if arith is False:
             calculation_text.insert(END, cur_text + symbol)
@@ -300,7 +300,7 @@ def clear() -> None:
     global calculation_text, current_text
     calculation_text.delete(0,  END)
     current_text.delete(0, END)
-    current_text.insert(0, "0")
+    current_text.insert(0, '0')
 
 
 # helper function to find the last occurrence of an arithmatic operator symbol
@@ -334,7 +334,7 @@ def backspace() -> None:
     calc_text = calculation_text.get()
     cur_text = current_text.get()
     if len(cur_text) == 1:
-        if cur_text == "0":
+        if cur_text == '0':
             index = find_last_arith(calc_text)
             if index is None:
                 calculation_text.delete(0, END)
@@ -342,7 +342,7 @@ def backspace() -> None:
                 calculation_text.delete(index + 1, END)
         else:
             current_text.delete(0, END)
-            current_text.insert(0, "0")
+            current_text.insert(0, '0')
     elif len(cur_text) == 2 and cur_text[0] == '-':
         current_text.delete(0, END)
         current_text.insert(0, '0')
@@ -372,13 +372,13 @@ def equal() -> None:
     calc_text = calculation_text.get()
     calc_text = calc_text.replace('x', '*')
     calc_text = calc_text.replace('÷', '/')
-    calc_text = calc_text.replace("^", "**")  # change the ^ to ** because in python ^ is bitwise XOR operator.
+    calc_text = calc_text.replace('^', '**')  # change the ^ to ** because in python ^ is bitwise XOR operator.
     cur_text = current_text.get()
 
-    if cur_text[-1] == ".":  # added to ensure that trailing decimal points are removed from numbers.
+    if cur_text[-1] == '.':  # added to ensure that trailing decimal points are removed from numbers.
         cur_text = cur_text[:-1]
 
-    if calc_text[-1:] == "=":
+    if calc_text[-1:] == '=':
         return
 
     try:
@@ -394,7 +394,7 @@ def equal() -> None:
         ans = int(ans)
     current_text.delete(0, END)
     current_text.insert(0, str(round(ans, ndigits=14)))
-    calculation_text.insert(END, cur_text + "=")
+    calculation_text.insert(END, cur_text + '=')
     return
 
 
@@ -405,7 +405,7 @@ def key_binds(key: Event) -> None:
     :param key: Event object that represents a key being pressed on the keyboard.
     :return: None
     """
-    # print(f"Key pressed: {key.keysym}")
+    # print(f'Key pressed: {key.keysym}')
     key_map = {'1': button_1,
                '2': button_2,
                '3': button_3,
@@ -435,20 +435,20 @@ def key_binds(key: Event) -> None:
 
 
 # this allows for different behaviors of each button depending on whether the last button was a numeric button
-# or an arithmatic button such as "+-/*^"
+# or an arithmatic button such as '+-/*^'
 arith = False  # to check if the last entry in the calculation_text is an arithmetic operator.
 
 root = ctk.CTk()
-root.bind("<Key>", key_binds)  # this binds the key_binds function to the CTk window.
-set_appearance_mode("dark")
+root.bind('<Key>', key_binds)  # this binds the key_binds function to the CTk window.
+set_appearance_mode('dark')
 
-root.title("Simple Calculator")
-root.geometry("500x700")
-root.configure(bg="lightblue")
+root.title('Simple Calculator')
+root.geometry('500x700')
+root.configure(bg='lightblue')
 root.resizable(True, True)  # Controls whether user can resize window.
 
 # define font and size for buttons
-button_font = ("Lucida Console", 20)
+button_font = ('Lucida Console', 20)
 
 # variables to adjust button size
 text_width = 400
@@ -457,45 +457,45 @@ height = 50
 border = 1
 # add buttons for the numbers
 # Note: You can adjust the colors, border colors, and other properties as per your design preferences.
-button_1 = ctk.CTkButton(root, text="1", width=width, height=height, border_width=border, font=button_font,
+button_1 = ctk.CTkButton(root, text='1', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(1))
-button_2 = ctk.CTkButton(root, text="2", width=width, height=height, border_width=border, font=button_font,
+button_2 = ctk.CTkButton(root, text='2', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(2))
-button_3 = ctk.CTkButton(root, text="3", width=width, height=height, border_width=border, font=button_font,
+button_3 = ctk.CTkButton(root, text='3', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(3))
-button_4 = ctk.CTkButton(root, text="4", width=width, height=height, border_width=border, font=button_font,
+button_4 = ctk.CTkButton(root, text='4', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(4))
-button_5 = ctk.CTkButton(root, text="5", width=width, height=height, border_width=border, font=button_font,
+button_5 = ctk.CTkButton(root, text='5', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(5))
-button_6 = ctk.CTkButton(root, text="6", width=width, height=height, border_width=border, font=button_font,
+button_6 = ctk.CTkButton(root, text='6', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(6))
-button_7 = ctk.CTkButton(root, text="7", width=width, height=height, border_width=border, font=button_font,
+button_7 = ctk.CTkButton(root, text='7', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(7))
-button_8 = ctk.CTkButton(root, text="8", width=width, height=height, border_width=border, font=button_font,
+button_8 = ctk.CTkButton(root, text='8', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(8))
-button_9 = ctk.CTkButton(root, text="9", width=width, height=height, border_width=border, font=button_font,
+button_9 = ctk.CTkButton(root, text='9', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(9))
-button_0 = ctk.CTkButton(root, text="0", width=width, height=height, border_width=border, font=button_font,
+button_0 = ctk.CTkButton(root, text='0', width=width, height=height, border_width=border, font=button_font,
                          command=lambda: number(0))
-button_add = ctk.CTkButton(root, text="+", width=width, height=height, border_width=border, font=button_font,
+button_add = ctk.CTkButton(root, text='+', width=width, height=height, border_width=border, font=button_font,
                            command=lambda: arithmatic('+'))
-button_subtract = ctk.CTkButton(root, text="-", width=width, height=height, border_width=border, font=button_font,
+button_subtract = ctk.CTkButton(root, text='-', width=width, height=height, border_width=border, font=button_font,
                                 command=lambda: arithmatic('-'))
-button_multiply = ctk.CTkButton(root, text="⨉", width=width, height=height, border_width=border, font=button_font,
+button_multiply = ctk.CTkButton(root, text='⨉', width=width, height=height, border_width=border, font=button_font,
                                 command=lambda: arithmatic('x'))
-button_divide = ctk.CTkButton(root, text="÷", width=width, height=height, border_width=border, font=button_font,
+button_divide = ctk.CTkButton(root, text='÷', width=width, height=height, border_width=border, font=button_font,
                               command=lambda: arithmatic('÷'))
-button_exponential = ctk.CTkButton(root, text="^",   width=width, height=height, border_width=border, font=button_font,
+button_exponential = ctk.CTkButton(root, text='^',   width=width, height=height, border_width=border, font=button_font,
                                    command=lambda: arithmatic('^'))
-button_plus_minus = ctk.CTkButton(root, text="+/-",   width=width, height=height, border_width=border, font=button_font,
+button_plus_minus = ctk.CTkButton(root, text='+/-',   width=width, height=height, border_width=border, font=button_font,
                                   command=plus_minus)
-button_decimal = ctk.CTkButton(root, text=".", width=width, height=height, border_width=border, font=button_font,
+button_decimal = ctk.CTkButton(root, text='.', width=width, height=height, border_width=border, font=button_font,
                                command=decimal)
-button_backspace = ctk.CTkButton(root, text="<-X", width=width, height=height, border_width=border, font=button_font,
+button_backspace = ctk.CTkButton(root, text='<-X', width=width, height=height, border_width=border, font=button_font,
                                  command=backspace)
-button_clear = ctk.CTkButton(root, text="Clear", width=width, height=height, border_width=border, font=button_font,
+button_clear = ctk.CTkButton(root, text='Clear', width=width, height=height, border_width=border, font=button_font,
                              command=clear)
-button_equal = ctk.CTkButton(root, text="=", width=width * 2, height=height, border_width=border, font=button_font,
+button_equal = ctk.CTkButton(root, text='=', width=width * 2, height=height, border_width=border, font=button_font,
                              command=equal)
 
 
@@ -532,10 +532,10 @@ root_bg_color = root.cget('bg')
 
 # add the text box for the numbers
 calculation_text = ctk.CTkEntry(root, width=text_width, fg_color=root_bg_color, border_color=root_bg_color,
-                                justify="right")
+                                justify='right')
 calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-calculation_text.configure(font=("Lucida Console", 15), state="readonly")
-calculation_text.bind("<Key>", lambda x: "break")
+calculation_text.configure(font=('Lucida Console', 15), state='readonly')
+calculation_text.bind('<Key>', lambda x: 'break')
 
 # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
 # in order to disable certain buttons.
@@ -544,10 +544,10 @@ status_var.trace_add('write', lambda *args: change_button_status(operators))  # 
 
 # add text box for current value
 current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color,
-                            border_color=root_bg_color, justify="right")
-current_text.insert(0, "0")
+                            border_color=root_bg_color, justify='right')
+current_text.insert(0, '0')
 current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-current_text.configure(font=("Lucida Console", 30), state="readonly")
+current_text.configure(font=('Lucida Console', 30), state='readonly')
 
 
 if __name__ == '__main__':
