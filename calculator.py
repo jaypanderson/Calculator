@@ -1,3 +1,12 @@
+"""
+This is a work in progress and I intend to expand it so that I can do linear algebra as well
+as statistical calculations so that I can quickly verify that my data analysis is being done
+correctly.
+
+Currently, can only perform simple arithmatic with +-/*^
+"""
+
+
 # Imports
 import customtkinter as ctk
 from customtkinter import set_appearance_mode, END
