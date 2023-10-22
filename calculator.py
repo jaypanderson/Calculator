@@ -3,6 +3,8 @@ This is a work in progress and I intend to expand it so that I can do linear alg
 as statistical calculations so that I can quickly verify that my data analysis is being done
 correctly.
 
+This version is the new implementation using object-oriented programing.
+
 Currently, can only perform simple arithmatic with +-/*^
 """
 
