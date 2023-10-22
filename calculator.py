@@ -21,8 +21,19 @@ class SimpleCalc:
         self.root = root
         self.arith = False
         self.init_calculator_text(self)
-        self.init.current_text(self)
+        self.init_current_text(self)
         self.init_buttons()
+
+    def init_calculator_text(self):
+        pass
+
+    def init_current_text(self):
+        pass
+
+    def init_buttons(self):
+        pass
+
+
 
 
 if __name__ == '__main__':
