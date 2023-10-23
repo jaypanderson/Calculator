@@ -39,3 +39,4 @@ class SimpleCalc:
 if __name__ == '__main__':
      root = ctk.CTk()
      calc = SimpleCalc(root)
+     root.mainloop()
