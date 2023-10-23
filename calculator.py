@@ -120,11 +120,11 @@ class SimpleCalc:
 
     def init_calculator_text(self):
         # add the text box for the numbers
-        calculation_text = ctk.CTkEntry(root, width=self.text_width, fg_color=self.root_bg_color,
+        self.calculation_text = ctk.CTkEntry(root, width=self.text_width, fg_color=self.root_bg_color,
                                         border_color=self.root_bg_color, justify='right')
-        calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-        calculation_text.configure(font=('Lucida Console', 15), state='readonly')
-        calculation_text.bind('<Key>', lambda x: 'break')
+        self.calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+        self.calculation_text.configure(font=('Lucida Console', 15), state='readonly')
+        self.calculation_text.bind('<Key>', lambda x: 'break')
 
     def init_current_text(self):
         pass
