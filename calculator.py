@@ -43,29 +43,29 @@ class SimpleCalc:
         self.button_1 = ctk.CTkButton(self.root, text='1', width=self.width, height=self.height,
                                       border_width=self.border, font=self.button_font, command=lambda: self.number(1))
         self.button_2 = ctk.CTkButton(self.root, text='2', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(2))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(2))
         self.button_3 = ctk.CTkButton(self.root, text='3', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(3))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(3))
         self.button_4 = ctk.CTkButton(self.root, text='4', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(4))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(4))
         self.button_5 = ctk.CTkButton(self.root, text='5', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(5))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(5))
         self.button_6 = ctk.CTkButton(self.root, text='6', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(6))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(6))
         self.button_7 = ctk.CTkButton(self.root, text='7', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(7))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(7))
         self.button_8 = ctk.CTkButton(self.root, text='8', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, conmand=lambda: self.number(8))
+                                      border_width=self.border, font=self.button_font, conmand=lambda: self.number(8))
         self.button_9 = ctk.CTkButton(self.root, text='9', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(9))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(9))
         self.button_0 = ctk.CTkButton(self.root, text='0', width=self.width, height=self.height,
-                                      border_width=self.border,font=self.button_font, command=lambda: self.number(0))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(0))
         self.button_add = ctk.CTkButton(self.root, text='+', width=self.width, height=self.height,
-                                        border_width=self.border,font=self.button_font, command=lambda: self.arithmatic('+'))
+                                        border_width=self.border, font=self.button_font, command=lambda: self.arithmatic('+'))
         self.button_subtract = ctk.CTkButton(self.root, text='-', width=self.width, height=self.height,
-                                             border_width=self.border,font=self.button_font, command=lambda: self.arithmatic('-'))
+                                             border_width=self.border, font=self.button_font, command=lambda: self.arithmatic('-'))
         self.button_multiply = ctk.CTkButton(self.root, text='⨉', width=self.width, height=self.height,
-                                             border_width=self.border,font=self.button_font, command=lambda: self.arithmatic('x'))
+                                             border_width=self.border, font=self.button_font, command=lambda: self.arithmatic('x'))
         self.button_divide = ctk.CTkButton(self.root, text='÷', width=self.width, height=self.height,
                                            border_width=self.border, font=self.button_font, command=lambda: self.arithmatic('÷'))
         self.button_exponential = ctk.CTkButton(self.root, text='^', width=self.width, height=self.height,
