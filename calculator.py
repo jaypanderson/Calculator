@@ -86,12 +86,6 @@ class SimpleCalc:
         self.operators = [self.button_add, self.button_subtract, self.button_multiply, self.button_divide, self.button_exponential,
                      self.button_decimal, self.button_plus_minus, self.button_backspace]
 
-    def init_calculator_text(self):
-        pass
-
-    def init_current_text(self):
-        pass
-
     def init_ui(self):
         set_appearance_mode('dark')
         self.root.title('Simple Calculator')
@@ -121,7 +115,11 @@ class SimpleCalc:
         self.button_backspace.grid(row=7, column=0)
         self.button_equal.grid(row=7, column=2, columnspan=2)
 
+    def init_calculator_text(self):
+        pass
 
+    def init_current_text(self):
+        pass
 
 
 if __name__ == '__main__':
