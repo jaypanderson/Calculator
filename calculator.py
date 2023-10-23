@@ -32,7 +32,14 @@ class SimpleCalc:
         pass
 
     def init_buttons(self):
-        pass
+        # define font and size for buttons
+        self.button_font = ('Lucida Console', 20)
+
+        # variables to adjust button size
+        self.text_width = 400
+        self.width = int(self.text_width // 3.75)
+        self.height = 50
+        self.border = 1
 
     def init_ui(self):
         set_appearance_mode('dark')
