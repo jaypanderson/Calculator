@@ -93,6 +93,9 @@ class SimpleCalc:
         self.root.configure(bg='lightblue')
         self.root.resizable(True, True)  # Controls whether user can resize window.
 
+        # get the background color of the root object
+        self.root_bg_color = self.root.cget('bg')
+
         # put the buttons on the screen
         self.button_1.grid(row=5, column=0)
         self.button_2.grid(row=5, column=1)
@@ -116,7 +119,12 @@ class SimpleCalc:
         self.button_equal.grid(row=7, column=2, columnspan=2)
 
     def init_calculator_text(self):
-        pass
+        # add the text box for the numbers
+        calculation_text = ctk.CTkEntry(root, width=self.text_width, fg_color=self.root_bg_color,
+                                        border_color=self.root_bg_color, justify='right')
+        calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+        calculation_text.configure(font=('Lucida Console', 15), state='readonly')
+        calculation_text.bind('<Key>', lambda x: 'break')
 
     def init_current_text(self):
         pass
