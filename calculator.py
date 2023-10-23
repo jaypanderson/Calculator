@@ -9,6 +9,8 @@ Currently, can only perform simple arithmatic with +-/*^
 """
 
 
+# TODO change formatting for constants to all caps
+
 # Imports
 import customtkinter as ctk
 from customtkinter import set_appearance_mode, END
