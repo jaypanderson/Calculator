@@ -20,8 +20,8 @@ class SimpleCalc:
     def __init__(self, root):
         self.root = root
         self.arith = False
-        self.init_calculator_text(self)
-        self.init_current_text(self)
+        self.init_calculator_text()
+        self.init_current_text()
         self.init_buttons()
 
     def init_calculator_text(self):
@@ -37,4 +37,5 @@ class SimpleCalc:
 
 
 if __name__ == '__main__':
-    pass
+     root = ctk.CTk()
+     calc = SimpleCalc(root)
