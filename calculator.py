@@ -36,6 +36,10 @@ class SimpleCalc:
 
     def init_ui(self):
         set_appearance_mode('dark')
+        self.root.title('Simple Calculator')
+        self.root.geometry('500x700')
+        self.root.configure(bg='lightblue')
+        self.root.resizable(True, True)  # Controls whether user can resize window.
         pass
 
 
