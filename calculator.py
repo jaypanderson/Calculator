@@ -35,6 +35,7 @@ class SimpleCalc:
         pass
 
     def init_ui(self):
+        set_appearance_mode('dark')
         pass
 
 
