@@ -23,6 +23,7 @@ class SimpleCalc:
         self.init_calculator_text()
         self.init_current_text()
         self.init_buttons()
+        self.init_ui()
 
     def init_calculator_text(self):
         pass
@@ -31,6 +32,9 @@ class SimpleCalc:
         pass
 
     def init_buttons(self):
+        pass
+
+    def init_ui(self):
         pass
 
 
