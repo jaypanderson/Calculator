@@ -24,16 +24,10 @@ class SimpleCalc:
     def __init__(self, root):
         self.root = root
         self.arith = False
-        self.init_calculator_text()
-        self.init_current_text()
         self.init_buttons()
         self.init_ui()
-
-    def init_calculator_text(self):
-        pass
-
-    def init_current_text(self):
-        pass
+        self.init_calculator_text()
+        self.init_current_text()
 
     def init_buttons(self):
         # define font and size for buttons
@@ -92,6 +86,11 @@ class SimpleCalc:
         self.operators = [self.button_add, self.button_subtract, self.button_multiply, self.button_divide, self.button_exponential,
                      self.button_decimal, self.button_plus_minus, self.button_backspace]
 
+    def init_calculator_text(self):
+        pass
+
+    def init_current_text(self):
+        pass
 
     def init_ui(self):
         set_appearance_mode('dark')
