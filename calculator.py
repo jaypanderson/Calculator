@@ -90,13 +90,35 @@ class SimpleCalc:
         self.operators = [self.button_add, self.button_subtract, self.button_multiply, self.button_divide, self.button_exponential,
                      self.button_decimal, self.button_plus_minus, self.button_backspace]
 
+
     def init_ui(self):
         set_appearance_mode('dark')
         self.root.title('Simple Calculator')
         self.root.geometry('500x700')
         self.root.configure(bg='lightblue')
         self.root.resizable(True, True)  # Controls whether user can resize window.
-        pass
+
+        # put the buttons on the screen
+        self.button_1.grid(row=5, column=0)
+        self.button_2.grid(row=5, column=1)
+        self.button_3.grid(row=5, column=2)
+        self.button_4.grid(row=4, column=0)
+        self.button_5.grid(row=4, column=1)
+        self.button_6.grid(row=4, column=2)
+        self.button_7.grid(row=3, column=0)
+        self.button_8.grid(row=3, column=1)
+        self.button_9.grid(row=3, column=2)
+        self.button_0.grid(row=6, column=1)
+        self.button_add.grid(row=6, column=3)
+        self.button_subtract.grid(row=5, column=3)
+        self.button_multiply.grid(row=4, column=3)
+        self.button_divide.grid(row=3, column=3)
+        self.button_exponential.grid(row=8, column=0)
+        self.button_plus_minus.grid(row=6, column=0)
+        self.button_decimal.grid(row=6, column=2)
+        self.button_clear.grid(row=7, column=1)
+        self.button_backspace.grid(row=7, column=0)
+        self.button_equal.grid(row=7, column=2, columnspan=2)
 
 
 
