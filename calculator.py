@@ -140,6 +140,31 @@ class SimpleCalc:
         self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
+    # Decorator function to change the state of entry objects.
+    def temp_change_state(self) -> Callable:
+        """
+        A decorator function that will be applied to most of the functions relating to button inputs.  The Entry objects
+        are set up in a way that they are readonly and the user can not type into them directly.  Only when a button is
+        pressed can the entry object texts change.  When ever a function with this decorator is invoked it enables the entry
+        objects to normal, the functions then change the text through the operations, then finally it changes the state back
+        to read only.  Global variables are being used to avoid invocation during evaluation by the interpreter because I
+        want to  keep these variables close to the entry UI elements of the script for organization.
+        :return: return the wrapped function.
+        """
+
+        def decorator(func: Callable) -> Callable:
+            def wrapper(*arg: ctk.CTkEntry) -> Callable:
+                self.calculation_text.configure(state='normal')
+                self.current_text.configure(state='normal')
+                try:
+                    result = func(*arg)
+                finally:
+                    self.calculation_text.configure(state='readonly')
+                    self.current_text.configure(state='readonly')
+                return result
+            return wrapper
+        return decorator
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
