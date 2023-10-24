@@ -131,14 +131,14 @@ class SimpleCalc:
         # in order to disable certain buttons.
         self.status_var = ctk.StringVar()
         self.status_var.trace_add('write',
-                             lambda *args: change_button_status(operators))  # not sure why *args makes this work
+                             lambda *args: self.change_button_status(self.operators))  # not sure why *args makes this work
 
         # add text box for current value
-        current_text = ctk.CTkEntry(root, width=text_width, textvariable=status_var, fg_color=root_bg_color,
-                                    border_color=root_bg_color, justify='right')
-        current_text.insert(0, '0')
-        current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-        current_text.configure(font=('Lucida Console', 30), state='readonly')
+        self.current_text = ctk.CTkEntry(root, width=self.text_width, textvariable=self.status_var,
+                                         fg_color=self.root_bg_color, border_color=self.root_bg_color, justify='right')
+        self.current_text.insert(0, '0')
+        self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
+        self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
 
 if __name__ == '__main__':
