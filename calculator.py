@@ -214,6 +214,68 @@ class SimpleCalc:
         except ValueError:
             return False
 
+    # TODO There are 7 paths for the logic to go through in number. However, some of the outcome is exactly the same.
+    # TODO The code can probably be refactored so that similar outcomes can be grouped together.
+    # add the functions to the buttons
+    @change_arith(False)
+    @temp_change_state()
+    def number(self, num: int) -> None:
+        """
+        A function to be called when a numeric button is clicked or pressed.  Depending on the situation the button
+        behaves differently.  (1) If the previous button pressed is the equal button both calculation and current text are
+        cleared and the new number is added to current text.  (2) If calculation text is empty and current text is 0 or
+        undefined current text is cleared and the number is inserted.  (3) If calculation text is empty but current text is
+        not 0 or UNDEFINED, then the number is added to the end of current text.  (4)  If there is anything in calculation
+        text that doesn't fit any of the previous situations and current text is 0 delete current text and then insert the
+        number.  (5) If the last character in calculation text is an arithmatic operator and arith is True delete current
+        text and then insert number.  (6) If the last character in calculation text is an arithmatic operator but arith is
+        false add the number to the end of current text.  (7) This is the option for any situation that does not match any
+        of the above scenarios and adds the number to the end of current text.
+        :param num: The number to be inserted into the entry object.
+        :return: None
+        """
+        # print(f'Arithmatic function called with symbol: {num}')
+        calc_text = self.calculation_text.get()
+        cur_text = self.current_text.get()
+
+        # (1)
+        if calc_text[-1:] == '=':
+            self.calculation_text.delete(0, END)
+            self.current_text.delete(0, END)
+            self.current_text.insert(0, str(num))
+            return
+
+        if calc_text == '':
+            # (2)
+            if cur_text == '0' or cur_text == 'UNDEFINED':
+                self.current_text.delete(0, END)
+                self.current_text.insert(0, str(num))
+            # (3)
+            else:
+                self.current_text.insert(END, str(num))
+            return
+        # (4)
+        if cur_text == '0':
+            self.current_text.delete(0, END)
+            self.current_text.insert(0, str(num))
+            return
+
+        if calc_text[-1] in '+-x÷^':
+            # (5)
+            if self.arith is True:
+                self.current_text.delete(0, END)
+                self.current_text.insert(0, str(num))
+            # (6)
+            else:
+                self.current_text.insert(END, str(num))
+        # (7)
+        else:
+            self.current_text.insert(END, str(num))
+
+
+
+
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
