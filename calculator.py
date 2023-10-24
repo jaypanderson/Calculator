@@ -151,7 +151,6 @@ class SimpleCalc:
         want to  keep these variables close to the entry UI elements of the script for organization.
         :return: return the wrapped function.
         """
-
         def decorator(func: Callable) -> Callable:
             def wrapper(*arg: ctk.CTkEntry) -> Callable:
                 self.calculation_text.configure(state='normal')
@@ -161,6 +160,24 @@ class SimpleCalc:
                 finally:
                     self.calculation_text.configure(state='readonly')
                     self.current_text.configure(state='readonly')
+                return result
+            return wrapper
+        return decorator
+
+    # decorator function to set the global variable of arith
+    def change_arith(self, val: bool) -> Callable:
+        """
+        A decorator function to simplify the switching of the arith global variable between True and False. The variable
+        will be changed at the after exiting the function it is decorating to what ever bool is passed in.
+        :param val: True or False bool that will be used to set the arith function.
+        :return: return the wrapped function
+        """
+        def decorator(func: Callable) -> Callable:
+            def wrapper(*arg: ctk.CTkEntry) -> Callable:
+                try:
+                    result = func(*arg)
+                finally:
+                    self.arith = val
                 return result
             return wrapper
         return decorator
