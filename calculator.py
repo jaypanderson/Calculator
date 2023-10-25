@@ -333,7 +333,23 @@ class SimpleCalc:
         else:
             self.calculation_text.insert(END, cur_text + symbol)
 
+    # TODO when we add to negative numbers it looks like this -2+-3 which can be confusing. change it so that there
+    # TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
+    # change the last numeric values sign.
 
+    @temp_change_state()
+    def plus_minus(self) -> None:
+        """
+        adds or takes out a negative symbol from the current text.
+        :return: None
+        """
+
+        calc_text = self.calculation_text.get()
+        cur_text = self.current_text.get()
+        if cur_text[:1] != '-' and self.check_if_float(cur_text) and float(cur_text) != 0:
+            self.current_text.insert(0, '-')
+        elif cur_text[:1] == '-':
+            self.current_text.delete(0, 1)
 
 
 
