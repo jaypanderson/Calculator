@@ -130,8 +130,7 @@ class SimpleCalc:
         # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
         # in order to disable certain buttons.
         self.status_var = ctk.StringVar()
-        self.status_var.trace_add('write',
-                             lambda *args: self.change_button_status(self.operators))  # not sure why *args makes this work
+        self.status_var.trace_add('write', lambda *args: self.change_button_status(self.operators))  # not sure why *args makes this work
 
         # add text box for current value
         self.current_text = ctk.CTkEntry(root, width=self.text_width, textvariable=self.status_var,
@@ -271,6 +270,68 @@ class SimpleCalc:
         # (7)
         else:
             self.current_text.insert(END, str(num))
+
+    # TODO for option (2) in the bellow code there doesnt seem to be any purpose to this option. Test and see if it can
+    # TODO be deleted.
+
+    # TODO these descriptions can be confusing and are essentially just describing the code.  Maybe i can change it to
+    # TODO explain why they hava that way. like explaining that you need to clear everything because a new calculation
+    # TODO needs to be done.
+
+    @change_arith(True)
+    @temp_change_state()
+    def arithmatic(self, symbol: str) -> None:
+        """
+        A function to be called when an arithmatic operator button is pressed.  The symbol is dependent ont which button was
+        pressed.  Depending on the situation the button behaves differently.  (1) If the very end of calculation text is a
+        numeric string add the symbol to the end of calculation text.  (2) im not sure why this one is here anymore. It
+        might have been there to fix a bug that is no longer is there.  (3) If the very end of calculation text is '=' clear
+        calculation text and insert current text into calculation text with the symbol inserted at the very end.  (4) If the
+        very end of calculation text is an arithmatic operator but arith is false, add what is in the current text to the
+        end of calculation text.  (5) If the very end of calculation text is an arithmatic operator and arith is true,
+        delete the last thing in calculation text and insert the new symbol at the end.  (6) This is the option for anything
+        that does not match any of the scenarios above.  Add the current text to calculation text along with the symbol at
+        the end.
+        :param symbol: arithmatic symbol that will be inserted into the calculation text.
+        :return: None
+        """
+        # print(f'Arithmatic function called with symbol: {symbol}')
+
+        calc_text = self.calculation_text.get()
+        cur_text = self.current_text.get()
+
+        if cur_text[-1:] == '.':  # added to ensure that a 0 is added to make it look better
+            self.current_text.delete(len(cur_text) - 1, END)
+            cur_text = cur_text.replace('.', '')
+
+        if cur_text == '-0':  # bug fix
+            self.current_text.delete(0)
+            cur_text = cur_text[1:]
+
+        # (1)
+        if calc_text[-1:].isnumeric():
+            self.calculation_text.insert(END, symbol)
+            return
+
+        # (2)
+        if calc_text == symbol:  # used to have cur_text == '0' or which might have been there to prevent some bug.
+            return
+
+        # (3)
+        if calc_text[-1:] == '=':
+            self.calculation_text.delete(0, END)
+            self.calculation_text.insert(0, cur_text + symbol)
+        elif calc_text and calc_text[-1:] in '+-x÷^':  # calc_text is checking if it is not an empty string
+            # (4)
+            if self.arith is False:
+                self.calculation_text.insert(END, cur_text + symbol)
+            # (5)
+            else:
+                self.calculation_text.delete(len(calc_text) - 1, END)
+                self.calculation_text.insert(END, symbol)
+        # (6)
+        else:
+            self.calculation_text.insert(END, cur_text + symbol)
 
 
 
