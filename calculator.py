@@ -140,50 +140,55 @@ class SimpleCalc:
         self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
-    # Decorator function to change the state of entry objects.
-    #@staticmethod
-    def temp_change_state() -> Callable:
-        """
-        A decorator function that will be applied to most of the functions relating to button inputs.  The Entry objects
-        are set up in a way that they are readonly and the user can not type into them directly.  Only when a button is
-        pressed can the entry object texts change.  When ever a function with this decorator is invoked it enables the entry
-        objects to normal, the functions then change the text through the operations, then finally it changes the state back
-        to read only.  Global variables are being used to avoid invocation during evaluation by the interpreter because I
-        want to  keep these variables close to the entry UI elements of the script for organization.
-        :return: return the wrapped function.
-        """
-        def decorator(func: Callable) -> Callable:
-            def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
-                self.calculation_text.configure(state='normal')
-                self.current_text.configure(state='normal')
-                try:
-                    result = func(self, *arg)
-                finally:
-                    self.calculation_text.configure(state='readonly')
-                    self.current_text.configure(state='readonly')
-                return result
-            return wrapper
-        return decorator
 
-    # decorator function to set the global variable of arith
-    # it is set as static method, but its not actually a static method. it is responsible
-    #@staticmethod
-    def change_arith(val: bool) -> Callable:
-        """
-        A decorator function to simplify the switching of the arith global variable between True and False. The variable
-        will be changed at the after exiting the function it is decorating to what ever bool is passed in.
-        :param val: True or False bool that will be used to set the arith function.
-        :return: return the wrapped function
-        """
-        def decorator(func: Callable) -> Callable:
-            def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
-                try:
-                    result = func(self, *arg)
-                finally:
-                    self.arith = val
-                return result
-            return wrapper
-        return decorator
+
+    class Decorators:
+        # Decorator function to change the state of entry objects.
+        @staticmethod
+        def temp_change_state() -> Callable:
+            """
+            A decorator function that will be applied to most of the functions relating to button inputs.  The Entry objects
+            are set up in a way that they are readonly and the user can not type into them directly.  Only when a button is
+            pressed can the entry object texts change.  When ever a function with this decorator is invoked it enables the entry
+            objects to normal, the functions then change the text through the operations, then finally it changes the state back
+            to read only.  Global variables are being used to avoid invocation during evaluation by the interpreter because I
+            want to  keep these variables close to the entry UI elements of the script for organization.
+            :return: return the wrapped function.
+            """
+            def decorator(func: Callable) -> Callable:
+                def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
+                    self.calculation_text.configure(state='normal')
+                    self.current_text.configure(state='normal')
+                    try:
+                        result = func(self, *arg)
+                    finally:
+                        self.calculation_text.configure(state='readonly')
+                        self.current_text.configure(state='readonly')
+                    return result
+                return wrapper
+            return decorator
+
+        # decorator function to set the global variable of arith
+        # it is set as static method, but its not actually a static method. it is responsible
+        @staticmethod
+        def change_arith(val: bool) -> Callable:
+            """
+            A decorator function to simplify the switching of the arith global variable between True and False. The variable
+            will be changed at the after exiting the function it is decorating to what ever bool is passed in.
+            :param val: True or False bool that will be used to set the arith function.
+            :return: return the wrapped function
+            """
+            def decorator(func: Callable) -> Callable:
+                def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
+                    try:
+                        result = func(self, *arg)
+                    finally:
+                        self.arith = val
+                    return result
+                return wrapper
+            return decorator
+
+
 
     # function do disable buttons when the result becomes Undefined.
     def change_button_status(self, buttons: list[ctk.CTkButton]) -> None:
@@ -220,8 +225,8 @@ class SimpleCalc:
     # TODO There are 7 paths for the logic to go through in number. However, some of the outcome is exactly the same.
     # TODO The code can probably be refactored so that similar outcomes can be grouped together.
     # add the functions to the buttons
-    @change_arith(False)
-    @temp_change_state()
+    @Decorators.change_arith(False)
+    @Decorators.temp_change_state()
     def number(self, num: int) -> None:
         """
         A function to be called when a numeric button is clicked or pressed.  Depending on the situation the button
@@ -282,8 +287,8 @@ class SimpleCalc:
     # TODO explain why they hava that way. like explaining that you need to clear everything because a new calculation
     # TODO needs to be done.
 
-    @change_arith(True)
-    @temp_change_state()
+    @Decorators.change_arith(True)
+    @Decorators.temp_change_state()
     def arithmatic(self, symbol: str) -> None:
         """
         A function to be called when an arithmatic operator button is pressed.  The symbol is dependent ont which button was
@@ -341,7 +346,7 @@ class SimpleCalc:
     # TODO are parentheses surrounding the negative numbers like (-2)+(-3) this looks better.
     # change the last numeric values sign.
 
-    @temp_change_state()
+    @Decorators.temp_change_state()
     def plus_minus(self) -> None:
         """
         adds or takes out a negative symbol from the current text.
@@ -357,8 +362,8 @@ class SimpleCalc:
 
     # TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
     # TODO keep this behavior or not.
-    @change_arith(False)
-    @temp_change_state()
+    @Decorators.change_arith(False)
+    @Decorators.temp_change_state()
     def decimal(self) -> None:
         """
         A function to add a decimal point. It makes sure that only one decimal point is there per number. When the
@@ -383,8 +388,8 @@ class SimpleCalc:
             elif '.' in cur_text and cur_text[-1] == '.':
                 self.current_text.delete(len(cur_text) - 1, END)
 
-    @change_arith(False)
-    @temp_change_state()
+    @Decorators.change_arith(False)
+    @Decorators.temp_change_state()
     def clear(self) -> None:
         """
         Clears out calculation text as well as current text and finally adds a zero to current text.
@@ -415,7 +420,7 @@ class SimpleCalc:
                 last = i
         return second_last
 
-    @temp_change_state()
+    @Decorators.temp_change_state()
     def backspace(self) -> None:
         """
         Deletes the last character in current text. If numbers run out the default zero is placed into current text. Can
@@ -448,8 +453,8 @@ class SimpleCalc:
     # TODO as long as the used keeps pressing the equals button.
     # I was not able to build an eval() function that follows the order of operations.
     # so I just used the built-in eval() function.
-    @change_arith(False)
-    @temp_change_state()
+    @Decorators.change_arith(False)
+    @Decorators.temp_change_state()
     def equal(self) -> None:
         """
         A function that signals the calculation that the text should be evaluated and place the answer to the current text
