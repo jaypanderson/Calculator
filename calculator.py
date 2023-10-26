@@ -379,6 +379,17 @@ class SimpleCalc:
             elif '.' in cur_text and cur_text[-1] == '.':
                 self.current_text.delete(len(cur_text) - 1, END)
 
+    @change_arith(False)
+    @temp_change_state()
+    def clear(self) -> None:
+        """
+        Clears out calculation text as well as current text and finally adds a zero to current text.
+        :return: None
+        """
+
+        self.calculation_text.delete(0, END)
+        self.current_text.delete(0, END)
+        self.current_text.insert(0, '0')
 
 if __name__ == '__main__':
     root = ctk.CTk()
