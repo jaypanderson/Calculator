@@ -10,13 +10,38 @@ Currently, can only perform simple arithmatic with +-/*^
 # using tkinter for now because i cant find its equivalent in customtkinter.
 from tkinter import Event
 
-# TODO change formatting for constants to all caps
 
 # Imports
 import customtkinter as ctk
 from customtkinter import set_appearance_mode, END
 # Callable is for when a function is returned as its return value
 from typing import Callable, Union
+
+# TODO change formatting for constants to all caps
+
+# TODO add a history feature that records the calculation and an answer in a different text box.
+
+# TODO add documentation for all the functions
+
+# TODO add type hinting for all the functions
+
+# TODO make changes so that the my code only runs if this is __main__, that is add if __name__ == '__main__' clause.
+
+# TODO create unit test that works with this code.
+
+# TODO add two parentheses buttons, one to open ( and one to close ).  make sure these buttons are able to keep track
+# TODO of how many open parentheses there are. that is anytime ( is pressed ad 1 to a counter and every time ) is
+# TODO is press subtract 1 from the count.  It would be best if I could display that on the button but if not an
+# TODO internal counter will work just fine.
+
+# TODO change the whole code so that it does not rely on global variables. The code will be more verbose but it will be
+# TODO explicit on what it wants to do and i can avoid using global variables and then i dont have to use a work around
+# TODO with the decorator function using global variables so that i can avoid an error in compile time where the
+# TODO decorators are actually called when a function is defined.
+
+# TODO add functionality to calculator so that when two or more numbers are in the calulation_text and then add a second
+# TODO operator such like this '9x3+' the result of the answer so far appears in the current text so for this case
+# TODO current_text would be '27'
 
 
 # noinspection PyAttributeOutsideInit
