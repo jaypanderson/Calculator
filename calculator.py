@@ -7,7 +7,7 @@ This version is the new implementation using object-oriented programing.
 
 Currently, can only perform simple arithmatic with +-/*^
 """
-# using tkinter for now because i cant find its equivalent in customtkinter.
+# using tkinter for now because I cant find its equivalent in customtkinter.
 from tkinter import Event
 
 
@@ -39,7 +39,7 @@ from typing import Callable, Union
 # TODO with the decorator function using global variables so that i can avoid an error in compile time where the
 # TODO decorators are actually called when a function is defined.
 
-# TODO add functionality to calculator so that when two or more numbers are in the calulation_text and then add a second
+# TODO add functionality to calculator so that when two or more numbers are in the calculation_text and then add a second
 # TODO operator such like this '9x3+' the result of the answer so far appears in the current text so for this case
 # TODO current_text would be '27'
 
@@ -194,7 +194,7 @@ class SimpleCalc:
             return decorator
 
         # decorator function to set the global variable of arith
-        # it is set as static method, but its not actually a static method. it is responsible
+        # it is set as static method, but it's not actually a static method. it is responsible
         @staticmethod
         def change_arith(val: bool) -> Callable:
             """
