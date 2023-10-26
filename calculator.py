@@ -7,7 +7,8 @@ This version is the new implementation using object-oriented programing.
 
 Currently, can only perform simple arithmatic with +-/*^
 """
-
+# using tkinter for now because i cant find its equivalent in customtkinter.
+from tkinter import Event
 
 # TODO change formatting for constants to all caps
 
@@ -140,7 +141,8 @@ class SimpleCalc:
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
     # Decorator function to change the state of entry objects.
-    def temp_change_state(self) -> Callable:
+    #@staticmethod
+    def temp_change_state() -> Callable:
         """
         A decorator function that will be applied to most of the functions relating to button inputs.  The Entry objects
         are set up in a way that they are readonly and the user can not type into them directly.  Only when a button is
@@ -151,11 +153,11 @@ class SimpleCalc:
         :return: return the wrapped function.
         """
         def decorator(func: Callable) -> Callable:
-            def wrapper(*arg: ctk.CTkEntry) -> Callable:
+            def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
                 self.calculation_text.configure(state='normal')
                 self.current_text.configure(state='normal')
                 try:
-                    result = func(*arg)
+                    result = func(self, *arg)
                 finally:
                     self.calculation_text.configure(state='readonly')
                     self.current_text.configure(state='readonly')
@@ -164,7 +166,9 @@ class SimpleCalc:
         return decorator
 
     # decorator function to set the global variable of arith
-    def change_arith(self, val: bool) -> Callable:
+    # it is set as static method, but its not actually a static method. it is responsible
+    #@staticmethod
+    def change_arith(val: bool) -> Callable:
         """
         A decorator function to simplify the switching of the arith global variable between True and False. The variable
         will be changed at the after exiting the function it is decorating to what ever bool is passed in.
@@ -172,9 +176,9 @@ class SimpleCalc:
         :return: return the wrapped function
         """
         def decorator(func: Callable) -> Callable:
-            def wrapper(*arg: ctk.CTkEntry) -> Callable:
+            def wrapper(self, *arg: ctk.CTkEntry) -> Callable:
                 try:
-                    result = func(*arg)
+                    result = func(self, *arg)
                 finally:
                     self.arith = val
                 return result
@@ -362,11 +366,11 @@ class SimpleCalc:
         :return: None
         """
 
-        calc_text = self.alculation_text.get()
+        calc_text = self.calculation_text.get()
         cur_text = self.current_text.get()
         if calc_text[-1:] == '=':
             self.calculation_text.delete(0, END)
-            self.selfcurrent_text.delete(0, END)
+            self.current_text.delete(0, END)
             self.current_text.insert(0, '0.')
             return
 
