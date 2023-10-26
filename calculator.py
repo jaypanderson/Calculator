@@ -483,6 +483,41 @@ class SimpleCalc:
         self.calculation_text.insert(END, cur_text + '=')
         return
 
+    def key_binds(self, key: Event) -> None:
+        """
+        A function that searches the matching keypress to the matching button and invokes that function. In essence binding
+        keys to specific buttons on the calculator.
+        :param key: Event object that represents a key being pressed on the keyboard.
+        :return: None
+        """
+        # print(f'Key pressed: {key.keysym}')
+        key_map = {'1': self.button_1,
+                   '2': self.button_2,
+                   '3': self.button_3,
+                   '4': self.button_4,
+                   '5': self.button_5,
+                   '6': self.button_6,
+                   '7': self.button_7,
+                   '8': self.button_8,
+                   '9': self.button_9,
+                   '0': self.button_0,
+                   '+': self.button_add,
+                   '-': self.button_subtract,
+                   '*': self.button_multiply,
+                   '/': self.button_divide,
+                   '^': self.button_exponential,
+                   '.': self.button_decimal}
+
+        special_keys = {'BackSpace': self.button_backspace,
+                        'Return': self.button_equal,
+                        'Escape': self.button_clear}
+        if key.char in key_map:
+            func = key_map.get(key.char, None)
+            func.invoke()
+        elif key.keysym in special_keys:
+            func = special_keys.get(key.keysym, None)
+            func.invoke()
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
