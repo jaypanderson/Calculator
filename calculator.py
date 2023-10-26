@@ -351,7 +351,33 @@ class SimpleCalc:
         elif cur_text[:1] == '-':
             self.current_text.delete(0, 1)
 
+    # TODO fixed trailing decimal problem. but if the user explicitly types 0.0 it will remain 0.0 not sure if i want to
+    # TODO keep this behavior or not.
+    @change_arith(False)
+    @temp_change_state()
+    def decimal(self) -> None:
+        """
+        A function to add a decimal point. It makes sure that only one decimal point is there per number. When the
+        calculation is reset after a calculation it automatically adds 0. to current text.
+        :return: None
+        """
 
+        calc_text = self.alculation_text.get()
+        cur_text = self.current_text.get()
+        if calc_text[-1:] == '=':
+            self.calculation_text.delete(0, END)
+            self.selfcurrent_text.delete(0, END)
+            self.current_text.insert(0, '0.')
+            return
+
+        if self.arith is True:
+            self.current_text.delete(0, END)
+            self.current_text.insert(0, '0.')
+        else:
+            if '.' not in cur_text:
+                self.current_text.insert(END, '.')
+            elif '.' in cur_text and cur_text[-1] == '.':
+                self.current_text.delete(len(cur_text) - 1, END)
 
 
 if __name__ == '__main__':
