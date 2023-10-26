@@ -56,7 +56,7 @@ class SimpleCalc:
         self.button_7 = ctk.CTkButton(self.root, text='7', width=self.width, height=self.height,
                                       border_width=self.border, font=self.button_font, command=lambda: self.number(7))
         self.button_8 = ctk.CTkButton(self.root, text='8', width=self.width, height=self.height,
-                                      border_width=self.border, font=self.button_font, conmand=lambda: self.number(8))
+                                      border_width=self.border, font=self.button_font, command=lambda: self.number(8))
         self.button_9 = ctk.CTkButton(self.root, text='9', width=self.width, height=self.height,
                                       border_width=self.border, font=self.button_font, command=lambda: self.number(9))
         self.button_0 = ctk.CTkButton(self.root, text='0', width=self.width, height=self.height,
