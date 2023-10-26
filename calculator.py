@@ -437,6 +437,52 @@ class SimpleCalc:
         else:
             self.current_text.delete(len(cur_text) - 1, END)
 
+    # TODO refactor code so that a good junk of the code is under the try clause. still not sure if this is best approach
+    # TODO or not. originally added it just to deal with zer division errors.
+
+    # TODO Add way for the equal button to memorize the last operation and repeat that continuously
+    # TODO as long as the used keeps pressing the equals button.
+    # I was not able to build an eval() function that follows the order of operations.
+    # so I just used the built-in eval() function.
+    @change_arith(False)
+    @temp_change_state()
+    def equal(self) -> None:
+        """
+        A function that signals the calculation that the text should be evaluated and place the answer to the current text
+        and then place the calculation done including an '=' at the end of the calculation text.  This also replaces common
+        math operators to operators used in python. such as changing '÷' to '/'.  Handles zero division by placing
+        'UNDEFINED' in current text.  Converts the answer to integer if doing so doesn't result in a different number
+        (changing 1.2 -> 1 won't be possible.)
+        :return: None
+        """
+        calc_text = self.calculation_text.get()
+        calc_text = calc_text.replace('x', '*')
+        calc_text = calc_text.replace('÷', '/')
+        calc_text = calc_text.replace('^', '**')  # change the ^ to ** because in python ^ is bitwise XOR operator.
+        cur_text = self.current_text.get()
+
+        if cur_text[-1] == '.':  # added to ensure that trailing decimal points are removed from numbers.
+            cur_text = cur_text[:-1]
+
+        if calc_text[-1:] == '=':
+            return
+
+        try:
+            eval(calc_text + cur_text)
+        except ZeroDivisionError:
+            self.calculation_text.delete(0, END)
+            self.current_text.delete(0, END)
+            self.current_text.insert(0, 'UNDEFINED')
+            return
+
+        ans = eval(calc_text + cur_text)
+        if ans == int(ans):
+            ans = int(ans)
+        self.current_text.delete(0, END)
+        self.current_text.insert(0, str(round(ans, ndigits=14)))
+        self.calculation_text.insert(END, cur_text + '=')
+        return
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
