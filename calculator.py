@@ -411,6 +411,32 @@ class SimpleCalc:
                 last = i
         return second_last
 
+    @temp_change_state()
+    def backspace(self) -> None:
+        """
+        Deletes the last character in current text. If numbers run out the default zero is placed into current text. Can
+        continue pressing backspace to delete the last character in calculation text, but only if current text is 0.
+        :return: None
+        """
+
+        calc_text = self.calculation_text.get()
+        cur_text = self.current_text.get()
+        if len(cur_text) == 1:
+            if cur_text == '0':
+                index = self.find_last_arith(calc_text)
+                if index is None:
+                    self.calculation_text.delete(0, END)
+                else:
+                    self.calculation_text.delete(index + 1, END)
+            else:
+                self.current_text.delete(0, END)
+                self.current_text.insert(0, '0')
+        elif len(cur_text) == 2 and cur_text[0] == '-':
+            self.current_text.delete(0, END)
+            self.current_text.insert(0, '0')
+        else:
+            self.current_text.delete(len(cur_text) - 1, END)
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
