@@ -68,7 +68,7 @@ from typing import Callable, Union
 # noinspection PyAttributeOutsideInit
 class SimpleCalc:
 
-    def __init__(self, root):
+    def __init__(self, root: ctk.CTk):
         self.root = root
         self.arith = False
         self.init_buttons()
@@ -578,3 +578,4 @@ if __name__ == '__main__':
     root = ctk.CTk()
     calc = SimpleCalc(root)
     root.mainloop()
+    
