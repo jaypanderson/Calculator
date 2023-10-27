@@ -24,6 +24,9 @@ have created so that it's all organized in one place.
     * Statistical Analysis calculator --StatCalc
         A calculator that will perform statistical analysis calculations such as finding the confidence intervals or
         margin of error and much more.
+
+    * Programmer calculator --ProgrammerCalc
+        A calculator that can convert between binary, hexadecimal, and decimal
 """
 # using tkinter for now because I cant find its equivalent in customtkinter.
 from tkinter import Event
