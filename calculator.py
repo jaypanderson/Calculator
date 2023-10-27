@@ -4,8 +4,26 @@ as statistical calculations so that I can quickly verify that my data analysis i
 correctly.
 
 This version is the new implementation using object-oriented programing.
+Will be creating different classes for the different type of calculators.
+I also plan to implement cheat sheets for various python libraries.  Basically will be gathering cheat sheets others
+have created so that it's all organized in one place.
 
-Currently, can only perform simple arithmatic with +-/*^
+-- Currently available
+    * Simple calculator -- SimpleCalc
+        A calculator that can perform simple operations with +-/*^
+
+-- Planned calculators
+    * Scientific calculator -- ScienceCalc
+        A calculator that can perform more complex calculations.  This will essentially inherit the same operations
+        from SimpleCalc but will have much more operators.
+
+    * Linear algebra calculator -- LinearCalc
+        A calculator that will perform linear algebra calculations.  Currently, have it planned so that you can choose
+        the size of the matrices which will create input boxes.
+
+    * Statistical Analysis calculator --StatCalc
+        A calculator that will perform statistical analysis calculations such as finding the confidence intervals or
+        margin of error and much more.
 """
 # using tkinter for now because I cant find its equivalent in customtkinter.
 from tkinter import Event
