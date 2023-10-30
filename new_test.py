@@ -5,7 +5,7 @@ from calculator import SimpleCalc as SC
 
 class MyTestCase(unittest.TestCase):
 
-    def __init__(self):
+    def SetUp(self) -> None:
         # tc is short for test calc
         self.tc = SC()
 
