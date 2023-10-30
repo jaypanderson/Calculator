@@ -16,8 +16,16 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(exp_cur_text, self.tc.current_text.get())
 
     def test_num(self):
+        self.tc.number(0)
+        self.assert_state(False, '', '0')
+        self.tc.number(0)
+        self.assert_state(False, '', '0')
         self.tc.number(1)
         self.assert_state(False, '', '1')
+        self.tc.number(0)
+        self.assert_state(False, '', '10')
+        self.tc.number(3)
+        self.assert_state(False, '', '103')
 
 if __name__ == '__main__':
     unittest.main()
