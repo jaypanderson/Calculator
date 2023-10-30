@@ -18,4 +18,7 @@ class MyTestCase(unittest.TestCase):
         self.tc.number(1)
         self.assert_state(False, '', '0')
 
+if __name__ == '__main__':
+    unittest.main()
+
 
