@@ -167,7 +167,7 @@ class SimpleCalc:
 
     def init_calculator_text(self):
         # add the text box for the numbers
-        self.calculation_text = ctk.CTkEntry(root, width=self.text_width, fg_color=self.root_bg_color,
+        self.calculation_text = ctk.CTkEntry(self.root, width=self.text_width, fg_color=self.root_bg_color,
                                         border_color=self.root_bg_color, justify='right')
         self.calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
         self.calculation_text.configure(font=('Lucida Console', 15), state='readonly')
@@ -180,7 +180,7 @@ class SimpleCalc:
         self.status_var.trace_add('write', lambda *args: self.change_button_status(self.operators))  # not sure why *args makes this work
 
         # add text box for current value
-        self.current_text = ctk.CTkEntry(root, width=self.text_width, textvariable=self.status_var,
+        self.current_text = ctk.CTkEntry(self.root, width=self.text_width, textvariable=self.status_var,
                                          fg_color=self.root_bg_color, border_color=self.root_bg_color, justify='right')
         self.current_text.insert(0, '0')
         self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)

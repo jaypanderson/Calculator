@@ -1,5 +1,5 @@
 import unittest
-from calculator import SimpleCalc as SC
+from calculator import SimpleCalc as sc
 import customtkinter as ctk
 
 
@@ -8,8 +8,9 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         # tc is short for test calc
-        self.tc = SC(ctk.CTk)
-
+        self.root = ctk.CTk()
+        self.tc = sc(self.root)
+        #self.root.mainloop()
     def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
         self.assertEqual(exp_arith, self.tc.arith)
         self.assertEqual(exp_calc_text, self.tc.calculation_text.get())
