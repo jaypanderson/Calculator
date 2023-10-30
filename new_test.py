@@ -1,13 +1,14 @@
 import unittest
 from calculator import SimpleCalc as SC
+import customtkinter as ctk
 
 
 
 class MyTestCase(unittest.TestCase):
 
-    def SetUp(self) -> None:
+    def setUp(self) -> None:
         # tc is short for test calc
-        self.tc = SC()
+        self.tc = SC(ctk.CTk)
 
     def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
         self.assertEqual(exp_arith, self.tc.arith)
