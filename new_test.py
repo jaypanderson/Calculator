@@ -45,6 +45,12 @@ class MyTestCase(unittest.TestCase):
         self.tc.plus_minus()
         self.assert_state(False, '', '0')
 
+    def test_decimal(self):
+        self.tc.decimal()
+        self.assert_state(False, '', '0.')
+        self.tc.decimal()
+        self.assert_state(False, '', '0')
+
 if __name__ == '__main__':
     unittest.main()
 
