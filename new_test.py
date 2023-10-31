@@ -27,6 +27,18 @@ class MyTestCase(unittest.TestCase):
         self.tc.number(3)
         self.assert_state(False, '', '103')
 
+    def test_arith(self):
+        self.tc.arithmatic('+')
+        self.assert_state(True, '0+', '0')
+        self.tc.arithmatic('+')
+        self.assert_state(True, '0+', '0')
+        self.tc.arithmatic('x')
+        self.assert_state(True, '0x', '0')
+        self.tc.arithmatic('÷')
+        self.assert_state(True, '0÷', '0')
+        self.tc.arithmatic('-')
+        self.assert_state(True, '0-', '0')
+
 if __name__ == '__main__':
     unittest.main()
 
