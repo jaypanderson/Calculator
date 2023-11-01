@@ -63,6 +63,12 @@ class MyTestCase(unittest.TestCase):
         self.tc.backspace()
         self.assert_state(False, '', '0')
 
+    def test_equal(self):
+        self.tc.equal()
+        self.assert_state(False, '0=', '0')
+        self.tc.equal()
+        self.assert_state(False, '0=', '0')
+
 if __name__ == '__main__':
     unittest.main()
 
