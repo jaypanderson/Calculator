@@ -69,6 +69,17 @@ class MyTestCase(unittest.TestCase):
         self.tc.equal()
         self.assert_state(False, '0=', '0')
 
+    # Test number and arithmatic button together.
+    def test_num_arith_1(self):
+        self.tc.number(1)
+        self.assert_state(False, '', '1')
+        self.tc.arithmatic('+')
+        self.assert_state(True, '1+', '1')
+        self.tc.number(9)
+        self.assert_state(False, '1+', '9')
+        self.tc.arithmatic('x')
+        self.assert_state(True, '1+9x', '9')
+
 if __name__ == '__main__':
     unittest.main()
 
