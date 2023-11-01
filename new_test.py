@@ -57,6 +57,12 @@ class MyTestCase(unittest.TestCase):
         self.tc.clear()
         self.assert_state(False, '', '0')
 
+    def test_backspace(self):
+        self.tc.backspace()
+        self.assert_state(False, '', '0')
+        self.tc.backspace()
+        self.assert_state(False, '', '0')
+
 if __name__ == '__main__':
     unittest.main()
 
