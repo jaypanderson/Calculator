@@ -98,6 +98,22 @@ class MyTestCase(unittest.TestCase):
         self.tc.number(3)
         self.assert_state(False, '0+19-', '33')
 
+    def test_num_dec_1(self):
+        self.tc.number(7)
+        self.assert_state(False, '', '7')
+        self.tc.decimal()
+        self.assert_state(False, '', '7.')
+        self.tc.decimal()
+        self.assert_state(False, '', '7')
+        self.tc.number(4)
+        self.assert_state(False, '', '74')
+        self.tc.decimal()
+        self.assert_state(False, '', '74.')
+        self.tc.number(9)
+        self.assert_state(False, '', '74.9')
+        self.tc.decimal()
+        self.assert_state(False, '', '74.9')
+
 if __name__ == '__main__':
     unittest.main()
 
