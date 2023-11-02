@@ -132,6 +132,14 @@ class MyTestCase(unittest.TestCase):
         self.tc.plus_minus()
         self.assert_state(False, '', '-473')
 
+    def test_arith_dec_1(self):
+        self.tc.arithmatic('x')
+        self.assert_state(True, '0x', '0')
+        self.tc.decimal()
+        self.assert_state(False, '0x', '0.')
+        self.tc.arithmatic('-')
+        self.assert_state(True, '0x0-', '0')
+
 if __name__ == '__main__':
     unittest.main()
 
