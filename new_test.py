@@ -170,6 +170,30 @@ class MyTestCase(unittest.TestCase):
         self.tc.plus_minus()
         self.assert_state(False,  '', '0')
 
+    def test_num_arith_decimal_plusminus_1(self):
+        self.tc.number(7)
+        self.assert_state(False, '', '7')
+        self.tc.plus_minus()
+        self.assert_state(False, '', '-7')
+        self.tc.decimal()
+        self.assert_state(False, '', '-7.')
+        self.tc.plus_minus()
+        self.assert_state(False, '', '7.')
+        self.tc.decimal()
+        self.assert_state(False, '', '7')
+        self.tc.arithmatic('x')
+        self.assert_state(True, '7x', '7')
+        self.tc.decimal()
+        self.assert_state(False, '7x', '0.')
+        self.tc.plus_minus()
+        self.assert_state(False, '7x', '0.')
+        self.tc.number(4)
+        self.assert_state(False, '7x', '0.4')
+        self.tc.plus_minus()
+        self.assert_state(False, '7x', '-0.4')
+        self.tc.arithmatic('+')
+        self.assert_state(True, '7x-0.4+', '-0.4')
+
 if __name__ == '__main__':
     unittest.main()
 
