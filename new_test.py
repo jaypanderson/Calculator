@@ -243,6 +243,19 @@ class MyTestCase(unittest.TestCase):
         self.tc.equal()
         self.assert_state(False, '8+5=', '13')
 
+    # this is a bug where if the last operation was arithmatic and then clear is pressed. When we try to press a
+    # number and then the decimal the number is reset to 0 with the decimal.
+    def test_found_bug_5(self):
+        self.tc.number(8)
+        self.assert_state(False, '', '8')
+        self.tc.arithmatic('x')
+        self.assert_state(True, '8x', '8')
+        self.tc.clear()
+        self.assert_state(False, '', '0')
+        self.tc.number(6)
+        self.assert_state(False, '', '6')
+        self.tc.decimal()
+        self.assert_state(False, '', '6.')
 
 if __name__ == '__main__':
     unittest.main()
