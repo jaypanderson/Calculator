@@ -229,7 +229,19 @@ class MyTestCase(unittest.TestCase):
         self.tc.backspace()
         self.assert_state(False, '', '0')
 
-
+    # this is  bug where 3. is not converted to 3 when the number is moving to calculation text after pressing equals.
+    # I worked it out so that 0. would be converted to 0 but not for other numbers.
+    def test_found_bugs_4(self):
+        self.tc.number(8)
+        self.assert_state(False, '', '8')
+        self.tc.arithmatic('+')
+        self.assert_state(True, '8+', '8')
+        self.tc.number(5)
+        self.assert_state(False, '8+', '5')
+        self.tc.decimal()
+        self.assert_state(False, '8+', '5.')
+        self.tc.equal()
+        self.assert_state(False, '8+5=', '13')
 
 
 if __name__ == '__main__':
