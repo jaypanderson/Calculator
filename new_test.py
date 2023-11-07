@@ -194,7 +194,6 @@ class MyTestCase(unittest.TestCase):
         self.tc.arithmatic('+')
         self.assert_state(True, '7x-0.4+', '-0.4')
 
-    # TODO this bug can probably be fixed by creating a wrapper function that changes the arith global variable
     # this involves the functions number, decimal, arithmatic and equal. The bug would appear the situation as
     # appears bellow and would delete the number and just insert 0, instead of adding a decimal to the previous
     # number.  The bug was fixed by making sure arith changes to false when ever decimal
