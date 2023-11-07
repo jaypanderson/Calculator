@@ -278,6 +278,28 @@ class MyTestCase(unittest.TestCase):
         self.tc.arithmatic('+')
         self.assert_state(True, '0+', '0')
 
+    def test_found_bug_8(self):
+        self.tc.number(3)
+        self.assert_state(False, '', '3')
+        self.tc.number(6)
+        self.assert_state(False, '', '36')
+        self.tc.arithmatic('x')
+        self.assert_state(True, '36x', '36')
+        self.tc.number(5)
+        self.assert_state(False, '36x', '5')
+        self.tc.equal()
+        self.assert_state(False, '36x5=', '180')
+        self.tc.backspace()
+        self.assert_state(False, '36x5=', '18')
+        self.tc.backspace()
+        self.assert_state(False, '36x5=', '1')
+        self.tc.backspace()
+        self.assert_state(False, '36x5=', '0')
+        self.tc.backspace()
+        self.assert_state(False, '36x', '0')
+        self.tc.backspace()
+        self.assert_state(False, '', '0')
+
 
 if __name__ == '__main__':
     unittest.main()
