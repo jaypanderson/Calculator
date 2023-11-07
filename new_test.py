@@ -10,6 +10,10 @@ class MyTestCase(unittest.TestCase):
         # tc is short for test calc
         self.root = ctk.CTk()
         self.tc = SimpleCalc(self.root)
+
+    # This function we will be used to test our assertions.
+    # the first parameter is the expected value of arith, the second is the expected value of calculation_text, and
+    # the third is the expected value of current_text.
     def assert_state(self, exp_arith, exp_calc_text, exp_cur_text) -> None:
         self.assertEqual(exp_arith, self.tc.arith)
         self.assertEqual(exp_calc_text, self.tc.calculation_text.get())
