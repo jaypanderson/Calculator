@@ -264,6 +264,21 @@ class MyTestCase(unittest.TestCase):
     def test_found_bugs_6(self):
         pass
 
+    # normally you can't add minus to zero, but when there is a decimal place its possible.  Problem is when you use
+    # backspace it essentially turns it into 0 with a minus sign which just means 0 anyway.
+    def test_found_bugs_7(self):
+        self.tc.decimal()
+        self.assert_state(False, '', '0.')
+        self.tc.number(3)
+        self.assert_state(False, '', '0.3')
+        self.tc.plus_minus()
+        self.assert_state(False, '', '-0.3')
+        self.tc.backspace()
+        self.assert_state(False, '', '-0.')
+        self.tc.arithmatic('+')
+        self.assert_state(True, '0+', '0')
+
+
 if __name__ == '__main__':
     unittest.main()
 
