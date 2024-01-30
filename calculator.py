@@ -629,6 +629,6 @@ class MatrixCalc:
 
 if __name__ == '__main__':
     root = ctk.CTk()
-    calc = MatrixCalc(root)
+    calc = SimpleCalc(root)
     root.mainloop()
     
