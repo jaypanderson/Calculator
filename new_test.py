@@ -1,5 +1,5 @@
 import unittest
-from calculator import SimpleCalc
+from simple_calculator import SimpleCalc
 import customtkinter as ctk
 
 
