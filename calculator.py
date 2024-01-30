@@ -641,8 +641,8 @@ class MatrixCalc:
                      self.button_decimal, self.button_plus_minus, self.button_backspace]
 
     def init_ui(self):
-        set_appearance_mode('dark')
-        self.root.title('Simple Calculator')
+        set_appearance_mode('light')
+        self.root.title('Matrix Calculator')
         self.root.geometry('500x700')
         self.root.configure(bg='lightblue')
         self.root.resizable(True, True)  # Controls whether user can resize window.
@@ -692,6 +692,7 @@ class MatrixCalc:
         self.current_text.insert(0, '0')
         self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
+
 
 if __name__ == '__main__':
     root = ctk.CTk()
