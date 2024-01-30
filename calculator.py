@@ -187,7 +187,6 @@ class SimpleCalc:
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
 
-
     class Decorators:
         # Decorator function to change the state of entry objects.
         @staticmethod
