@@ -573,60 +573,6 @@ class SimpleCalc:
             func.invoke()
 
 
-class MatrixCalc:
-
-    def __init__(self, root: ctk.CTk):
-        self.root = root
-        self.arith = False
-        self.init_buttons()
-        self.init_ui()
-        self.init_calculator_text()
-        self.init_current_text()
-
-    def init_buttons(self):
-        # define font and size for buttons
-        self.button_font = ('Lucida Console', 20)
-
-        # variables to adjust button size
-        self.text_width = 400
-        self.width = int(self.text_width // 3.75)
-        self.height = 50
-        self.border = 1
-
-
-
-    def init_ui(self):
-        set_appearance_mode('light')
-        self.root.title('Matrix Calculator')
-        self.root.geometry('500x700')
-        self.root.configure(bg='lightblue')
-        self.root.resizable(True, True)  # Controls whether user can resize window.
-
-        # get the background color of the root object
-        self.root_bg_color = self.root.cget('bg')
-
-
-    def init_calculator_text(self):
-        # add the text box for the numbers
-        self.calculation_text = ctk.CTkEntry(self.root, width=self.text_width, fg_color=self.root_bg_color,
-                                        border_color=self.root_bg_color, justify='right')
-        self.calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
-        self.calculation_text.configure(font=('Lucida Console', 15), state='readonly')
-        self.calculation_text.bind('<Key>', lambda x: 'break')
-
-    def init_current_text(self):
-        # Define a string variable that will be used to keep track if undefined is displayed on current_text or not
-        # in order to disable certain buttons.
-        self.status_var = ctk.StringVar()
-
-        # add text box for current value
-        self.current_text = ctk.CTkEntry(self.root, width=self.text_width, textvariable=self.status_var,
-                                         fg_color=self.root_bg_color, border_color=self.root_bg_color, justify='right')
-        self.current_text.insert(0, '0')
-        self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
-        self.current_text.configure(font=('Lucida Console', 30), state='readonly')
-
-
 if __name__ == '__main__':
     root = ctk.CTk()
     calc = SimpleCalc(root)
