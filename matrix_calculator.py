@@ -104,7 +104,7 @@ class SimpleCalc:
                      self.button_decimal, self.button_plus_minus, self.button_backspace]
 
     def init_ui(self):
-        set_appearance_mode('dark')
+        set_appearance_mode('light') # change to differentiate between simple calc and matrix calc
         self.root.title('Simple Calculator')
         self.root.geometry('500x700')
         self.root.configure(bg='lightblue')
