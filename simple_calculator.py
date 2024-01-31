@@ -131,7 +131,7 @@ class SimpleCalc:
         # TODO complete creating the different categories.
         # organize buttons into different categories.
         self.operators = [self.button_add, self.button_subtract, self.button_multiply, self.button_divide, self.button_exponential,
-                     self.button_decimal, self.button_plus_minus, self.button_backspace]
+                          self.button_decimal, self.button_plus_minus, self.button_backspace]
 
     def init_ui(self):
         set_appearance_mode('dark')
