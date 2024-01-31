@@ -1,6 +1,6 @@
 import unittest
-import calc_app as calc
-from calc_app import *
+import old_calculator as calc
+from old_calculator import *
 
 
 # Because arith is an immutable bool value we need to use calc.arith so that the arith variable in the calculation
