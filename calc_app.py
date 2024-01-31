@@ -1,7 +1,6 @@
 """
-This is a work in progress and I intend to expand it so that I can do linear algebra as well
-as statistical calculations so that I can quickly verify that my data analysis is being done
-correctly.
+This is the old unused calculator app that was created using functional programming.  The code became too big and
+complicated to add new features so a new version using classes was created. This will be left here just for the records.
 
 Currently, can only perform simple arithmatic with +-/*^
 """
