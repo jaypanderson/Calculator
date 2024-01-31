@@ -3,7 +3,6 @@ from simple_calculator import SimpleCalc
 import customtkinter as ctk
 
 
-
 class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
