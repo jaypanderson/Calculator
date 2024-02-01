@@ -19,4 +19,6 @@ class MainApp:
         self.option_menu = ctk.CTkOptionMenu(root, self.calculator_var, *self.calculator_options.keys(), command=self.switch_calculator)
         self.option_menu.pack()
         self.switch_calculator('Simple')
-        
+
+    def switch_calculator(self):
+        pass
