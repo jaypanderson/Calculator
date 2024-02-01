@@ -36,7 +36,7 @@ from typing import Callable, Union
 
 
 # noinspection PyAttributeOutsideInit
-class SimpleCalc:
+class MatrixCalc:
 
     def __init__(self, root: ctk.CTk):
         self.root = root
@@ -545,5 +545,5 @@ class SimpleCalc:
 
 if __name__ == '__main__':
     root = ctk.CTk()
-    calc = SimpleCalc(root)
+    calc = MatrixCalc(root)
     root.mainloop()
