@@ -12,6 +12,7 @@ class MainApp:
 
     def __init__(self, root):
         self.root = root
+        self.current_calculator_frame = None
         self.calculator_options = {'Simple': SimpleCalc,
                                    'Matrix': MatrixCalc}
         self.calculator_var = ctk.StringVar(self.root)
@@ -20,5 +21,13 @@ class MainApp:
         self.option_menu.pack()
         self.switch_calculator('Simple')
 
-    def switch_calculator(self):
-        pass
+    def switch_calculator(self, selection):
+        if self.current_calculator_frame:
+            self.current_calculator_frame.destroy()
+
+        calculator_class = self.calculator_options[selection]
+        self.current_calculator_frame = calculator_class(self.root)
+        self.current_calculator_frame.pack()
+
+
+
