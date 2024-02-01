@@ -6,3 +6,9 @@ module and class and will be imported here so that it can be run.  The default c
 import customtkinter as ctk
 from simple_calculator import SimpleCalc
 from matrix_calculator import MatrixCalc
+
+
+class MainApp:
+
+    def __init__(self, root):
+        pass
