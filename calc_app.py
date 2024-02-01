@@ -11,4 +11,8 @@ from matrix_calculator import MatrixCalc
 class MainApp:
 
     def __init__(self, root):
+        self.root = root
+        self.calculator_options = {'simple': SimpleCalc,
+                                   'matrix': MatrixCalc}
+        self.calculator_var = ctk.StringVar()
         pass
