@@ -14,8 +14,9 @@ class MainApp:
         self.root = root
         self.current_calculator_frame = None
         self.root_bg_color = self.root.cget('bg')
+        #print(self.root_bg_color)
 
-        menu_frame = ctk.CTkFrame(self.root)
+        menu_frame = ctk.CTkFrame(self.root, border_color='gray92')
         menu_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
 
         self.calculator_options = {'Simple': SimpleCalc,
