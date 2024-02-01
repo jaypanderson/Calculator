@@ -22,7 +22,7 @@ class MainApp:
 
         self.calculator_var = ctk.StringVar(self.root)
         self.calculator_var.set('Simple')
-        self.option_menu = ctk.CTkOptionMenu(menu_frame, values=list(self.calculator_options.keys()), command=self.switch_calculator)
+        self.option_menu = ctk.CTkOptionMenu(self.root, values=list(self.calculator_options.keys()), command=self.switch_calculator)
         #self.option_menu = tk.OptionMenu(menu_frame, self.calculator_var, *self.calculator_options.keys(), command=self.switch_calculator)
         self.option_menu.grid(row=0, column=0, sticky="ew")
         self.switch_calculator('Simple')

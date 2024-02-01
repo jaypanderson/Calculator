@@ -66,9 +66,10 @@ from typing import Callable, Union
 
 
 # noinspection PyAttributeOutsideInit
-class SimpleCalc:
+class SimpleCalc(ctk.CTkFrame):
 
     def __init__(self, root: ctk.CTk):
+        super().__init__(root)
         self.root = root
         self.arith = False
         self.init_buttons()
