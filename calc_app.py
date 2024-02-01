@@ -15,16 +15,16 @@ class MainApp:
         self.current_calculator_frame = None
 
         menu_frame = ctk.CTkFrame(self.root)
-        menu_frame.grid(row=0, column=0, sticky="ew")
+        menu_frame.grid(row=0, column=0, columnspan=4, sticky="ew")
 
         self.calculator_options = {'Simple': SimpleCalc,
                                    'Matrix': MatrixCalc}
 
         self.calculator_var = ctk.StringVar(self.root)
         self.calculator_var.set('Simple')
-        self.option_menu = ctk.CTkOptionMenu(menu_frame, values=list(self.calculator_options.keys()), command=self.switch_calculator)
+        self.option_menu = ctk.CTkOptionMenu(menu_frame, width=300, values=list(self.calculator_options.keys()), command=self.switch_calculator)
         #self.option_menu = tk.OptionMenu(menu_frame, self.calculator_var, *self.calculator_options.keys(), command=self.switch_calculator)
-        self.option_menu.grid(row=0, column=0, sticky="ew")
+        self.option_menu.grid(row=0, column=0, columnspan=4, sticky="ew")
         self.switch_calculator('Simple')
 
     def switch_calculator(self, selection):
@@ -33,7 +33,7 @@ class MainApp:
 
         calculator_class = self.calculator_options[selection]
         self.current_calculator_frame = calculator_class(self.root)
-        #self.current_calculator_frame.pack()
+        self.option_menu.grid(row=0, column=0, columnspan=4, sticky="ew")
 
 
 if __name__ == '__main__':

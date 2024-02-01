@@ -140,7 +140,7 @@ class MatrixCalc(ctk.CTkFrame):
         # add the text box for the numbers
         self.calculation_text = ctk.CTkEntry(self.root, width=self.text_width, fg_color=self.root_bg_color,
                                         border_color=self.root_bg_color, justify='right')
-        self.calculation_text.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+        self.calculation_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
         self.calculation_text.configure(font=('Lucida Console', 15), state='readonly')
         self.calculation_text.bind('<Key>', lambda x: 'break')
 
@@ -154,7 +154,7 @@ class MatrixCalc(ctk.CTkFrame):
         self.current_text = ctk.CTkEntry(self.root, width=self.text_width, textvariable=self.status_var,
                                          fg_color=self.root_bg_color, border_color=self.root_bg_color, justify='right')
         self.current_text.insert(0, '0')
-        self.current_text.grid(row=1, column=0, columnspan=4, padx=10, pady=10)
+        self.current_text.grid(row=2, column=0, columnspan=4, padx=10, pady=10)
         self.current_text.configure(font=('Lucida Console', 30), state='readonly')
 
 
