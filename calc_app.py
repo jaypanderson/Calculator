@@ -30,4 +30,7 @@ class MainApp:
         self.current_calculator_frame.pack()
 
 
-
+if __name__ == '__main__':
+    root = ctk.CTk()
+    app = MainApp(root)
+    root.mainloop()
