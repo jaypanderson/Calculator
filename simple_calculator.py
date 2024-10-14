@@ -64,6 +64,8 @@ from typing import Callable, Union
 # TODO operator such like this '9x3+' the result of the answer so far appears in the current text so for this case
 # TODO current_text would be '27'
 
+# TODO there is a bug when using the power of numbers -2 ^ 2 should be 4 but gets -4
+
 
 # noinspection PyAttributeOutsideInit
 class SimpleCalc(ctk.CTkFrame):
